@@ -8,46 +8,46 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'roosta/vim-srcery'
+" https://github.com/scrooloose/nerdtree
 Plugin 'scrooloose/nerdtree'
+" https://github.com/vim-airline/vim-airline
 Plugin 'vim-airline/vim-airline'
+" https://github.com/tpope/vim-commentary
 Plugin 'tpope/vim-commentary'
+" https://github.com/kien/ctrlp.vim
 Plugin 'ctrlpvim/ctrlp.vim'
+" https://github.com/airblade/vim-gitgutter
 Plugin 'airblade/vim-gitgutter'
-Plugin 'flazz/vim-colorschemes'
-Plugin 'vim-scripts/scons.vim'
+" https://github.com/gioele/vim-autoswap
 Plugin 'gioele/vim-autoswap'
-Plugin 'danro/rename.vim'
+" https://github.com/kien/rainbow_parentheses.vim
 Plugin 'kien/rainbow_parentheses.vim'
+" https://github.com/ntpeters/vim-better-whitespace
 Plugin 'ntpeters/vim-better-whitespace'
+" https://github.com/jiangmiao/auto-pairs
 Plugin 'jiangmiao/auto-pairs'
+" https://github.com/tpope/vim-fugitive
 Plugin 'tpope/vim-fugitive'
-Plugin 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
+" https://github.com/tpope/vim-surround
 Plugin 'tpope/vim-surround'
+" https://github.com/MarcWeber/vim-addon-mw-utils
 Plugin 'MarcWeber/vim-addon-mw-utils'
+" https://github.com/tomtom/tlib_vim
 Plugin 'tomtom/tlib_vim'
+" https://github.com/garbas/vim-snipmate (depends on tlib and addon mw utils)
 Plugin 'garbas/vim-snipmate'
+" https://github.com/honza/vim-snippets (optional of vim-snipmate)
 Plugin 'honza/vim-snippets'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'vim-scripts/xml.vim'
-Plugin 'bkad/CamelCaseMotion'
+" Plugin 'Valloric/YouCompleteMe'
+" https://github.com/j5shi/ctrlp_bdelete.vim
 Plugin 'j5shi/ctrlp_bdelete.vim'
-Plugin 'nathanaelkane/vim-indent-guides'
+" https://github.com/chriskempson/base16-vim
+Plugin 'chriskempson/base16-vim'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 
-" IndentGuides colors
-let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_auto_colors = 0
-let g:indent_guides_guide_size = 1
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd ctermbg=7
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=8
-let g:indent_guides_exclude_filetypes = ['help', 'nerdtree']
-let g:indent_guides_color_change_percent = 10
-
 " syntax highlighting
 syntax on
-
 " enable filetype detection
 filetype on
 " enable loading settings for specific types of files
@@ -55,13 +55,13 @@ filetype on
 filetype plugin on
 " enable loading indent settings for filetypes
 " ~/.vim/indent/python.vim
-filetype indent off
+filetype indent on
 
 " Spell checking
 " set spell spelllang=en_us
 
-" zt, zb leave 3 lines of space above or below
-set scrolloff=3
+" zt, zb leave 7 lines of space above or below
+set scrolloff=7
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -75,8 +75,10 @@ xnoremap p "_dP"
 set number
 
 " colors!
-set background=dark
-colorscheme srcery
+if filereadable(expand("~/.vimrc_background"))
+   let base16colorspace=256
+   source ~/.vimrc_background
+endif
 " enable xterm colors
 set term=xterm-256color
 " highlight PmenuSel ctermfg=black ctermbg=cyan
@@ -93,19 +95,19 @@ set directory=~/.vim/tmp
 
 " indentation settings
 " how many columns a tab counts for
-set tabstop=3
+set tabstop=4
 " use spaces instead of tabs
 set expandtab
 " control how many columns text is indented with the reindent operations (<<
 " and >>)
-set shiftwidth=3
+set shiftwidth=4
 " control how many columns vim uses when you hit Tab in insert mode
-set softtabstop=3
+set softtabstop=4
 " copy the indentation from the previous line when starting a new line
 set autoindent
 " automatically inserts one extra level of indentation in some cases
 " don't use if filetype indent is ON
-set smartindent
+" set smartindent
 " Copy the structure of the existing lines indent when autoindenting a new
 " line
 set copyindent
@@ -232,16 +234,16 @@ augroup XML
 augroup END
 
 " Auto-complete
-let g:ycm_confirm_extra_conf = 0
-let g:ycm_min_num_of_chars_for_completion = 2
-let g:ycm_collect_identifiers_from_tags_files = 1
-let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_add_preview_to_completeopt = 0
-let g:ycm_enable_diagnostic_signs = 0
-let g:ycm_enable_diagnostic_highlighting = 0
-let g:ycm_filetype_whitelist = { 'c': 1, 'cpp': 1, 'python': 1, 'bash': 1 }
-set completeopt-=preview
-nnoremap <leader>d :YcmCompleter GoTo<CR>
+" let g:ycm_confirm_extra_conf = 0
+" let g:ycm_min_num_of_chars_for_completion = 2
+" let g:ycm_collect_identifiers_from_tags_files = 1
+" let g:ycm_autoclose_preview_window_after_completion = 1
+" let g:ycm_add_preview_to_completeopt = 0
+" let g:ycm_enable_diagnostic_signs = 0
+" let g:ycm_enable_diagnostic_highlighting = 0
+" let g:ycm_filetype_whitelist = { 'c': 1, 'cpp': 1, 'python': 1, 'bash': 1 }
+" set completeopt-=preview
+" nnoremap <leader>d :YcmCompleter GoTo<CR>
 
 " airline config
 " automatically populate g:airline_symbols with pretty symbols
@@ -280,4 +282,3 @@ sunmap w
 sunmap b
 sunmap e
 sunmap ge
-
