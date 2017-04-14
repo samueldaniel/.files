@@ -1,3 +1,4 @@
 # .files
 ## TODO
-- automatically install vim plugins
+- install vim plugins
+- install iterm2 theme
