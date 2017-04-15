@@ -61,12 +61,15 @@ echo -e "\n$(green)hiring an interior decorator$(reset)\n"
 git clone https://github.com/chriskempson/base16-shell.git colony/base16-shell
 
 echo -e "\n$(green)authorizing black-budget R&D$(reset)\n"
+ln -sf "$DOTFILES/.tmux.conf" ~/.tmux.conf
 ln -sf "$DOTFILES/.vimrc" ~/.vimrc
 ln -sf "$DOTFILES/.bashrc" ~/.bashrc
 
-mkdir -p ~/.vim/bundle
-mkdir -p ~/.vim/tmp
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+VIM="$DOTFILES/colony/.vim"
+mkdir -p "$VIM/bundle"
+mkdir -p "$VIM/tmp"
+ln -sf "$VIM" ~/.vim
+git clone https://github.com/VundleVim/Vundle.vim.git "$VIM/Vundle.vim"
 
 vim +PluginInstall +qall
 
