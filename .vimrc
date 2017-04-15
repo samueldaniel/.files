@@ -43,6 +43,8 @@ Plugin 'honza/vim-snippets'
 Plugin 'j5shi/ctrlp_bdelete.vim'
 " https://github.com/chriskempson/base16-vim
 Plugin 'chriskempson/base16-vim'
+" https://github.com/bkad/CamelCaseMotion
+Plugin 'bkad/CamelCaseMotion'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 
