@@ -24,10 +24,6 @@ function reset () {
   tput sgr0
 }
 
-tput setab [1-7] # Set the background colour using ANSI escape
-tput setaf [1-7] # Set the foreground colour using ANSI escape
-
-
 DOTFILES=$(pwd)
 
 # the bit mines...

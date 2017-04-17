@@ -1,3 +1,5 @@
+stty -ixon
+
 alias gst="git status"
 alias ls="ls -G"
 alias ll="ls -alhG"
