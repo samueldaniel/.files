@@ -65,7 +65,7 @@ VIM="$DOTFILES/colony/.vim"
 cp -r "$DOTFILES/.vim-template" $VIM
 mkdir -p "$VIM/bundle"
 mkdir -p "$VIM/tmp"
-ln -sf "$VIM" ~/.vim
+ln -sf "$VIM/" ~/.vim
 git clone https://github.com/VundleVim/Vundle.vim.git "$VIM/bundle/Vundle.vim"
 
 vim +PluginInstall +qall
