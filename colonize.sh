@@ -1,4 +1,4 @@
-#!/usr/bin/env bash -e
+#!/bin/bash -e
 # Num  Colour    #define         R G B
 # 0    black     COLOR_BLACK     0,0,0
 # 1    red       COLOR_RED       1,0,0
@@ -65,10 +65,9 @@ VIM="$DOTFILES/colony/.vim"
 cp -r "$DOTFILES/.vim-template" $VIM
 mkdir -p "$VIM/bundle"
 mkdir -p "$VIM/tmp"
-ln -sf "$VIM" ~/.vim/
+ln -sf "$VIM" ~/.vim
 git clone https://github.com/VundleVim/Vundle.vim.git "$VIM/bundle/Vundle.vim"
 
 vim +PluginInstall +qall
 
 echo -e "\n$(blue)start new shell, run $(white)base16_solarflare$(reset)\n"
-
