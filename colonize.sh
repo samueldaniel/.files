@@ -33,7 +33,7 @@ DOTFILES=$(pwd)
 # the bit mines...
 
 echo -e "\n$(green)planting a flag, establishing a colony$(reset)\n"
-mkdir colony
+mkdir -p colony
 
 # powerline-shell-friendly fonts
 # 2017/04/15 - Hack
@@ -66,10 +66,11 @@ ln -sf "$DOTFILES/.vimrc" ~/.vimrc
 ln -sf "$DOTFILES/.bashrc" ~/.bashrc
 
 VIM="$DOTFILES/colony/.vim"
+cp -r "$DOTFILES/.vim-template" $VIM
 mkdir -p "$VIM/bundle"
 mkdir -p "$VIM/tmp"
-ln -sf "$VIM" ~/.vim
-git clone https://github.com/VundleVim/Vundle.vim.git "$VIM/Vundle.vim"
+ln -sf "$VIM" ~/.vim/
+git clone https://github.com/VundleVim/Vundle.vim.git "$VIM/bundle/Vundle.vim"
 
 vim +PluginInstall +qall
 
