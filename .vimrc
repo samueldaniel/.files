@@ -192,10 +192,10 @@ set splitright
 
 " red column
 if exists('+colorcolumn')
-  set colorcolumn=80
+  set colorcolumn=101
   highlight ColorColumn ctermbg=red
 else
-  au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+  au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>101v.\+', -1)
 endif
 
 " whitespace highlighting
