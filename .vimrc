@@ -45,6 +45,8 @@ Plugin 'j5shi/ctrlp_bdelete.vim'
 Plugin 'chriskempson/base16-vim'
 " https://github.com/bkad/CamelCaseMotion
 Plugin 'bkad/CamelCaseMotion'
+" https://github.com/guns/xterm-color-table.vim
+Plugin 'guns/xterm-color-table.vim'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 
@@ -98,18 +100,24 @@ set directory=~/.vim/tmp
 " indentation settings
 " how many columns a tab counts for
 set tabstop=4
+
 " use spaces instead of tabs
 set expandtab
+
 " control how many columns text is indented with the reindent operations (<<
 " and >>)
 set shiftwidth=4
+
 " control how many columns vim uses when you hit Tab in insert mode
 set softtabstop=4
+
 " copy the indentation from the previous line when starting a new line
 set autoindent
+
 " automatically inserts one extra level of indentation in some cases
 " don't use if filetype indent is ON
 " set smartindent
+
 " Copy the structure of the existing lines indent when autoindenting a new
 " line
 set copyindent
