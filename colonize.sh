@@ -51,6 +51,10 @@ pushd colony/powerline-shell
 ./install.py
 popd
 
+TMUX="$DOTFILES/colony/.tmux/"
+git clone https://github.com/tmux-plugins/tpm "$TMUX/plugins/tpm"
+ln -sf "$TMUX" ~/.tmux
+
 # shell + vim colors
 # 2017/04/15 - solarflare
 echo -e "\n$(green)hiring an interior decorator$(reset)\n"
