@@ -66,7 +66,7 @@ ln -sf "$DOTFILES/.vimrc" ~/.vimrc
 ln -sf "$DOTFILES/.bashrc" ~/.bashrc
 
 VIM="$DOTFILES/colony/.vim"
-cp -r "$DOTFILES/.vim-template" $VIM
+cp -r "$DOTFILES/.vim" $VIM
 mkdir -p "$VIM/bundle"
 mkdir -p "$VIM/tmp"
 ln -sf "$VIM/" ~/.vim
