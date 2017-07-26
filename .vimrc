@@ -47,8 +47,14 @@ Plugin 'chriskempson/base16-vim'
 Plugin 'bkad/CamelCaseMotion'
 " https://github.com/guns/xterm-color-table.vim
 Plugin 'guns/xterm-color-table.vim'
+" https://github.com/vim-scripts/xml.vim
+Plugin 'vim-scripts/xml.vim'
+" flake8
+" Plugin 'nvie/vim-flake8'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
+
+" autocmd BufWritePost *.py call Flake8()
 
 " syntax highlighting
 syntax on

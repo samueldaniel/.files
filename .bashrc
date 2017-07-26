@@ -2,6 +2,7 @@ stty -ixon
 
 . /mnt/eng/tools/catalog/arkyd/dotfiles/.bashrc
 
+
 alias gst="git status"
 alias ls="ls -G --color"
 alias ll="ls -alhG --color"
@@ -14,6 +15,8 @@ alias ssht2='TERM=xterm ssh root@192.168.100.100'
 alias zynq-serial='picocom -b 115200 /dev/egse-tier2-console'
 alias me='ps -ef | grep sdaniel'
 alias procs="watch -n 1 'ps -e -o pid,uname,cmd,pmem,pcpu --sort=-pmem,-pcpu | head -15'"
+alias tmux="/mnt/eng/tools/catalog/tmux/2.5/tmux"
+alias lua="~/lua-5.3.4/install/bin/lua"
 
 function myfind () {
     FN_REGEX=$1
@@ -25,13 +28,13 @@ export -f myfind
 function labelpane () {
     if [ "-w" == "$1" ]
     then
-        echo "wut"
         shift
         WINDOW_NAME="$@"
-        echo $WINDOW_NAME
+        echo "labelling current tmux window: ${WINDOW_NAME}"
         printf "\033k%s\033\\" "$WINDOW_NAME";
     else
         PANE_NAME="$@"
+        echo "labelling current tmux pane: ${PANE_NAME}"
         printf "\033]2;%s\033\\" "$PANE_NAME";
     fi
 }
