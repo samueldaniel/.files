@@ -2,7 +2,6 @@ stty -ixon
 
 . /mnt/eng/tools/catalog/arkyd/dotfiles/.bashrc
 
-
 alias gst="git status"
 alias ls="ls -G --color"
 alias ll="ls -alhG --color"
@@ -53,3 +52,8 @@ function _update_ps1() {
 if [ "$TERM" != "linux"  ]; then
     export PROMPT_COMMAND="_update_ps1; arkyd_env_ps1_status;"
 fi
+
+BASE16_SHELL=$HOME/.config/base16-shell/
+[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+
+PATH=$HOME/.files/bin:$PATH
