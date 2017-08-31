@@ -112,5 +112,23 @@ ln -sf $VIM ~/.vim
 
 vim +PluginInstall +qall
 
+read -p "$(red)install globals? $(reset) " answer
+case $answer in
+    y|Y|yes|Yes|YES)
+        echo -e "$(red)if this fails, it's probably because you didn't use sudo$(reset)"
+        if hash npm 2>/dev/null; then
+            echo -e "$(green)npm exists$(reset)"
+
+            echo -e "$(blue)installing a live markdown preview for vim$(reset)"
+            npm install -g livedown
+        else
+            echo -e"$(red)npm doesn't exist!$(reset)"
+        fi
+    ;;
+    *)
+    ;;
+esac
+
+
 echo -e "\n$(blue)start new shell, run $(white)base16_solar-flare$(reset)"
 echo -e "$(blue)don't worry, everything will be fine!\n:D$(reset)"

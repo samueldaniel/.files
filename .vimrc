@@ -51,6 +51,8 @@ Plugin 'guns/xterm-color-table.vim'
 Plugin 'vim-scripts/xml.vim'
 " https://github.com/junegunn/goyo.vim
 Plugin 'junegunn/goyo.vim'
+" https://github.com/shime/vim-livedown
+Plugin 'shime/vim-livedown'
 " flake8
 " Plugin 'nvie/vim-flake8'
 " All of your Plugins must be added before the following line
@@ -300,3 +302,11 @@ sunmap w
 sunmap b
 sunmap e
 sunmap ge
+
+" vim-livedown settings
+" should markdown preview get shown automatically upon opening markdown buffer
+let g:livedown_autorun = 1
+" should the browser window pop-up upon previewing
+let g:livedown_open = 1
+" the port on which Livedown server will run
+let g:livedown_port = 1337
