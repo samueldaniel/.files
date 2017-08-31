@@ -208,7 +208,7 @@ set splitright
 
 " red column
 if exists('+colorcolumn')
-  set colorcolumn=121
+  set colorcolumn=101
   highlight ColorColumn ctermbg=red
 else
   au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>101v.\+', -1)
