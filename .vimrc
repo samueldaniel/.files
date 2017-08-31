@@ -45,18 +45,8 @@ Plugin 'j5shi/ctrlp_bdelete.vim'
 Plugin 'chriskempson/base16-vim'
 " https://github.com/bkad/CamelCaseMotion
 Plugin 'bkad/CamelCaseMotion'
-" https://github.com/guns/xterm-color-table.vim
-Plugin 'guns/xterm-color-table.vim'
-" https://github.com/vim-scripts/xml.vim
-Plugin 'vim-scripts/xml.vim'
-" https://github.com/junegunn/goyo.vim
-Plugin 'junegunn/goyo.vim'
-" flake8
-" Plugin 'nvie/vim-flake8'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
-
-" autocmd BufWritePost *.py call Flake8()
 
 " syntax highlighting
 syntax on
@@ -108,24 +98,18 @@ set directory=~/.vim/tmp
 " indentation settings
 " how many columns a tab counts for
 set tabstop=4
-
 " use spaces instead of tabs
 set expandtab
-
 " control how many columns text is indented with the reindent operations (<<
 " and >>)
 set shiftwidth=4
-
 " control how many columns vim uses when you hit Tab in insert mode
 set softtabstop=4
-
 " copy the indentation from the previous line when starting a new line
 set autoindent
-
 " automatically inserts one extra level of indentation in some cases
 " don't use if filetype indent is ON
 " set smartindent
-
 " Copy the structure of the existing lines indent when autoindenting a new
 " line
 set copyindent
@@ -208,10 +192,10 @@ set splitright
 
 " red column
 if exists('+colorcolumn')
-  set colorcolumn=101
+  set colorcolumn=80
   highlight ColorColumn ctermbg=red
 else
-  au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>101v.\+', -1)
+  au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 endif
 
 " whitespace highlighting
