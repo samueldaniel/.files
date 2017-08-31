@@ -49,6 +49,8 @@ Plugin 'bkad/CamelCaseMotion'
 Plugin 'guns/xterm-color-table.vim'
 " https://github.com/vim-scripts/xml.vim
 Plugin 'vim-scripts/xml.vim'
+" https://github.com/junegunn/goyo.vim
+Plugin 'junegunn/goyo.vim'
 " flake8
 " Plugin 'nvie/vim-flake8'
 " All of your Plugins must be added before the following line
