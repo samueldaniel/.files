@@ -1,12 +1,12 @@
 [user]
-	name = Sam Daniel
+    name = Sam Daniel
 	email = daniel.jacob.samuel@gmail.com
 [alias]
     undocommit = reset HEAD~
 [diff]
-   tool = multidiff
+    tool = multidiff
 [multidiff]
-   tool = vim -c 'silent call TabMultiDiff()' -f
+    tool = vim -c 'silent call TabMultiDiff()' -f
 [color]
-   ui = auto
-   diff = auto
+    ui = auto
+    diff = auto
