@@ -1,0 +1,7 @@
+#!/bin/bash
+
+exec vim \
+  -c 'silent call TabMultiDiffMaximized()' \
+  -c 'tabdo windo set nofoldenable foldcolumn=0' \
+  -c 'tabfirst' \
+  "$@"
