@@ -11,7 +11,7 @@ Plugin 'VundleVim/Vundle.vim'
 " https://github.com/scrooloose/nerdtree
 Plugin 'scrooloose/nerdtree'
 " https://github.com/vim-airline/vim-airline
-Plugin 'vim-airline/vim-airline'
+" Plugin 'vim-airline/vim-airline'
 " https://github.com/tpope/vim-commentary
 Plugin 'tpope/vim-commentary'
 " https://github.com/kien/ctrlp.vim
@@ -265,11 +265,11 @@ augroup END
 
 " airline config
 " automatically populate g:airline_symbols with pretty symbols
-let g:airline_powerline_fonts = 1
+" let g:airline_powerline_fonts = 1
 " display all buffers when only 1 tab open
-let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#tabline#enabled = 1
 " only show filename
-let g:airline#extensions#tabline#fnamemod = ':t'
+" let g:airline#extensions#tabline#fnamemod = ':t'
 
 " BUFFER MGMT STUFF
 " hide buffers instead of closing them when opening a new one
@@ -300,3 +300,8 @@ sunmap w
 sunmap b
 sunmap e
 sunmap ge
+
+set rtp+=$HOME/.files/.colony/powerline/powerline/bindings/vim
+python from powerline.vim import setup as powerline_setup
+python powerline_setup()
+python del powerline_setup
