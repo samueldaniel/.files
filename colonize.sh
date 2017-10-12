@@ -62,53 +62,52 @@ if [ ! -d "$COLONY" ]; then
     mkdir "$COLONY"
 fi
 
-if [ ! -d ~/.config ]; then
-    mkdir ~/.config
+DOTCONFIG="$HOME/.config"
+if [ ! -d "$DOTCONFIG" ]; then
+    mkdir "$DOTCONFIG"
 fi
 
-# powerline-shell-friendly fonts
+# install powerline
+echo -e "\n$(green)installing your new superpowers$(reset)"
+POWERLINE="$COLONY/powerline"
+git clone https://github.com/powerline/powerline "$POWERLINE"
+pip install --user --editable="$POWERLINE"
+ln -sf $POWERLINE/scripts/powerline* $HOME/.local/bin/
+ln -sf $DOTFILES/powerline $DOTCONFIG
+
+# powerline-friendly fonts
 # 2017/04/15 - Hack
 echo -e "\n$(green)inventing a new conlang$(reset)"
 FONTS="$COLONY/powerline-fonts"
-git clone https://github.com/powerline/fonts.git $FONTS
-pushd $FONTS
+git clone https://github.com/powerline/fonts.git "$FONTS"
+pushd "$FONTS"
 ./install.sh
 popd
 
-# powerline-shell prompt
-# 2017/04/15 - default
-echo -e "\n$(green)installing HUD firmware$(reset)"
-PROMPT="$COLONY/powerline-shell"
-git clone https://github.com/milkbikis/powerline-shell $PROMPT
-ln -sf "$PROMPT/powerline-shell.py" ~/.powerline_shell.py
-ln -sf "$DOTFILES/powerline-shell-config.py" $PROMPT/config.py
-pushd $PROMPT
-./install.py
-popd
-
+# set up tmux stuff
 echo -e "\n$(green)making multitasking more difficult$(reset)"
 TMUX="$COLONY/.tmux"
 git clone https://github.com/tmux-plugins/tpm "$TMUX/plugins/tpm"
-ln -sf "$TMUX" ~/.tmux
-ln -sf "$DOTFILES/.tmux.conf" ~/.tmux.conf
+ln -sf "$TMUX" "$HOME"
+ln -sf "$DOTFILES/.tmux.conf" "$HOME"
 
 # shell + vim colors
 # 2017/04/15 - solarflare
 echo -e "\n$(green)hiring an interior decorator$(reset)"
 COLORS="$COLONY/base16-shell"
-git clone https://github.com/chriskempson/base16-shell.git $COLORS
-ln -sf "$COLORS" ~/.config/base16-shell
+git clone https://github.com/chriskempson/base16-shell.git "$COLORS"
+ln -sf "$COLORS" "$HOME/.config"
 
 echo -e "\n$(green)authorizing black-budget R&D$(reset)"
-ln -sf "$DOTFILES/.bashrc" ~/.bashrc
-ln -sf "$DOTFILES/.vimrc" ~/.vimrc
+ln -sf "$DOTFILES/.bashrc" "$HOME"
+ln -sf "$DOTFILES/.vimrc" "$HOME"
 
 VIM="$COLONY/.vim"
-cp -r "$DOTFILES/.vim" $VIM
+cp -r "$DOTFILES/.vim" "$COLONY"
 mkdir -p "$VIM/bundle"
 mkdir -p "$VIM/tmp"
 git clone https://github.com/VundleVim/Vundle.vim.git "$VIM/bundle/Vundle.vim"
-ln -sf $VIM ~/.vim
+ln -sf "$VIM" "$HOME"
 
 vim +PluginInstall +qall
 
