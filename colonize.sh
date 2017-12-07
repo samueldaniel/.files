@@ -72,7 +72,7 @@ echo -e "\n$(green)installing your new superpowers$(reset)"
 POWERLINE="$COLONY/powerline"
 git clone https://github.com/powerline/powerline "$POWERLINE"
 pip install --user --editable="$POWERLINE"
-ln -sf $POWERLINE/scripts/powerline* $HOME/.local/bin/
+ln -sf $POWERLINE/scripts/powerline $HOME/.local/bin/
 ln -sf $DOTFILES/powerline $DOTCONFIG
 
 # powerline-friendly fonts
@@ -101,6 +101,7 @@ ln -sf "$COLORS" "$HOME/.config"
 echo -e "\n$(green)authorizing black-budget R&D$(reset)"
 ln -sf "$DOTFILES/.bashrc" "$HOME"
 ln -sf "$DOTFILES/.vimrc" "$HOME"
+ln -sf "$DOTFILES/.gitconfig" "$HOME"
 
 VIM="$COLONY/.vim"
 cp -r "$DOTFILES/.vim" "$COLONY"
@@ -111,5 +112,5 @@ ln -sf "$VIM" "$HOME"
 
 vim +PluginInstall +qall
 
-echo -e "\n$(blue)start new shell, run $(white)base16_solar-flare$(reset)"
+echo -e "\n$(blue)start new shell, run $(white)base16_solarflare$(reset)"
 echo -e "$(blue)don't worry, everything will be fine!\n:D$(reset)"

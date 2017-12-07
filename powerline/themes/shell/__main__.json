@@ -9,6 +9,16 @@
 			"args": {
 				"dir_limit_depth": 5
 			}
-		}
-	}
+		},
+        "environment": {
+            "args": {
+                "variable": "ARKYD_ENV_STATUS"
+            }
+        },
+        "jobnum": {
+            "args": {
+                "show_zero": true
+            }
+        }
+    }
 }

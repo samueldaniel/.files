@@ -3,7 +3,7 @@
 		"left": [
 			{
 				"function": "powerline.segments.common.env.user",
-				"priority": 10
+				"priority": 30
 			},
 			{
 				"function": "powerline.segments.common.net.hostname",
@@ -11,27 +11,27 @@
 			},
 			{
 				"function": "powerline.segments.shell.cwd",
-				"priority": 10
-			},
-			{
-				"function": "powerline.segments.common.vcs.branch",
-				"priority": 40
+				"priority": 30
 			},
 			{
 				"function": "powerline.segments.common.env.virtualenv",
+				"priority": 10
+			},
+			{
+				"function": "powerline.segments.common.env.environment",
 				"priority": 50
 			},
 			{
-				"function": "powerline.segments.shell.jobnum",
-				"priority": 20
+				"function": "powerline.segments.common.vcs.branch",
+				"priority": 30
 			},
-            {
-                "function": "powerline.segments.shell.last_status",
-                "priority": 10
-            },
 			{
-				"function": "powerline.segments.shell.last_pipe_status",
+				"function": "powerline.segments.shell.jobnum",
 				"priority": 10
+			},
+			{
+				"function": "powerline.segments.shell.last_status",
+				"priority": 50
 			}
 		]
 	}
