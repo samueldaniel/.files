@@ -69,5 +69,10 @@ ln -sf "$VIM" "$HOME"
 
 vim +PluginInstall +qall
 
+echo -e "\n$(green)building a HUD$(reset)"
+BASH_IT="$COLONY/.bash_it"
+git clone --depth=1 https://github.com/Bash-it/bash-it.git "$BASH_IT"
+./$BASH_IT/install.sh --silent --no-modify-config
+
 echo -e "\n$(blue)start new shell, run $(white)base16_3024$(reset)"
 echo -e "$(blue)don't worry, everything will be fine!\n:D$(reset)"
