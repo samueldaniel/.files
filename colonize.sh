@@ -1,4 +1,6 @@
-#!/usr/bin/env bash -e
+#!/usr/bin/env bash
+set -e
+
 source utils.sh
 
 DOTFILES=$(pwd)
@@ -36,7 +38,8 @@ if [ ! -d "$DOTCONFIG" ]; then
 fi
 
 curl -o "$COLONY/git-completion.bash" https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
-ln -s "$COLONY/git-completion.bash" "$HOME"
+ln -sf "$COLONY/git-completion.bash" "$HOME"
+ln -sf "$DOTFILES/.gitconfig" "$HOME"
 
 # set up tmux stuff
 echo -e "\n$(green)making multitasking more difficult$(reset)"
@@ -46,7 +49,6 @@ ln -sf "$TMUX" "$HOME"
 ln -sf "$DOTFILES/.tmux.conf" "$HOME"
 
 # shell + vim colors
-## 2017/04/15 - solarflare
 echo -e "\n$(green)hiring an interior decorator$(reset)"
 COLORS="$COLONY/base16-shell"
 git clone https://github.com/chriskempson/base16-shell.git "$COLORS"
@@ -67,5 +69,5 @@ ln -sf "$VIM" "$HOME"
 
 vim +PluginInstall +qall
 
-echo -e "\n$(blue)start new shell, run $(white)base16_solar-flare$(reset)"
+echo -e "\n$(blue)start new shell, run $(white)base16_3024$(reset)"
 echo -e "$(blue)don't worry, everything will be fine!\n:D$(reset)"

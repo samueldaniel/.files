@@ -1,8 +1,6 @@
 set nocompatible
 filetype off
 
-colorscheme default
-
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -94,12 +92,12 @@ set number
 
 " colors!
 if filereadable(expand("~/.vimrc_background"))
-   let base16colorspace=256
-   source ~/.vimrc_background
+  let base16colorspace=256  " Access colors present in 256 colorspace
+  source ~/.vimrc_background
 endif
+colorscheme base16-3024
 " enable xterm colors
 set term=xterm-256color
-set termguicolors
 " highlight PmenuSel ctermfg=black ctermbg=cyan
 " highlight Pmenu ctermfg=green ctermbg=black
 
