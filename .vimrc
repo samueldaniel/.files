@@ -10,8 +10,12 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 " https://github.com/scrooloose/nerdtree
 Plugin 'scrooloose/nerdtree'
+" https://github.com/Xuyuanp/nerdtree-git-plugin
+Plugin 'Xuyuanp/nerdtree-git-plugin'
 " https://github.com/vim-airline/vim-airline
-" Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline'
+" https://github.com/vim-airline/vim-airline-themes
+Plugin 'vim-airline/vim-airline-themes'
 " https://github.com/tpope/vim-commentary
 Plugin 'tpope/vim-commentary'
 " https://github.com/kien/ctrlp.vim
@@ -51,6 +55,8 @@ Plugin 'guns/xterm-color-table.vim'
 Plugin 'vim-scripts/xml.vim'
 " https://github.com/junegunn/goyo.vim
 Plugin 'junegunn/goyo.vim'
+" https://github.com/elixir-editors/vim-elixir
+Plugin 'elixir-editors/vim-elixir'
 " flake8
 " Plugin 'nvie/vim-flake8'
 " All of your Plugins must be added before the following line
@@ -93,6 +99,7 @@ if filereadable(expand("~/.vimrc_background"))
 endif
 " enable xterm colors
 set term=xterm-256color
+set termguicolors
 " highlight PmenuSel ctermfg=black ctermbg=cyan
 " highlight Pmenu ctermfg=green ctermbg=black
 
@@ -267,9 +274,11 @@ augroup END
 " automatically populate g:airline_symbols with pretty symbols
 " let g:airline_powerline_fonts = 1
 " display all buffers when only 1 tab open
-" let g:airline#extensions#tabline#enabled = 1
-" only show filename
-" let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#tabline#enabled = 1
+" choose which path formatter airline uses.
+" This affects how file paths are displayed in each individual tab
+" as well as the current buffer indicator in the upper right.
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 
 " BUFFER MGMT STUFF
 " hide buffers instead of closing them when opening a new one
@@ -300,8 +309,3 @@ sunmap w
 sunmap b
 sunmap e
 sunmap ge
-
-set rtp+=$HOME/.files/.colony/powerline/powerline/bindings/vim
-python from powerline.vim import setup as powerline_setup
-python powerline_setup()
-python del powerline_setup
