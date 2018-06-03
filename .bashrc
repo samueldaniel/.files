@@ -7,7 +7,7 @@ alias tree="tree -C"
 alias me='ps -ef | grep sdaniel'
 alias procs="watch -n 1 'ps -e -o pid,uname,cmd,pmem,pcpu --sort=-pmem,-pcpu | head -15'"
 
-export PATH=$HOME/.local/bin:$HOME/.files/bin:$PATH
+export PATH=$HOME/.files/bin:$PATH
 export GOPATH=$HOME/go
 export GREP_OPTIONS="--color=always"
 export GIT_CONFIG="$HOME/.gitconfig"
