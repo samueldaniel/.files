@@ -74,5 +74,12 @@ BASH_IT="$COLONY/.bash_it"
 git clone --depth=1 https://github.com/Bash-it/bash-it.git "$BASH_IT"
 $BASH_IT/install.sh --silent --no-modify-config
 
+echo -e "\n$(green)unbending the antennae$(reset)"
+NGROK="$COLONY/ngrok"
+curl -o "$NGROK.zip" https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
+apt install unzip
+unzip "$NGROK.zip"
+ln -sf "$NGROK" "$DOTFILES/bin"
+
 echo -e "\n$(blue)start new shell, run $(white)base16_3024$(reset)"
 echo -e "$(blue)don't worry, everything will be fine!\n:D$(reset)"
