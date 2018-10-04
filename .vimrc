@@ -57,6 +57,8 @@ Plugin 'junegunn/goyo.vim'
 Plugin 'elixir-editors/vim-elixir'
 " flake8
 " Plugin 'nvie/vim-flake8'
+" https://github.com/lervag/vimtex
+Plugin 'lervag/vimtex'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 

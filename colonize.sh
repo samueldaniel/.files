@@ -60,6 +60,13 @@ ln -sf "$DOTFILES/.bashrc" "$HOME"
 ln -sf "$DOTFILES/.vimrc" "$HOME"
 ln -sf "$DOTFILES/.vimrc_background" "$HOME"
 
+echo -e "\n$(green)translating the ancient texts$(reset)"
+POWERLINE_FONTS="$COLONY/powerline_fonts"
+git clone https://github.com/powerline/fonts.git --depth=1 $POWERLINE_FONTS
+cd $POWERLINE_FONTS
+./install.sh
+cd -
+
 VIM="$COLONY/.vim"
 cp -r "$DOTFILES/.vim" "$COLONY"
 mkdir -p "$VIM/bundle"
@@ -74,12 +81,12 @@ BASH_IT="$COLONY/.bash_it"
 git clone --depth=1 https://github.com/Bash-it/bash-it.git "$BASH_IT"
 $BASH_IT/install.sh --silent --no-modify-config
 
-echo -e "\n$(green)unbending the antennae$(reset)"
-NGROK="$COLONY/ngrok"
-curl -o "$NGROK.zip" https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
-apt install unzip
-unzip "$NGROK.zip"
-ln -sf "$NGROK" "$DOTFILES/bin"
+# echo -e "\n$(green)unbending the antennae$(reset)"
+# NGROK="$COLONY/ngrok"
+# curl -o "$NGROK.zip" https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
+# apt install unzip
+# unzip "$NGROK.zip"
+# ln -sf "$NGROK" "$DOTFILES/bin"
 
 echo -e "\n$(blue)start new shell, run $(white)base16_3024$(reset)"
 echo -e "$(blue)don't worry, everything will be fine!\n:D$(reset)"
