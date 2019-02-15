@@ -80,6 +80,8 @@ echo -e "\n$(green)building a HUD$(reset)"
 BASH_IT="$COLONY/.bash_it"
 git clone --depth=1 https://github.com/Bash-it/bash-it.git "$BASH_IT"
 $BASH_IT/install.sh --silent --no-modify-config
+$(bash-it enable plugin rbenv) || { echo 'failed to enable rbenv bash-it plugin'; exit 1; }
+$(bash-it enable plugin pyenv) || { echo 'failed to enable pyenv bash-it plugin'; exit 1; }
 
 # echo -e "\n$(green)unbending the antennae$(reset)"
 # NGROK="$COLONY/ngrok"

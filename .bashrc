@@ -12,20 +12,15 @@ export GOPATH=$HOME/go
 export GREP_OPTIONS="--color=always"
 export GIT_CONFIG="$HOME/.gitconfig"
 export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:$HOME/bin
 
 BASE16_SHELL=$HOME/.files/.colony/base16-shell/
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 
 source ~/git-completion.bash
 
-# eval "$(rbenv init -)"
 
 export OUTREACH_PROJECT_ROOT=$HOME/repos
-
-# if command -v pyenv 1>/dev/null 2>&1; then
-#   eval "$(pyenv init -)"
-# fi
-# if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 
 
 # Path to the bash it configuration
@@ -34,8 +29,8 @@ export BASH_IT="$HOME/.files/.colony/.bash_it"
 # Lock and Load a custom theme file
 # location /.bash_it/themes/
 export BASH_IT_THEME='powerline-multiline'
-export POWERLINE_LEFT_PROMPT="cwd scm"
-export POWERLINE_RIGHT_PROMPT="python_venv clock"
+export POWERLINE_LEFT_PROMPT="clock cwd scm"
+export POWERLINE_RIGHT_PROMPT="python_venv ruby"
 
 # (Advanced): Change this to the name of your remote repo if you
 # cloned bash-it with a remote other than origin such as `bash-it`.
@@ -83,3 +78,9 @@ export SHORT_TERM_LINE=true
 
 # Load Bash It
 source "$BASH_IT"/bash_it.sh
+
+eval "$(rbenv init -)"
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
+if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
