@@ -1,3 +1,5 @@
+source $HOME/.files/.bashrc.default
+
 stty -ixon
 
 alias gst="git status"
@@ -18,7 +20,7 @@ BASE16_SHELL=$HOME/.files/.colony/base16-shell/
 source ~/git-completion.bash
 
 # Path to the bash it configuration
-export BASH_IT="/home/fox/.files/.colony/.bash_it"
+export BASH_IT=$HOME/.files/.colony/.bash_it
 
 # Lock and Load a custom theme file
 # location /.bash_it/themes/
@@ -70,3 +72,7 @@ export SHORT_TERM_LINE=true
 
 # Load Bash It
 source "$BASH_IT"/bash_it.sh
+
+export DOCKER_HOST=localhost:2375
+
+export JAVA_HOME='/usr/lib/jvm/java-8-openjdk-amd64/jre'
