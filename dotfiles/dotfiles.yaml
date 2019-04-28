@@ -1,0 +1,23 @@
+bash:
+  symlinks:
+    -
+      src: res/bash/.bashrc
+      dest: ~/.bashrc
+    -
+      src: res/bash/.bash_profile
+      dest: ~/.bash_profile
+      platform: ['unix']
+git:
+  install:
+    -
+      cmd: curl
+      url: https://raw.githubusercontent.com/git/git/master/contrib/complet    ion/git-completion.bash
+      to: res/git/git-completion.bash
+      symlinks:
+        -
+          src: res/git/git-completion.bash
+          dest: ~/git-completion.bash
+  symlinks:
+    -
+      src: res/git/.gitconfig
+      dest: ~/.gitconfig
