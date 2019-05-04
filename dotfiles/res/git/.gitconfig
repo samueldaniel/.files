@@ -1,0 +1,8 @@
+[user]
+	name = Sam Daniel
+	email = daniel.jacob.samuel@gmail.com
+[alias]
+    undocommit = reset HEAD~
+[color]
+   ui = auto
+   diff = auto

@@ -6,7 +6,7 @@ bash:
     -
       src: res/bash/.bash_profile
       dest: ~/.bash_profile
-      platform: ['unix']
+      platform: 'unix'
 git:
   install:
     -

@@ -19,7 +19,6 @@ func init() {
 	if !strings.HasSuffix(wd, ".files/dotfiles") {
 		log.Fatalln(fmt.Sprintf("%s is not a valid working dir", wd))
 	}
-	log.Println(wd)
 }
 
 var installCmd = &cobra.Command{
@@ -37,7 +36,9 @@ var installCmd = &cobra.Command{
 				log.Fatalln(fmt.Sprintf("%s is not a valid tool", a))
 			}
 			if 0 < len(val.Symlinks) {
-				log.Println(val.Symlinks)
+				for _, s := range val.Symlinks {
+					util.InstallSymlink(s)
+				}
 			}
 		}
 	},

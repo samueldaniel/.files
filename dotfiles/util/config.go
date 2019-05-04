@@ -10,19 +10,19 @@ import (
 )
 
 type Symlink struct {
-	Src      string   `json:"src"`
-	Dest     string   `json:"dest"`
-	Platform []string `json:"platform"`
+	Source      string `yaml:"src"`
+	Destination string `yaml:"dest"`
+	Platform    string `yaml:"platform"`
 }
 type Install struct {
-	Cmd      string    `json:"cmd"`
-	Url      string    `json:"url"`
-	To       string    `json:"to"`
-	Symlinks []Symlink `json:"symlinks"`
+	Command  string    `yaml:"cmd"`
+	Url      string    `yaml:"url"`
+	To       string    `yaml:"to"`
+	Symlinks []Symlink `yaml:"symlinks"`
 }
 type Tool struct {
-	Install  []Install `json:"install"`
-	Symlinks []Symlink `json:"symlinks"`
+	Install  []Install `yaml:"install"`
+	Symlinks []Symlink `yaml:"symlinks"`
 }
 
 func LoadConfig(dotfiles string) map[string]Tool {
