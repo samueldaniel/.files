@@ -61,5 +61,8 @@ func RemoveSymlink(s Symlink) {
 			err := os.Remove(dest)
 			check(err)
 		}
+	} else {
+		msg := fmt.Sprintf("Doing nothing, %s is not a symlink", dest)
+		log.Println(msg)
 	}
 }

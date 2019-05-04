@@ -21,3 +21,19 @@ git:
     -
       src: res/git/.gitconfig
       dest: ~/.gitconfig
+nvim:
+  symlinks:
+    -
+      src: res/nvim/
+      dest: ~/.config/nvim/
+ssh:
+  symlinks:
+    -
+      src: res/ssh/sshd_config
+      dest: /etc/ssh/sshd_config
+      platform: 'linux'
+tmux:
+  symlinks:
+    -
+      src: res/tmux/.tmux.conf
+      dest: ~/.tmux.conf
