@@ -11,7 +11,7 @@ git:
   install:
     -
       cmd: curl
-      url: https://raw.githubusercontent.com/git/git/master/contrib/complet    ion/git-completion.bash
+      url: https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
       to: res/git/git-completion.bash
       symlinks:
         -
