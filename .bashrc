@@ -3,15 +3,14 @@ source $HOME/.files/.bashrc.default
 stty -ixon
 
 alias gst="git status"
-alias ls="ls --color"
-alias ll="ls -alh --color"
 alias tree="tree -C"
 alias me='ps -ef | grep sdaniel'
 alias procs="watch -n 1 'ps -e -o pid,uname,cmd,pmem,pcpu --sort=-pmem,-pcpu | head -15'"
 
 export PATH=$HOME/.files/bin:$PATH
+export PATH=/opt/gradle/gradle-5.2.1/bin:$PATH
+export PATH=/opt/spring-2.1.3.RELEASE/bin:$PATH
 export GOPATH=$HOME/go
-export GREP_OPTIONS="--color=always"
 export GIT_CONFIG="$HOME/.gitconfig"
 
 BASE16_SHELL=$HOME/.files/.colony/base16-shell/
@@ -75,4 +74,13 @@ source "$BASH_IT"/bash_it.sh
 
 export DOCKER_HOST=localhost:2375
 
-export JAVA_HOME='/usr/lib/jvm/java-8-openjdk-amd64/jre'
+export TERM=xterm-256color
+
+export JAVA_HOME=/usr/lib/jvm/jdk-11.0.2
+
+unalias ls
+unalias ll
+alias ls="ls --color=never"
+alias ll="ls -alh --color=never"
+unset $GREP_OPTIONS
+export PATH="$HOME/.npm-global/bin:$PATH"
