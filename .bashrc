@@ -3,6 +3,8 @@ source $HOME/.files/.bashrc.default
 stty -ixon
 
 alias gst="git status"
+alias ls="ls -G"
+alias ll="ls -alhG"
 alias tree="tree -C"
 alias me="ps -ef | grep $USER"
 alias procs="watch -n 1 'ps -e -o pid,uname,cmd,pmem,pcpu --sort=-pmem,-pcpu | head -15'"
@@ -12,18 +14,21 @@ export DOCKER_HOST=localhost:2375
 export PATH=$HOME/.files/bin:$PATH
 export GOPATH=$HOME/go
 export GIT_CONFIG="$HOME/.gitconfig"
+export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:$HOME/bin
 
 BASE16_SHELL=$HOME/.files/.colony/base16-shell/
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 
 source ~/git-completion.bash
 
+
 # Path to the bash it configuration
-export BASH_IT=$HOME/.files/.colony/.bash_it
+export BASH_IT="$HOME/.files/.colony/.bash_it"
 
 # Lock and Load a custom theme file
 # location /.bash_it/themes/
-export BASH_IT_THEME='sexy'
+export BASH_IT_THEME="sexy"
 
 # (Advanced): Change this to the name of your remote repo if you
 # cloned bash-it with a remote other than origin such as `bash-it`.

@@ -57,6 +57,10 @@ Plugin 'junegunn/goyo.vim'
 Plugin 'elixir-editors/vim-elixir'
 " flake8
 " Plugin 'nvie/vim-flake8'
+" https://github.com/lervag/vimtex
+Plugin 'lervag/vimtex'
+" https://github.com/google/vim-jsonnet
+Plugin 'google/vim-jsonnet'
 Plugin 'prabirshrestha/asyncomplete.vim'
 Plugin 'prabirshrestha/async.vim'
 Plugin 'prabirshrestha/vim-lsp'
@@ -94,16 +98,17 @@ xnoremap p "_dP"
 " Set line numbers
 set number
 
+" always move up/down one row (not one line)
+nmap j gj
+nmap k gk
+
+" enable xterm colors
+set term=xterm-256color
 " colors!
 if filereadable(expand("~/.vimrc_background"))
   let base16colorspace=256  " Access colors present in 256 colorspace
   source ~/.vimrc_background
 endif
-colorscheme base16-3024
-" enable xterm colors
-set term=xterm-256color
-" highlight PmenuSel ctermfg=black ctermbg=cyan
-" highlight Pmenu ctermfg=green ctermbg=black
 
 " rainbow parens
 au VimEnter * RainbowParenthesesToggle
@@ -192,10 +197,20 @@ augroup END
 set encoding=utf-8
 
 " split navigation
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
+" maximize pane vertically when switching to it
+" map <C-J> <C-W>j<C-W>_
+" map <C-K> <C-W>k<C-W>_
+" map <C-H> <C-W>h<C-W>_
+" map <C-L> <C-W>l<C-W>_
+map <C-J> <C-W>j
+map <C-K> <C-W>k
+map <C-H> <C-W>h
+map <C-L> <C-W>l
+
+" nnoremap <C-J> <C-W><C-J>
+" nnoremap <C-K> <C-W><C-K>
+" nnoremap <C-L> <C-W><C-L>
+" nnoremap <C-H> <C-W><C-H>
 
 " Open new split panes to right and bottom
 set splitbelow
@@ -235,12 +250,10 @@ endif
 " Filter out binary files
 set wildignore+=*.o,*.obj,*.os,*.lo,*.Plo,.*.pyc,*.gdca,*.gcno,git,depend.*,*.built,CMakeFiles
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/](\.git|\.hg|\.svn|depend.*|*.built|CMakeFiles|bsp_zynq-linux-cortexa9|working)$',
-  \ 'file': '\v(\.(exe|a|so|dll|o|os|lo|Plo|obj|pyc|gcno|html).*$)|(.*_main$)',
+  \ 'dir':  '\v[\/](\.git|\.hg|\.svn|)$',
+  \ 'file': '\v(\.(exe|a|so|dll|o|os|lo|Plo|obj|pyc|gcno).*$)|(.*_main$)',
   \ }
 let g:ctrlp_working_path_mode = 'r'
-"let g:ctrlp_by_filename = 1
-let g:ctrlp_root_markers = ['.arkyd_root']
 let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_max_files = 0
 
@@ -293,14 +306,14 @@ set hidden
 " nmap <leader>T :enew<cr>
 
 " " Move to the next buffer
-nmap <leader>l :bnext<CR>
+nmap <C-n> :bnext<CR>
 
 " " Move to the previous buffer
-nmap <leader>h :bprevious<CR>
+nmap <C-p> :bprevious<CR>
 
 " " Close the current buffer and move to the previous one
 " " This replicates the idea of closing a tab
-nmap <leader>bq :bp <BAR> bd #<CR>
+nmap <C-q> :bp <BAR> bd #<CR>
 
 " CamelCaseMotion mappings
 map <silent> w <Plug>CamelCaseMotion_w

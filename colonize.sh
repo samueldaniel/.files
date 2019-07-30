@@ -60,6 +60,13 @@ ln -sf "$DOTFILES/.bashrc" "$HOME"
 ln -sf "$DOTFILES/.vimrc" "$HOME"
 ln -sf "$DOTFILES/.vimrc_background" "$HOME"
 
+echo -e "\n$(green)translating the ancient texts$(reset)"
+POWERLINE_FONTS="$COLONY/powerline_fonts"
+git clone https://github.com/powerline/fonts.git --depth=1 $POWERLINE_FONTS
+cd $POWERLINE_FONTS
+./install.sh
+cd -
+
 VIM="$COLONY/.vim"
 cp -r "$DOTFILES/.vim" "$COLONY"
 mkdir -p "$VIM/bundle"
