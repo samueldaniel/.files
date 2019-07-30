@@ -1,0 +1,74 @@
+#!/usr/bin/env bash
+
+DEFAULT_PROTOCOL=http
+PROTOCOL=$DEFAULT_PROTOCOL
+
+DEFAULT_HOST=localhost
+HOST=$DEFAULT_HOST
+
+DEFAULT_PORT=80
+PORT=$DEFAULT_PORT
+
+DEFAULT_API_ENDPOINT="/"
+API_ENDPOINT=$DEFAULT_API_ENDPOINT
+
+DEFAULT_METHOD="POST"
+METHOD=$DEFAULT_METHOD
+
+FILE=""
+
+POSITIONAL=()
+while [[ $# -gt 0 ]]; do
+  key="$1"
+  case $key in
+      -h|--host)
+        HOST="$2"
+        shift # past argument
+        shift # past value
+        ;;
+      -p|--port)
+        PORT="$2"
+        shift # past argument
+        shift # past value
+        ;;
+      -a|--api)
+        API_ENDPOINT="$2"
+        shift
+        shift
+        ;;
+      -s|--https)
+        PROTOCOL=https
+        shift
+        ;;
+      -m|--method)
+        METHOD="$2"
+        shift
+        shift
+        ;;
+      -f|--file)
+        FILE="$2"
+        shift
+        shift
+        ;;
+      *)    # unknown option
+        POSITIONAL+=("$1") # save it in an array for later
+        shift # past argument
+        ;;
+  esac
+done
+set -- "${POSITIONAL[@]}" # restore positional parameters
+
+if [ -z "$FILE" ]; then
+  curl \
+    --header "Content-Type: application/json" \
+    --request "${METHOD}" \
+    --data "${POSITIONAL}" \
+    "${PROTOCOL}://${HOST}:${PORT}${API_ENDPOINT}"
+else
+  curl \
+    --header "Content-Type: application/json" \
+    --request "${METHOD}" \
+    -d "@${FILE}" \
+    "${PROTOCOL}://${HOST}:${PORT}${API_ENDPOINT}"
+fi
+echo
