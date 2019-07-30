@@ -23,17 +23,12 @@ BASE16_SHELL=$HOME/.files/.colony/base16-shell/
 source ~/git-completion.bash
 
 
-export OUTREACH_PROJECT_ROOT=$HOME/repos
-
-
 # Path to the bash it configuration
 export BASH_IT="$HOME/.files/.colony/.bash_it"
 
 # Lock and Load a custom theme file
 # location /.bash_it/themes/
-export BASH_IT_THEME='powerline-multiline'
-export POWERLINE_LEFT_PROMPT="clock cwd scm"
-export POWERLINE_RIGHT_PROMPT="python_venv ruby"
+export BASH_IT_THEME="sexy"
 
 # (Advanced): Change this to the name of your remote repo if you
 # cloned bash-it with a remote other than origin such as `bash-it`.
