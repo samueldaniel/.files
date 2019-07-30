@@ -57,6 +57,10 @@ Plugin 'junegunn/goyo.vim'
 Plugin 'elixir-editors/vim-elixir'
 " flake8
 " Plugin 'nvie/vim-flake8'
+Plugin 'prabirshrestha/asyncomplete.vim'
+Plugin 'prabirshrestha/async.vim'
+Plugin 'prabirshrestha/vim-lsp'
+Plugin 'prabirshrestha/asyncomplete-lsp.vim'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 
@@ -307,3 +311,24 @@ sunmap w
 sunmap b
 sunmap e
 sunmap ge
+
+" vim-lsp
+let g:lsp_log_verbose = 1
+let g:lsp_log_file = expand('~/.vim/vim-lsp.log')
+
+" asyncomplete.vim
+let g:asyncomplete_log_file = expand('~/.vim/asyncomplete.log')
+" inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
+let g:asyncomplete_smart_completion = 1
+let g:asyncomplete_auto_popup = 1
+" set completeopt+=preview
+" autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+
+
+call lsp#register_server({
+    \ 'name': 'jdtls',
+    \ 'cmd': ['jdtls'],
+    \ 'whitelist': ['java'],
+    \ })
