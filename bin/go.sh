@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
-source ../utils.sh
-VERSION="1.12.4"
+source utils.sh
+VERSION="1.12.7"
 OS="linux"
 ARCH="amd64"
 GOSTR="go$VERSION.$OS-$ARCH"
