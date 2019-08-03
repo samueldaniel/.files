@@ -21,6 +21,11 @@ git:
     -
       src: res/git/.gitconfig
       dest: ~/.gitconfig
+i3wm:
+  symlinks:
+    -
+      src: res/i3wm/config
+      dest: ~/.config/i3/config
 nvim:
   symlinks:
     -

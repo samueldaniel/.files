@@ -1,0 +1,20 @@
+set $mode_system System (l) lock, (e) logout, (s) suspend, (r) reboot, (Shift+s) shutdown
+mode "$mode_system" {
+	bindsym l exec --no-startup-id xscreensaver-command -lock, mode "default"
+	bindsym e exec --no-startup-id i3-msg exit, mode "default"
+	bindsym s exec --no-startup-id gksu pm-suspend, mode "default"
+	bindsym r exec --no-startup-id reboot, mode "default"
+	bindsym Shift+s exec --no-startup-id /sbin/poweroff, mode "default"
+
+	# back to normal: Enter or Escape
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+}
+
+bindsym XF86PowerOff mode "$mode_system"
+bindsym F8 exec amixer -q -D pulse sset Master toggle
+bindsym F9 exec amixer -q -D pulse sset Master 5%- on
+bindsym F10 exec amixer -q -D pulse sset Master 5%+ on    
+exec_always --no-startup-id xscreensaver-command -exit &
+exec_always --no-startup-id xscreensaver -no-splash &     
+exec_always --no-startup-id xss-lock -- i3lock &
