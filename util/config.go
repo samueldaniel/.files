@@ -14,14 +14,12 @@ type Symlink struct {
 	Destination string `yaml:"dest"`
 	Platform    string `yaml:"platform"`
 }
-type Install struct {
-	Command  string    `yaml:"cmd"`
-	Url      string    `yaml:"url"`
-	To       string    `yaml:"to"`
-	Symlinks []Symlink `yaml:"symlinks"`
+type Command struct {
+	Name string   `yaml:"name"`
+	Args []string `yaml:"args"`
 }
 type Tool struct {
-	Install  []Install `yaml:"install"`
+	Commands []Command `yaml:"cmds"`
 	Symlinks []Symlink `yaml:"symlinks"`
 }
 

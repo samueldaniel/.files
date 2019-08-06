@@ -35,10 +35,11 @@ var installCmd = &cobra.Command{
 			if !ok {
 				log.Fatalln(fmt.Sprintf("%s is not a valid tool", a))
 			}
-			if 0 < len(val.Symlinks) {
-				for _, s := range val.Symlinks {
-					util.InstallSymlink(s)
-				}
+			for _, c := range val.Commands {
+				util.RunCommand(c)
+			}
+			for _, s := range val.Symlinks {
+				util.InstallSymlink(s)
 			}
 		}
 	},

@@ -8,16 +8,17 @@ bash:
       dest: ~/.bash_profile
       platform: 'unix'
 git:
-  install:
+  cmds:
     -
-      cmd: curl
-      url: https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
-      to: res/git/git-completion.bash
-      symlinks:
-        -
-          src: res/git/git-completion.bash
-          dest: ~/git-completion.bash
+      name: curl
+      args:
+        - -o
+        - build/git-completion.bash
+        - https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
   symlinks:
+    -
+      src: res/git/git-completion.bash
+      dest: ~/git-completion.bash
     -
       src: res/git/.gitconfig
       dest: ~/.gitconfig
@@ -27,10 +28,20 @@ i3wm:
       src: res/i3wm/config
       dest: ~/.config/i3/config
 nvim:
+  cmds:
+    -
+      name: curl
+      args:
+        - -fLo
+        - build/plug.vim
+        - https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   symlinks:
     -
       src: res/nvim/
       dest: ~/.config/nvim/
+    -
+      src: build/plug.vim
+      dest: ~/.local/share/nvim/site/autoload/plug.vim
 ssh:
   symlinks:
     -
