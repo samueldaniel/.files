@@ -2,7 +2,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'scrooloose/nerdtree'
 Plug 'jiangmiao/auto-pairs'
 Plug 'alvan/vim-closetag'
-Plug '~/.fzf'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install()  }  }
 Plug 'junegunn/fzf.vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'dense-analysis/ale'
@@ -12,30 +12,57 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'airblade/vim-gitgutter'
 Plug 'deoplete-plugins/deoplete-jedi'
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
+Plug 'deoplete-plugins/deoplete-clang'
+"Plug 'autozimu/LanguageClient-neovim', {
+"    \ 'branch': 'next',
+"    \ 'do': 'bash install.sh',
+"    \ }
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'itchyny/lightline.vim'
-Plug 'edkolev/promptline.vim'
 Plug 'edkolev/tmuxline.vim'
+Plug 'sbdchd/neoformat'
 " automatically executes `filetype plugin indent on` and `syntax enable`
 call plug#end()
 " allows loading local executing local rc files
 set exrc
 " disallows the use of :autocmd, shell and write commands in local rc files
 set secure
-let g:python_host_prog = '/home/sam/.pyenv/versions/devenv-py2/bin/python'
-let g:python3_host_prog = '/home/sam/.pyenv/versions/devenv-py3/bin/python'
+let g:python_host_prog = '/home/sam/.pyenv/versions/nvim-python2/bin/python'
+let g:python3_host_prog = '/home/sam/.pyenv/versions/nvim-python3/bin/python'
 nnoremap <Leader>w <C-W>
 colorscheme antares
 set colorcolumn=121
 let g:deoplete#enable_at_startup = 1
 let g:ale_fixers = {
-\   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\}
+	\ '*': ['remove_trailing_lines', 'trim_whitespace'],
+	\}
 let g:ale_cpp_gcc_options = '-std=c++17 -Wall'
+let g:ale_linters = {
+	\ 'python': ['pylint'],
+	\ 'cpp': ['clang'],
+	\ 'c': ['clang']
+	\}
+let g:ale_python_pylint_change_directory = 0
+" custom setting for clangformat
+let g:neoformat_cpp_clangformat = {
+	\ 'exe': 'clang-format',
+	\ 'replace': 1,
+	\ 'args': ['--style=file']
+	\}
+let g:neoformat_enabled_cpp = ['clangformat']
+let g:neoformat_enabled_c = ['clangformat']
+let g:neoformat_enabled_cmake = []
+let g:neoformat_python_black = {
+	\ 'exe': 'black',
+	\ 'replace': 1,
+	\ 'args': ['-l 120', '-t py38']
+	\}
+let g:neoformat_enabled_python = ['black']
+"let g:neoformat_verbose = 1
+augroup fmt
+	autocmd!
+	autocmd BufWritePre * undojoin | Neoformat
+augroup END
 nnoremap th  :tabfirst<CR>
 nnoremap tk  :tabnext<CR>
 nnoremap tj  :tabprev<CR>
@@ -60,8 +87,7 @@ set showtabline=2
 set linespace=3
 " syntax highlighting
 syntax on
-" don't show the current mode (`-- INSERT --`) - it is useless with lightline
-" installed
+" don't show the current mode (`-- INSERT --`) - it is useless with lightline installed
 set noshowmode
 " enable filetype detection
 filetype on
@@ -103,12 +129,33 @@ let g:fzf_action = {
 
 " Default fzf layout
 " - down / up / left / right
-let g:fzf_layout = { 'down': '~40%' }
+let g:fzf_layout = { 'window': 'call FloatingFZF()' }
+
+function! FloatingFZF()
+  let buf = nvim_create_buf(v:false, v:true)
+  call setbufvar(buf, '&signcolumn', 'no')
+
+  let height = float2nr(10)
+  let width = &columns
+  let horizontal = float2nr((&columns - width) / 2)
+  let vertical = 1
+
+  let opts = {
+        \ 'relative': 'editor',
+        \ 'row': vertical,
+        \ 'col': horizontal,
+        \ 'width': width,
+        \ 'height': height,
+        \ 'style': 'minimal'
+        \ }
+
+  call nvim_open_win(buf, v:true, opts)
+endfunction
 
 " In Neovim, you can set up fzf window using a Vim command
-let g:fzf_layout = { 'window': 'enew' }
-let g:fzf_layout = { 'window': '-tabnew' }
-let g:fzf_layout = { 'window': '10new' }
+"let g:fzf_layout = { 'window': 'enew' }
+"let g:fzf_layout = { 'window': '-tabnew' }
+"let g:fzf_layout = { 'window': '10new' }
 
 " Customize fzf colors to match your color scheme
 let g:fzf_colors =
@@ -201,72 +248,74 @@ let g:closetag_close_shortcut = '<leader>>'
 " Required for operations modifying multiple buffers like rename.
 set hidden
 
-nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-" Or map each action separately
-nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
-
-let g:LanguageClient_serverCommands = {
-    \ 'c': ['ccls', '--log-file=/tmp/cc.log'],
-    \ 'cpp': ['ccls', '--log-file=/tmp/cc.log'],
-    \ 'cuda': ['ccls', '--log-file=/tmp/cc.log'],
-    \ 'objc': ['ccls', '--log-file=/tmp/cc.log'],
-    \ }
-
-let g:LanguageClient_loadSettings = 1 " Use an absolute configuration path if you want system-wide settings
-let g:LanguageClient_settingsPath = '/home/sam/.config/nvim/settings.json'
+"nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+"" Or map each action separately
+"nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+"nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+"nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+"
+"let g:LanguageClient_serverCommands = {
+"    \ 'c': ['ccls', '--log-file=/tmp/cc.log'],
+"    \ 'cpp': ['ccls', '--log-file=/tmp/cc.log'],
+"    \ 'cuda': ['ccls', '--log-file=/tmp/cc.log'],
+"    \ 'objc': ['ccls', '--log-file=/tmp/cc.log'],
+"    \ }
+"
+"let g:LanguageClient_loadSettings = 1 " Use an absolute configuration path if you want system-wide settings
+"let g:LanguageClient_settingsPath = '/home/sam/.config/nvim/settings.json'
 " https://github.com/autozimu/LanguageClient-neovim/issues/379 LSP snippet is not supported
 "let g:LanguageClient_hasSnippetSupport = 0
 " better-whitespace settings
 let g:better_whitespace_enabled=1
 let g:strip_whitespace_on_save=1
-" promptline configuration
-" sections (a, b, c, x, y, z, warn) are optional
-" available slices:
-" "
-" " promptline#slices#cwd() - current dir, truncated to 3 dirs. To configure:
-" promptline#slices#cwd({ 'dir_limit': 4  })
-" " promptline#slices#vcs_branch() - branch name only. By default, only git
-" branch is enabled. Use promptline#slices#vcs_branch({ 'hg': 1, 'svn': 1,
-" 'fossil': 1 }) to enable check for svn, mercurial and fossil branches. Note
-" that always checking if inside a branch slows down the prompt
-" " promptline#slices#last_exit_code() - display exit code of last command if
-" not zero
-" " promptline#slices#jobs() - display number of shell jobs if more than zero
-" " promptline#slices#battery() - display battery percentage (on OSX and
-" linux) only if below 10%. Configure the threshold with
-" promptline#slices#battery({ 'threshold': 25  })
-" " promptline#slices#host() - current hostname.  To hide the hostname unless
-" connected via SSH, use promptline#slices#host({ 'only_if_ssh': 1  })
-" " promptline#slices#user()
-" " promptline#slices#python_virtualenv() - display which virtual env is
-" active (empty is none)
-" " promptline#slices#git_status() - count of commits ahead/behind upstream,
-" count of modified/added/unmerged files, symbol for clean branch and symbol
-" for existing untraced files
-" " promptline#slices#conda_env() - display which conda env is active (empty
-" is none)
-" "
-" " any command can be used in a slice, for example to print the output of
-" whoami in section 'b':
-" "       \'b' : [ '$(whoami)' ],
-" "
-" " more than one slice can be placed in a section, e.g. print both host and
-" user in section 'a':
-" "       \'a': [ promptline#slices#host(), promptline#slices#user()  ],
-" "
-" " to disable powerline symbols
-" " `let g:promptline_powerline_symbols = `
-" "
-" "
-" "
-" "
-let g:promptline_preset = {
-        \'a' : [ promptline#slices#cwd() ],
-        \'b' : [ promptline#slices#vcs_branch(), promptline#slices#git_status() ],
-        \'c' : [ promptline#slices#python_virtualenv() ],
-        \'z' : [ promptline#slices#jobs() ],
-        \'warn' : [ promptline#slices#last_exit_code() ]
-	\}
-let g:promptline_theme = 'lightline'
+" tmuxline
+let g:tmuxline_powerline_separators = 0
+let g:tmuxline_preset = 'nightly_fox'
+
+
+" Per:
+" Different syntax highlighting within regions of a file
+" http://vim.wikia.com/wiki/Different_syntax_highlighting_within_regions_of_a_file
+" Important changes:
+" * Add keepend, otherwise nested C++/Jinja doesn't work!
+" * Add containedin=ALL, so also highlighted in C comments and strings.
+" * Remove the textSnipHl section (since want to include the delimiters
+"   for Jinja).
+"
+" ...and using syntax from:
+" http://www.vim.org/scripts/script.php?script_id=1856
+
+function! TextEnableCodeSnip(filetype,start,end) abort
+  let ft=toupper(a:filetype)
+  let group='textGroup'.ft
+  if exists('b:current_syntax')
+    let s:current_syntax=b:current_syntax
+    " Remove current syntax definition, as some syntax files (e.g. cpp.vim)
+    " do nothing if b:current_syntax is defined.
+    unlet b:current_syntax
+  endif
+  execute 'syntax include @'.group.' syntax/'.a:filetype.'.vim'
+  try
+    execute 'syntax include @'.group.' after/syntax/'.a:filetype.'.vim'
+  catch
+  endtry
+  if exists('s:current_syntax')
+    let b:current_syntax=s:current_syntax
+  else
+    unlet b:current_syntax
+  endif
+  execute 'syntax region textSnip'.ft.'
+  \ start="'.a:start.'" end="'.a:end.'"
+  \ keepend
+  \ containedin=ALL
+  \ contains=@'.group
+endfunction
+
+
+" Jinja template highlighting
+" Default delimiters are {{ }}, {% %}, and {# #}, per:
+" http://jinja.pocoo.org/docs/templates/
+au BufNewFile,BufRead */templates/* call TextEnableCodeSnip('jinja', '{{', '}}')
+au BufNewFile,BufRead */templates/* call TextEnableCodeSnip('jinja', '{%', '%}')
+au BufNewFile,BufRead */templates/* call TextEnableCodeSnip('jinja', '{#', '#}')
+autocmd BufRead,BufNewFile *.template setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab

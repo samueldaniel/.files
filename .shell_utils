@@ -1,0 +1,111 @@
+# Num  Colour    #define         R G B
+# 0    black     COLOR_BLACK     0,0,0
+# 1    red       COLOR_RED       1,0,0
+# 2    green     COLOR_GREEN     0,1,0
+# 3    yellow    COLOR_YELLOW    1,1,0
+# 4    blue      COLOR_BLUE      0,0,1
+# 5    magenta   COLOR_MAGENTA   1,0,1
+# 6    cyan      COLOR_CYAN      0,1,1
+# 7    white     COLOR_WHITE     1,1,1
+function red () {
+  tput setaf 1
+}
+function orange () {
+  tput setaf 214
+}
+function green () {
+  tput setaf 2
+}
+function yellow () {
+  tput setaf 3
+}
+function blue () {
+  tput setaf 4
+}
+function magenta () {
+  tput setaf 5
+}
+function cyan () {
+  tput setaf 6
+}
+function white () {
+  tput setaf 7
+}
+function reset () {
+  tput sgr0
+}
+
+# get current branch in git repo
+function parse_git_branch() {
+	BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
+	if [ ! "${BRANCH}" == "" ]
+	then
+		STAT=`parse_git_dirty`
+		echo "$(orange)(${BRANCH}${STAT}) $(reset)"
+	else
+		echo ""
+	fi
+}
+
+# get current status of git repo
+function parse_git_dirty {
+	status=`git status 2>&1 | tee`
+	dirty=`echo -n "${status}" 2> /dev/null | grep "modified:" &> /dev/null; echo "$?"`
+	untracked=`echo -n "${status}" 2> /dev/null | grep "Untracked files" &> /dev/null; echo "$?"`
+	ahead=`echo -n "${status}" 2> /dev/null | grep "Your branch is ahead of" &> /dev/null; echo "$?"`
+	newfile=`echo -n "${status}" 2> /dev/null | grep "new file:" &> /dev/null; echo "$?"`
+	renamed=`echo -n "${status}" 2> /dev/null | grep "renamed:" &> /dev/null; echo "$?"`
+	deleted=`echo -n "${status}" 2> /dev/null | grep "deleted:" &> /dev/null; echo "$?"`
+	bits=''
+	if [ "${renamed}" == "0" ]; then
+		bits=">${bits}"
+	fi
+	if [ "${ahead}" == "0" ]; then
+		bits="*${bits}"
+	fi
+	if [ "${newfile}" == "0" ]; then
+		bits="+${bits}"
+	fi
+	if [ "${untracked}" == "0" ]; then
+		bits="?${bits}"
+	fi
+	if [ "${deleted}" == "0" ]; then
+		bits="x${bits}"
+	fi
+	if [ "${dirty}" == "0" ]; then
+		bits="!${bits}"
+	fi
+	if [ ! "${bits}" == "" ]; then
+		echo " ${bits}"
+	else
+		echo ""
+	fi
+}
+# parse venv
+function parse_venv {
+    # Current virtualenv
+    if [[ $VIRTUAL_ENV != "" ]]; then
+      # Strip out the path and just leave the env name
+      echo "$(green){${VIRTUAL_ENV##*/}} $(reset)"
+    else
+      echo ""
+    fi
+}
+
+# display colors
+function color () {
+  for c; do
+    printf '\e[48;5;%dm%03d' $c $c
+  done
+  printf '\e[0m \n'
+}
+function display_shell_colors () {
+  IFS=$' \t\n'
+  color {0..15}
+  for ((i=0;i<6;i++)); do
+    color $(seq $((i*36+16)) $((i*36+51)))
+  done
+  color {232..255}
+}
+
+
