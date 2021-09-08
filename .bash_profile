@@ -38,3 +38,4 @@ export PS1="$(cyan)[\u@\h$(reset):$(magenta)\w$(cyan)]$(reset) \`parse_git_branc
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+eval "$(/opt/homebrew/bin/brew shellenv)"
