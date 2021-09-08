@@ -28,8 +28,8 @@ call plug#end()
 set exrc
 " disallows the use of :autocmd, shell and write commands in local rc files
 set secure
-let g:python_host_prog = '/home/sam/.pyenv/versions/nvim-python2/bin/python'
-let g:python3_host_prog = '/home/sam/.pyenv/versions/nvim-python3/bin/python'
+let g:python_host_prog = '$HOME/.pyenv/versions/nvim-python2/bin/python'
+let g:python3_host_prog = '$HOME/.pyenv/versions/nvim-python3/bin/python'
 nnoremap <Leader>w <C-W>
 colorscheme antares
 set colorcolumn=121
