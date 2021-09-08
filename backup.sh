@@ -22,3 +22,7 @@ pyenv deactivate
 pyenv activate nvim-python3
 pip freeze > $PWD/requirements-nvim-python3.txt
 pyenv deactivate
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  cp $HOME/.profile $PWD
+fi

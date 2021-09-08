@@ -51,3 +51,7 @@ mkdir -p $HOME/.config
 cp -r \
   $PWD/.config/* \
   $HOME/.config
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  cp .profile $HOME
+fi
