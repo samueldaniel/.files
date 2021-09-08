@@ -14,3 +14,11 @@ mkdir -p $PWD/.config
 cp -r \
   $HOME/.config/nvim/ \
   $PWD/.config
+
+pyenv activate nvim-python2
+pip freeze > $PWD/requirements-nvim-python2.txt
+pyenv deactivate
+
+pyenv activate nvim-python3
+pip freeze > $PWD/requirements-nvim-python3.txt
+pyenv deactivate

@@ -24,3 +24,14 @@ if [ $? -ne 0 ]; then
 fi
 pip install --upgrade --force-reinstall -r requirements-nvim-python3.txt
 pyenv deactivate
+
+curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+if [ $? -ne 0 ]; then
+  pushd ~/.fzf
+    git pull
+  popd
+fi
+~/.fzf/install --all --key-bindings --completion --no-update-rc
