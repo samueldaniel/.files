@@ -9,8 +9,14 @@ if [ -f ~/.shell_utils ]; then
 fi
 
 # User specific environment and startup programs
-unalias ll
-alias ll='ls -alh --color=auto'
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  alias ll='ls -alhG'
+elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+  unalias ll
+  alias ll='ls -alh --color=auto'
+else
+  echo "Unknown OSTYPE: ${OSTYPE}"
+fi
 alias tonka-grep="grep -r --exclude-dir={build-ppc,build-gse,build,.git,external,.ccls-cache,.mypy_cache}"
 alias tonka-ssh="ssh -o StrictHostKeyChecking=no -i ~/.ssh/tonka_id_rsa root@10.10.10.101"
 export PATH="$HOME/squashfs-root/usr/bin:$PATH"
