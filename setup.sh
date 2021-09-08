@@ -35,3 +35,18 @@ if [ $? -ne 0 ]; then
   popd
 fi
 ~/.fzf/install --all --key-bindings --completion --no-update-rc
+
+cp -r \
+  .bashrc \
+  .bash_profile \
+  .fzf.bash \
+  .gitconfig \
+  .shell_utils \
+  .tmux.conf \
+  .tmuxline \
+  $HOME
+
+mkdir -p $HOME/.config
+cp -r \
+  $PWD/.config/* \
+  $HOME/.config
