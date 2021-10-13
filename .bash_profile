@@ -9,14 +9,8 @@ if [ -f ~/.shell_utils ]; then
 fi
 
 # User specific environment and startup programs
-if [[ "$OSTYPE" == "darwin"* ]]; then
-  alias ll='ls -alhG'
-elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
-  unalias ll
-  alias ll='ls -alh --color=auto'
-else
-  echo "Unknown OSTYPE: ${OSTYPE}"
-fi
+unalias ll
+alias ll='ls -alh --color=auto'
 alias tonka-grep="grep -r --exclude-dir={build-ppc,build-gse,build,.git,external,.ccls-cache,.mypy_cache}"
 alias tonka-ssh="ssh -o StrictHostKeyChecking=no -i ~/.ssh/tonka_id_rsa root@10.10.10.101"
 export PATH="$HOME/squashfs-root/usr/bin:$PATH"
@@ -38,4 +32,3 @@ export PS1="$(cyan)[\u@\h$(reset):$(magenta)\w$(cyan)]$(reset) \`parse_git_branc
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
-eval "$(/opt/homebrew/bin/brew shellenv)"
