@@ -2,6 +2,7 @@
 
 cp -r \
   $HOME/.bashrc \
+  $HOME/.bash_logout \
   $HOME/.bash_profile \
   $HOME/.fzf.bash \
   $HOME/.gitconfig \
