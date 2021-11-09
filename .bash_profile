@@ -26,7 +26,8 @@ export PYTHONDONTWRITEBYTECODE=1
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init --path)"
 export TONKA_WORKSPACE="/data/sam/tonka"
-export TURBO_POTATO_WORKSPACE="/data/sam/turbo-potato"
+export GITHUB_PAT=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
+export XILINX_SDK_PATH="/data/tools/Xilinx/SDK/2019.1"
 export PS1="$(cyan)[\u@\h$(reset):$(magenta)\w$(cyan)]$(reset) \`parse_git_branch\`\`parse_venv\`\n\\$ "
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
