@@ -39,6 +39,7 @@ fi
 
 cp -r \
   .bashrc \
+  .bash_logout \
   .bash_profile \
   .fzf.bash \
   .gitconfig \
