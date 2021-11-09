@@ -22,14 +22,15 @@ Plug 'itchyny/lightline.vim'
 Plug 'edkolev/tmuxline.vim'
 Plug 'sbdchd/neoformat'
 Plug 'cstrahan/vim-capnp'
+Plug 'ekalinin/Dockerfile.vim'
 " automatically executes `filetype plugin indent on` and `syntax enable`
 call plug#end()
 " allows loading local executing local rc files
 set exrc
 " disallows the use of :autocmd, shell and write commands in local rc files
 set secure
-let g:python_host_prog = '/home/sam/.pyenv/versions/nvim-python2/bin/python'
-let g:python3_host_prog = '/home/sam/.pyenv/versions/nvim-python3/bin/python'
+let g:python_host_prog = '$HOME/.pyenv/versions/nvim-python2/bin/python'
+let g:python3_host_prog = '$HOME/.pyenv/versions/nvim-python3/bin/python'
 nnoremap <Leader>w <C-W>
 colorscheme antares
 set colorcolumn=121
