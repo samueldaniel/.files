@@ -20,6 +20,11 @@ cp -r \
   $HOME/.config/nvim \
   $PWD/.config
 
+mkdir -p $PWD/.ssh
+cp \
+  $HOME/.ssh/config \
+  $PWD/.ssh
+
 source $HOME/.bash_profile
 pyenv activate nvim-python2
 pip freeze > $PWD/requirements-nvim-python2.txt
