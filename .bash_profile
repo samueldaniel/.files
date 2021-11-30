@@ -35,6 +35,10 @@ fi
 export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
 ssh-add -l ~/.ssh/id_ed25519 > /dev/null || ssh-add ~/.ssh/id_ed25519
 
+if [ -f ~/.git-completion.bash ]; then
+  . ~/.git-completion.bash
+fi
+
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"

@@ -7,6 +7,7 @@ cp -r \
   .bash_profile \
   .fzf.bash \
   .gitconfig \
+  .git-completion.bash \
   .shell_utils \
   .tmux.conf \
   .tmuxline \

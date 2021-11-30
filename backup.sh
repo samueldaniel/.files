@@ -6,6 +6,7 @@ cp -r \
   $HOME/.bash_profile \
   $HOME/.fzf.bash \
   $HOME/.gitconfig \
+  $HOME/.git-completion.bash \
   $HOME/.shell_utils \
   $HOME/.tmux.conf \
   $HOME/.tmuxline \
