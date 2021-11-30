@@ -48,3 +48,4 @@ elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
 else
   echo "Unknown OSTYPE: ${OSTYPE}"
 fi
+export ANSIBLE_VAULT_PASSWORD_FILE=~/.vault_pass

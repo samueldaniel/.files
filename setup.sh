@@ -53,6 +53,11 @@ cp -r \
   $PWD/.config/* \
   $HOME/.config
 
+mkdir -p $HOME/.ssh
+cp -r \
+  $PWD/.ssh/* \
+  $HOME/.ssh
+
 if [[ "$OSTYPE" == "darwin"* ]]; then
   cp .profile $HOME
 
