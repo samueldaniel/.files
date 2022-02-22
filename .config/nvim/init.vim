@@ -40,11 +40,10 @@ let g:ale_fixers = {
 	\}
 let g:ale_cpp_gcc_options = '-std=c++17 -Wall'
 let g:ale_linters = {
-	\ 'python': ['pylint'],
 	\ 'cpp': ['clang'],
-	\ 'c': ['clang']
+	\ 'c': ['clang'],
+	\ 'python': ['prospector'],
 	\}
-let g:ale_python_pylint_change_directory = 0
 let g:neoformat_cpp_clangformat = {
 	\ 'exe': 'clang-format',
 	\ 'replace': 1,
