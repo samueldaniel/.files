@@ -22,6 +22,7 @@ mkdir -p $HOME/.ssh
 cp -r \
   $PWD/.ssh/* \
   $HOME/.ssh
+chmod 600 $HOME/.ssh/config
 
 curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
   https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
