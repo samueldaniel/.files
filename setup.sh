@@ -24,9 +24,6 @@ cp -r \
   $HOME/.ssh
 chmod 600 $HOME/.ssh/config
 
-curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 if [ $? -ne 0 ]; then
   pushd ~/.fzf
