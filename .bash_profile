@@ -24,6 +24,7 @@ export PYTHONDONTWRITEBYTECODE=1
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init --path)"
 export TONKA_WORKSPACE="$HOME/tonka"
+export PROJECT_WORKSPACE="$HOME/tonka"
 export GITHUB_PAT="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"
 export XILINX_SDK_PATH="/data/tools/Xilinx/SDK/2019.1"
 export PS1="\n$(cyan)[\u@\h$(reset):$(magenta)\w$(cyan)]$(reset) \`parse_git_branch\`\`parse_venv\`\n\\$ "
@@ -53,3 +54,5 @@ else
   echo "Unknown OSTYPE: ${OSTYPE}"
 fi
 export ANSIBLE_VAULT_PASSWORD_FILE=~/.vault_pass
+export GUILE_TLS_CERTIFICATE_DIRECTORY=/opt/homebrew/etc/gnutls/
+. "$HOME/.cargo/env"

@@ -11,7 +11,7 @@ vim.wo.colorcolumn = '120'
 -- usually the namespace where you find variables set by plugins
 --
 -- use space as the leader key
--- vim.g.mapleader = ' '
+vim.g.mapleader = ' '
 
 -- vim.env -> gets or sets environment variables
 
@@ -83,13 +83,10 @@ vim.opt.encoding = "utf-8"
 vim.opt.showmode = false
 
 
-require('user.plugins')
-
-require('user.onedark')
--- onedark must be loaded before lualine so lualine picks up the theme
+require('user.plugins') -- always load plugins first
+require('user.onedark') -- onedark must be loaded before lualine so lualine picks up the theme
 require('user.lualine')
 require('user.telescope')
 require('user.tree')
 require('user.treesitter')
-
-require('user.keymaps')
+require('user.keymaps') -- always load keymaps last
