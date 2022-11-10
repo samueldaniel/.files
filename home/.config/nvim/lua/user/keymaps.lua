@@ -22,3 +22,13 @@ vim.cmd('nnoremap <C-J> <C-W><C-J>')
 vim.cmd('nnoremap <C-K> <C-W><C-K>')
 vim.cmd('nnoremap <C-L> <C-W><C-L>')
 vim.cmd('nnoremap <C-H> <C-W><C-H>')
+
+-- CamelCaseMotion
+vim.cmd('map <silent> w <Plug>CamelCaseMotion_w')
+vim.cmd('map <silent> b <Plug>CamelCaseMotion_b')
+vim.cmd('map <silent> e <Plug>CamelCaseMotion_e')
+vim.cmd('map <silent> ge <Plug>CamelCaseMotion_ge')
+vim.cmd('sunmap w')
+vim.cmd('sunmap b')
+vim.cmd('sunmap e')
+vim.cmd('sunmap ge')

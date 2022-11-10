@@ -82,11 +82,10 @@ vim.opt.encoding = "utf-8"
 -- don't show the current mode (`-- INSERT --`) - it is useless with lightline installed
 vim.opt.showmode = false
 
-
 require('user.plugins') -- always load plugins first
 require('user.onedark') -- onedark must be loaded before lualine so lualine picks up the theme
-require('user.lualine')
+--require('user.lualine')
 require('user.telescope')
 require('user.tree')
-require('user.treesitter')
+--require('user.treesitter')
 require('user.keymaps') -- always load keymaps last

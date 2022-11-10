@@ -1,7 +1,7 @@
 [merge]
 	renameLimit = 7589
 [user]
-	email = sam@firstmode.com
+	email = daniel.jacob.samuel@gmail.com
 	name = Sam Daniel
 [filter "lfs"]
 	clean = git-lfs clean -- %f

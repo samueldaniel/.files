@@ -15,35 +15,41 @@ return require('packer').startup(function()
   use 'wbthomason/packer.nvim'
 
   -- https://github.com/nvim-lua/plenary.nvim
+  -- useful lua functions for nvim, a lot of plugins expect this i guess
   use 'nvim-lua/plenary.nvim'
 
   -- https://github.com/nvim-treesitter/nvim-treesitter
-  use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
+  -- use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
 
   -- https://github.com/kyazdani42/nvim-web-devicons
+  -- icons and colors for a pretty nvim, requires a patched font
   use 'kyazdani42/nvim-web-devicons'
 
   -- https://github.com/nvim-telescope/telescope.nvim
+  -- fuzzy finder
   use 'nvim-telescope/telescope.nvim'
   -- https://github.com/nvim-telescope/telescope-fzf-native.nvim
+  -- use fzf in telescope
   use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}
   -- https://github.com/nvim-telescope/telescope-file-browser.nvim
-  use { 'nvim-telescope/telescope-file-browser.nvim' }
+  -- use { 'nvim-telescope/telescope-file-browser.nvim' }
 
   -- https://github.com/kyazdani42/nvim-tree.lua
   use 'kyazdani42/nvim-tree.lua'
 
   -- https://github.com/romgrk/nvim-treesitter-context
-  use 'romgrk/nvim-treesitter-context'
+  -- use 'romgrk/nvim-treesitter-context'
 
   -- https://github.com/neovim/nvim-lspconfig
-  use 'neovim/nvim-lspconfig'
+  -- use 'neovim/nvim-lspconfig'
   
   -- https://github.com/nvim-lualine/lualine.nvim
-  use 'nvim-lualine/lualine.nvim'
+  -- use 'nvim-lualine/lualine.nvim'
 
   -- https://github.com/navarasu/onedark.nvim
   use 'navarasu/onedark.nvim'
+
+  use 'bkad/CamelCaseMotion'
 
   -- Simple plugins can be specified as strings
   -- use '9mm/vim-closer'
