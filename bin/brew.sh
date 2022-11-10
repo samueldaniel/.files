@@ -49,7 +49,8 @@ brew install zsh
 echo 'Make sure zsh-git-prompt is loaded from your .zshrc:'
 echo 'source "/opt/homebrew/opt/zsh-git-prompt/zshrc.sh"'
 brew install zsh-git-prompt
-brew install zsh-fast-syntax-highlighting
+brew install zsh-syntax-highlighting
+#brew install zsh-fast-syntax-highlighting
 brew install zsh-autosuggestions
 brew install zsh-completions
 brew install zsh-async
@@ -76,6 +77,7 @@ brew tap homebrew/cask-fonts
 brew install --cask font-hack-nerd-font
 brew install --cask font-powerline-symbols
 
+brew install pure
 brew install fzf
 /opt/homebrew/opt/fzf/install --all --key-bindings --completion --no-update-rc
 brew install neovim

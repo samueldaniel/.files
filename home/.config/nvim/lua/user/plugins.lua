@@ -47,7 +47,11 @@ return require('packer').startup(function()
   -- use 'nvim-lualine/lualine.nvim'
 
   -- https://github.com/navarasu/onedark.nvim
-  use 'navarasu/onedark.nvim'
+  -- use 'navarasu/onedark.nvim'
+
+  -- https://github.com/bbenzikry/snazzybuddy.nvim
+  use 'tjdevries/colorbuddy.nvim'
+  use 'bbenzikry/snazzybuddy.nvim'
 
   use 'bkad/CamelCaseMotion'
 

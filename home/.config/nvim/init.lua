@@ -1,5 +1,6 @@
 -- vim.o -> gets or sets general settings
--- vim.o.background = 'dark'
+vim.o.background = 'dark'
+vim.g.background = 'dark'
 
 -- vim.wo -> gets or sets window-scoped options
 vim.wo.colorcolumn = '120'
@@ -83,7 +84,9 @@ vim.opt.encoding = "utf-8"
 vim.opt.showmode = false
 
 require('user.plugins') -- always load plugins first
-require('user.onedark') -- onedark must be loaded before lualine so lualine picks up the theme
+require('colorbuddy').colorscheme('snazzybuddy')
+vim.g.snazzybuddy_icons = true
+--require('user.onedark') -- onedark must be loaded before lualine so lualine picks up the theme
 --require('user.lualine')
 require('user.telescope')
 require('user.tree')
