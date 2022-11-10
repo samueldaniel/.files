@@ -74,6 +74,7 @@ brew install git-lfs
 # fonts!
 brew tap homebrew/cask-fonts
 brew install --cask font-hack-nerd-font
+brew install --cask font-powerline-symbols
 
 brew install fzf
 /opt/homebrew/opt/fzf/install --all --key-bindings --completion --no-update-rc

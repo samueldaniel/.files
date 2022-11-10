@@ -73,6 +73,9 @@ ZSH_THEME="robbyrussell"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
 
+export TERM="xterm-256color"
+export EDITOR="nvim"
+
 source $ZSH/oh-my-zsh.sh
 source ~/.iterm2_shell_integration.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
