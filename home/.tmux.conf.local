@@ -16,6 +16,9 @@ set -g default-terminal "screen-256color"
 # then uncomment the following line to make Meta + arrow keys mapping work
 #set -ga terminal-overrides "*:kUP3=\e[1;9A,*:kDN3=\e[1;9B,*:kRIT3=\e[1;9C,*:kLFT3=\e[1;9D"
 
+bind p previous-window
+bind n next-window
+
 
 # -- windows & pane creation ---------------------------------------------------
 
@@ -342,7 +345,7 @@ tmux_conf_copy_to_os_clipboard=false
 #set -g history-limit 10000
 
 # start with mouse mode enabled
-#set -g mouse on
+set -g mouse on
 
 # force Vi mode
 #   really you should export VISUAL or EDITOR environment variable, see manual

@@ -40,4 +40,5 @@ export PURE_GIT_UNTRACKED_DIRTY=0
 # turn on git stash status
 zstyle :prompt:pure:git:stash show yes
 prompt pure
+bindkey -e
 ### END pure prompt stuff
