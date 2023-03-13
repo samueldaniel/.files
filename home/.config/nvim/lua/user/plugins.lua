@@ -49,10 +49,12 @@ return require('packer').startup(function()
   -- https://github.com/navarasu/onedark.nvim
   -- use 'navarasu/onedark.nvim'
 
-  -- https://github.com/bbenzikry/snazzybuddy.nvim
+  -- https://github.com/tjdevries/colorbuddy.nvim
   use 'tjdevries/colorbuddy.nvim'
+  -- https://github.com/bbenzikry/snazzybuddy.nvim
   use 'bbenzikry/snazzybuddy.nvim'
 
+  -- https://github.com/bkad/CamelCaseMotion
   use 'bkad/CamelCaseMotion'
 
   -- Simple plugins can be specified as strings
@@ -109,6 +111,15 @@ return require('packer').startup(function()
   --   requires = {'kyazdani42/nvim-web-devicons'}
   -- }
 
+  -- https://github.com/tpope/vim-fugitive
+  use 'tpope/vim-fugitive'
+
+  -- https://github.com/lewis6991/gitsigns.nvim
+  use {
+    'lewis6991/gitsigns.nvim',
+    -- tag = 'release' -- To use the latest release (do not use this if you run Neovim nightly or dev builds!)
+  }
+
   -- Use dependency and run lua function after load
   -- use {
   --   'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' },
@@ -120,6 +131,24 @@ return require('packer').startup(function()
 
   -- You can alias plugin names
   -- use {'dracula/vim', as = 'dracula'}
+
+  -- LSP
+  use {
+    'VonHeikemen/lsp-zero.nvim',
+    branch = 'v2.x',
+    requires = {
+      -- LSP Support
+      {'neovim/nvim-lspconfig'},             -- Required
+      --Note: if you use NixOS don't install mason.nvim
+      --{'williamboman/mason.nvim'},           -- Optional
+      --{'williamboman/mason-lspconfig.nvim'}, -- Optional
+
+      -- Autocompletion
+      {'hrsh7th/nvim-cmp'},     -- Required
+      {'hrsh7th/cmp-nvim-lsp'}, -- Required
+      {'L3MON4D3/LuaSnip'},     -- Required
+    }
+  }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

@@ -1,7 +1,7 @@
 [merge]
 	renameLimit = 7589
 [user]
-	email = daniel.jacob.samuel@gmail.com
+	email = sam@firstmode.com
 	name = Sam Daniel
 [filter "lfs"]
 	clean = git-lfs clean -- %f
@@ -18,3 +18,5 @@
 	recurse = true
 [format]
 	pretty = format:%C(auto)%h %d%Creset %s%n%Cgreen%ad%Creset %aN <%aE>%n
+[url "ssh://git@github.com/"]
+	insteadOf = https://github.com/

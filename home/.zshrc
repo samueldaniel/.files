@@ -1,6 +1,7 @@
 ### BEGIN set env vars
 export TERM="xterm-256color"
 export EDITOR="nvim"
+export LDFLAGS="-I$(brew --prefix openssl@1.1)/include -L$(brew --prefix openssl@1.1)/lib"
 ### END set env vars
 #
 ### BEGIN PATH manipulation
@@ -10,7 +11,7 @@ export PATH="/Users/sam/.local/gcc-arm-none-eabi-9-2019-q4-major/bin:$PATH"
 ### END PATH manipulation
 #
 ### BEGIN aliases
-alias ll="ls -alh"
+alias ll="ls -alhG"
 ### END aliases
 
 ### BEGIN source scripts/tools
