@@ -92,5 +92,5 @@ require('user.gitsigns')
 require('user.telescope')
 require('user.tree')
 --require('user.treesitter')
-require('user.lsp_zero')
+--require('user.lsp_zero')
 require('user.keymaps') -- always load keymaps last
