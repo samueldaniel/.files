@@ -5,7 +5,8 @@
 #         Copyright 2012— Gregory Pakosz (@gpakosz).
 
 
-set -g default-terminal "screen-256color"
+set -g default-terminal "tmux-256color"
+set-option -sa terminal-overrides ',xterm-256color:RGB'
 
 # -- navigation ----------------------------------------------------------------
 
@@ -14,7 +15,7 @@ set -g default-terminal "screen-256color"
 #   - and iTerm2 is configured to let option key act as +Esc
 #   - and iTerm2 is configured to send [1;9A -> [1;9D for option + arrow keys
 # then uncomment the following line to make Meta + arrow keys mapping work
-#set -ga terminal-overrides "*:kUP3=\e[1;9A,*:kDN3=\e[1;9B,*:kRIT3=\e[1;9C,*:kLFT3=\e[1;9D"
+set -ga terminal-overrides "*:kUP3=\e[1;9A,*:kDN3=\e[1;9B,*:kRIT3=\e[1;9C,*:kLFT3=\e[1;9D"
 
 bind p previous-window
 bind n next-window

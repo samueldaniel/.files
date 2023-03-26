@@ -1,5 +1,12 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 ### BEGIN set env vars
-export TERM="xterm-256color"
+#export TERM="tmux-256color"
 export EDITOR="nvim"
 #export LDFLAGS="-I$(brew --prefix openssl@1.1)/include -L$(brew --prefix openssl@1.1)/lib"
 ### END set env vars
@@ -11,7 +18,8 @@ export PATH=$HOME/.local/bin:$PATH
 ### END PATH manipulation
 #
 ### BEGIN aliases
-alias ll="ls -alhG"
+#alias ll="ls -alhG"
+alias ll="ls -alh --color"
 ### END aliases
 
 ### BEGIN source scripts/tools
@@ -40,13 +48,18 @@ autoload -Uz compinit && compinit
 
 ### BEGIN pure prompt stuff
 #fpath+=("$(brew --prefix)/share/zsh/site-functions")
-fpath+=("/run/current-system/sw/share/zsh/site-functions")
-autoload -Uz promptinit
-promptinit
+#fpath+=("/run/current-system/sw/share/zsh/site-functions")
+#autoload -Uz promptinit
+#promptinit
 # Do not include untracked files in dirtiness check. Mostly useful on large repos (like WebKit).
-export PURE_GIT_UNTRACKED_DIRTY=0
+#export PURE_GIT_UNTRACKED_DIRTY=0
 # turn on git stash status
-zstyle :prompt:pure:git:stash show yes
-prompt pure
-bindkey -e
+#zstyle :prompt:pure:git:stash show yes
+#prompt pure
+#bindkey -e
 ### END pure prompt stuff
+
+source /etc/zsh-powerlevel10k.zsh-theme
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

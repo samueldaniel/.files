@@ -49,15 +49,15 @@ return require('packer').startup(function()
   -- use 'neovim/nvim-lspconfig'
   
   -- https://github.com/nvim-lualine/lualine.nvim
-  -- use 'nvim-lualine/lualine.nvim'
+  use 'nvim-lualine/lualine.nvim'
 
   -- https://github.com/navarasu/onedark.nvim
-  -- use 'navarasu/onedark.nvim'
+  use 'navarasu/onedark.nvim'
 
   -- https://github.com/tjdevries/colorbuddy.nvim
-  use 'tjdevries/colorbuddy.nvim'
+  -- use 'tjdevries/colorbuddy.nvim'
   -- https://github.com/bbenzikry/snazzybuddy.nvim
-  use 'bbenzikry/snazzybuddy.nvim'
+  -- use 'bbenzikry/snazzybuddy.nvim'
 
   -- https://github.com/bkad/CamelCaseMotion
   use 'bkad/CamelCaseMotion'
@@ -154,6 +154,8 @@ return require('packer').startup(function()
       {'L3MON4D3/LuaSnip'},     -- Required
     }
   }
+
+  use 'LnL7/vim-nix'
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

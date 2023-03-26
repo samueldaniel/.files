@@ -11,6 +11,15 @@ function bootstrap() {
     --no-perms \
     $HOME/.files/home/ \
     $HOME;
+
+  sudo rsync \
+    --recursive \
+    --perms \
+    --times \
+    --verbose \
+    --human-readable \
+    $HOME/.files/etc/ \
+    /etc;
 }
 
 ./bin/diff.sh

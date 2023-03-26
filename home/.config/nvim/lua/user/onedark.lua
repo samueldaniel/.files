@@ -21,8 +21,17 @@ require('onedark').setup {
     },
 
     -- Custom Highlights --
-    colors = {}, -- Override default colors
-    highlights = {}, -- Override highlight groups
+    colors = {
+      bg0 = '#191919',
+      --bright_orange = "#ff8800",    -- define a new color
+      --green = '#00ffaa',            -- redefine an existing color
+    },
+    highlights = {
+      --["@keyword"] = {fg = '$green'},
+      --["@string"] = {fg = '$bright_orange', bg = '#00ff00', fmt = 'bold'},
+      --["@function"] = {fg = '#0000ff', sp = '$cyan', fmt = 'underline,italic'},
+      --["@function.builtin"] = {fg = '#0059ff'}
+    },
 
     -- Plugins Config --
     diagnostics = {

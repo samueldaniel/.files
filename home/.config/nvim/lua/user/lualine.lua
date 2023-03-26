@@ -1,5 +1,5 @@
 require('lualine').setup {
-    options = {
+  options = {
     icons_enabled = true,
     theme = 'onedark',
     component_separators = { left = '', right = ''},
@@ -27,3 +27,4 @@ require('lualine').setup {
   tabline = {},
   extensions = {},
 }
+require('lualine').setup()
