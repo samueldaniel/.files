@@ -92,5 +92,5 @@ require('user.lualine')
 require('user.telescope')
 require('user.tree')
 --require('user.treesitter')
---require('user.lsp_zero')
+require('user.lspzero')
 require('user.keymaps') -- always load keymaps last

@@ -1,4 +1,7 @@
-local lsp = require('lsp-zero').preset({})
+local lsp = require('lsp-zero').preset({
+  setup_servers_on_start = false,
+  call_servers = 'global',
+})
 
 lsp.on_attach(function(client, bufnr)
   lsp.default_keymaps({buffer = bufnr})
@@ -7,13 +10,33 @@ end)
 -- When you don't have mason.nvim installed
 -- You'll need to list the servers installed in your system
 lsp.setup_servers({
-  'lua_ls',
-  'yamlls',
+  'clangd',
+  'jedi_language_server',
+  'rnix',
+  --'lua_ls',
+  --'yamlls',
 })
 
--- (Optional) Configure lua language server for neovim
--- Assumes: brew install lua-language-server
-require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
+-- TBD
+-- https://github.com/artempyanykh/marksman
+-- https://github.com/lighttiger2505/sqls
+-- https://github.com/rcjsuen/dockerfile-language-server-nodejs
+-- https://github.com/hrsh7th/vscode-langservers-extracted
+-- https://github.com/valentjn/ltex-ls
+-- https://github.com/ansible/ansible-language-server
+-- https://github.com/bash-lsp/bash-language-server
+
+require('lspconfig').clangd.setup({})
+
+-- installed in configuration.nix
+require('lspconfig').jedi_language_server.setup({})
+
+-- https://github.com/nix-community/rnix-lsp
+-- installed via configuration.nix
+require('lspconfig').rnix.setup({})
+
+-- https://github.com/luals/lua-language-server
+--require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 --require('lspconfig').lua_ls.setup {
 --  settings = {
 --    Lua = {
@@ -40,7 +63,7 @@ require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 -- YAML LSP
 -- Assumes: brew install yarn 
 -- Assumes: yarn global add yaml-language-server
-require('lspconfig').yamlls.setup()
+--require('lspconfig').yamlls.setup()
 --
 --require('lspconfig').yamlls.setup {
 --  ... -- other configuration for setup {}

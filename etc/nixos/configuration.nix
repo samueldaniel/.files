@@ -72,6 +72,7 @@ in rec
     ack
     bash
     bash-completion
+    cargo
     cmake
     curl
     file
@@ -87,17 +88,23 @@ in rec
     htop
     iotop
     killall
+    llvmPackages_15.libclang
+    llvmPackages_15.llvm
     lsof
     moreutils
     nerdfonts
     powerline-symbols
     #pure-prompt
     (python310Full.withPackages(ps: with ps; [
+      jedi-language-server
+      pip
       pynvim
     ]))
+    rnix-lsp
+    rustc
     tmux
     tree
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    vim
     wget
     unstable.bat
     unstable.exa
@@ -112,6 +119,19 @@ in rec
     zsh-git-prompt
     zsh-powerlevel10k
     zsh-syntax-highlighting
+
+    # https://github.com/Decodetalkers/neocmakelsp
+    # (rustPlatform.buildRustPackage {
+    #   name = "neocmakelsp";
+    #   version = "v0.5.11";
+    #   src = pkgs.fetchFromGitHub {
+    #     owner = "Decodetalkers";
+    #     repo = "neocmakelsp";
+    #     rev = "v0.5.11";
+    #     sha256 = "sha256-LdTS0jG1HHOUhQZg4A4wfBD0tdx3dgtBF5VXIE+Fj6U=";
+    #   }; 
+    #   cargoSha256 = "sha256-hqyWMRjBKlyfHEr2soIBb+BJc6EnpLJwl/oGs1hqgf4=";
+    # })
   ];
 
   programs.zsh = {
@@ -124,7 +144,6 @@ in rec
   #  enable = true;
   #  setSocketVariable = true;
   #};
-
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.sam = {
@@ -179,4 +198,3 @@ in rec
   system.stateVersion = "22.11"; # Did you read the comment?
 
 }
-
