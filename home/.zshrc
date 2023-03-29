@@ -25,7 +25,7 @@ alias ll="ls -alh --color"
 ### BEGIN source scripts/tools
 source ~/.iterm2_shell_integration.zsh
 #source "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-source "$(nix-build '<nixpkgs>' --no-build-output -A zsh-syntax-highlighting)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+source "$(nix-build --no-out-link '<nixpkgs>' -A zsh-syntax-highlighting)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 if [ -n "${commands[fzf-share]}" ]; then
   source "$(fzf-share)/key-bindings.zsh"
   source "$(fzf-share)/completion.zsh"
@@ -103,3 +103,4 @@ setopt hist_ignore_dups       # ignore duplicated commands history list
 setopt hist_ignore_space      # ignore commands that start with space
 setopt hist_verify            # show command with history expansion to user before running it
 #setopt share_history         # share command history data
+export SSH_AUTH_SOCK="${HOME}/.ssh/ssh_auth_sock"

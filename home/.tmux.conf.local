@@ -20,11 +20,6 @@ set-option -sa terminal-overrides ',xterm-256color:RGB'
 bind p previous-window
 bind n next-window
 
-# -- ssh -----------------------------------------------------------------------
-# tmux panes will have their SSH_AUTH_SOCK environment variables point to a 
-# symlink
-set-environment -g 'SSH_AUTH_SOCK' ~/.ssh/ssh_auth_sock
-
 # -- windows & pane creation ---------------------------------------------------
 
 # new window retains current path, possible values are:
