@@ -24,7 +24,13 @@ return require('packer').startup(function()
   use 'nvim-lua/plenary.nvim'
 
   -- https://github.com/nvim-treesitter/nvim-treesitter
-  -- use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = function()
+      local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+      ts_update()
+    end,
+  }
 
   -- https://github.com/kyazdani42/nvim-web-devicons
   -- icons and colors for a pretty nvim, requires a patched font
@@ -149,9 +155,28 @@ return require('packer').startup(function()
       --{'williamboman/mason-lspconfig.nvim'}, -- Optional
 
       -- Autocompletion
-      {'hrsh7th/nvim-cmp'},     -- Required
+      {'hrsh7th/cmp-buffer'},
+      {'hrsh7th/cmp-path'},
+      {
+        'hrsh7th/nvim-cmp', -- required
+        config = function ()
+          require('cmp').setup({
+            snippet = {
+              expand = function(args)
+                require('luasnip').lsp_expand(args.body)
+              end
+            },
+            sources = {
+              { name = 'luasnip' },
+              -- more sources
+            },
+          })
+        end
+      },
+      {'saadparwaiz1/cmp_luasnip'},
       {'hrsh7th/cmp-nvim-lsp'}, -- Required
       {'L3MON4D3/LuaSnip'},     -- Required
+      {'onsails/lspkind.nvim'},
     }
   }
 

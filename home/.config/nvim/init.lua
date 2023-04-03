@@ -74,7 +74,7 @@ vim.opt.undolevels = 1000
 -- don't beep
 vim.opt.visualbell = true
 
--- don't beel really
+-- don't beep really
 vim.opt.errorbells = false
 
 -- encoding garbage
@@ -91,6 +91,6 @@ require('user.onedark') -- onedark must be loaded before lualine so lualine pick
 require('user.lualine')
 require('user.telescope')
 require('user.tree')
---require('user.treesitter')
-require('user.lspzero')
+require('user.lspzero') -- lspzero must be loaded before treesitter
+require('user.treesitter')
 require('user.keymaps') -- always load keymaps last

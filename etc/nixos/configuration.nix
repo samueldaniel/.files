@@ -92,7 +92,10 @@ in rec
     llvmPackages_15.llvm
     lsof
     moreutils
+    nodejs
+    nodePackages.yaml-language-server
     nerdfonts
+    perl
     powerline-symbols
     #pure-prompt
     (python310Full.withPackages(ps: with ps; [
@@ -101,9 +104,11 @@ in rec
       pynvim
     ]))
     rnix-lsp
+    ruby
     rustc
     tmux
     tree
+    tree-sitter
     vim
     wget
     unstable.bat
