@@ -3,7 +3,7 @@
 dotfiles and config for zsh, ssh, tmux, neovim, nixos
 </p>
 <p align="center">
-<b>⚠️ This repo most likely will not work out-of-the-box for you! Use it as inspiration! ⚠️</b>
+<b>⚠️ If you aren't @samueldaniel then this repo will not work out-of-the-box for you! Use it as inspiration! ⚠️</b>
 </p>
 <p align="center">
 <img width="428" alt="dotfiles preview" src="https://user-images.githubusercontent.com/4551565/229550831-04724238-ca16-4741-a536-2bc0669c808c.png">
