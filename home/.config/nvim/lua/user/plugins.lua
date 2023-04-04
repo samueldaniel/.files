@@ -157,25 +157,10 @@ return require('packer').startup(function()
       -- Autocompletion
       {'hrsh7th/cmp-buffer'},
       {'hrsh7th/cmp-path'},
-      {
-        'hrsh7th/nvim-cmp', -- required
-        config = function ()
-          require('cmp').setup({
-            snippet = {
-              expand = function(args)
-                require('luasnip').lsp_expand(args.body)
-              end
-            },
-            sources = {
-              { name = 'luasnip' },
-              -- more sources
-            },
-          })
-        end
-      },
-      {'saadparwaiz1/cmp_luasnip'},
-      {'hrsh7th/cmp-nvim-lsp'}, -- Required
       {'L3MON4D3/LuaSnip'},     -- Required
+      {'saadparwaiz1/cmp_luasnip'},
+      {'hrsh7th/nvim-cmp'}, -- required
+      {'hrsh7th/cmp-nvim-lsp'}, -- Required
       {'onsails/lspkind.nvim'},
     }
   }
