@@ -103,19 +103,3 @@ setopt hist_ignore_dups       # ignore duplicated commands history list
 setopt hist_ignore_space      # ignore commands that start with space
 setopt hist_verify            # show command with history expansion to user before running it
 #setopt share_history         # share command history data
-#export SSH_AUTH_SOCK="${HOME}/.ssh/ssh_auth_sock"
-emulate ksh -c "source ${HOME}/.local/bin/ssh-find-agent/ssh-find-agent.sh"
-ssh_find_agent -a
-if [ -z "$SSH_AUTH_SOCK" ]
-then
-  eval $(ssh-agent) > /dev/null
-  ssh-add -l >/dev/null || alias ssh='ssh-add -l >/dev/null || ssh-add && unalias ssh; ssh'
-fi
-# Predictable SSH authentication socket location so tmux can find it
-SOCK="/tmp/ssh-agent-$USER-screen"
-if test $SSH_AUTH_SOCK && [ $SSH_AUTH_SOCK != $SOCK ]
-then
-  rm -f /tmp/ssh-agent-$USER-screen
-  ln -sf $SSH_AUTH_SOCK $SOCK
-  export SSH_AUTH_SOCK=$SOCK
-fi

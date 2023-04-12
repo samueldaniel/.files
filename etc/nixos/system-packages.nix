@@ -2,14 +2,6 @@
 
 let 
   unstable = (import <nixos-unstable> { config = { allowUnfree = true; }; }).pkgs;
-  #ssh_find_agent = pkgs.fetchFromGitHub {
-  #  owner = "wwalker";
-  #  repo = "ssh-find-agent";
-  #  rev = "f8b8fd30ba1ae83aa196a40b2a7bf62e795794c3";
-  #  # calculate sha256:
-  #  # nix-prefetch-url --unpack https://github.com/wwalker/ssh-find-agent/archive/f8b8fd30ba1ae83aa196a40b2a7bf62e795794c3.tar.gz
-  #  sha256 = "1b0vi54ibdvl4hcyyv6a118pw9vh0zl664029z8nl07argm1b3s4";
-  #};
 in rec
 {
   # List packages installed in system profile. To search, run:
@@ -51,7 +43,6 @@ in rec
     rnix-lsp
     ruby
     rustc
-    #ssh_find_agent
     tmux
     tree
     tree-sitter
