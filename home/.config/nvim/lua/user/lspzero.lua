@@ -1,4 +1,26 @@
-local cmp_action = require('lsp-zero').cmp_action()
+local lsp = require('lsp-zero').preset({
+  name = 'system-lsp',
+
+  -- disables all the features that depends on mason.nvim
+  setup_servers_on_start = false,
+  call_servers = 'global',
+
+  float_border = 'rounded',
+  configure_diagnostics = true,
+  set_lsp_keymaps = {
+    preserve_mappings = false,
+    omit = {},
+  },
+  manage_nvim_cmp = {
+    set_sources = 'recommended',
+    set_basic_mappings = true,
+    set_extra_mappings = false,
+    use_luasnip = true,
+    set_format = true,
+    documentation_window = true
+  },
+})
+local cmp_action = lsp.cmp_action()
 local cmp = require('cmp')
 cmp.setup({
   -- Make the first item in completion menu always be selected.
@@ -9,8 +31,14 @@ cmp.setup({
 
   -- enable "super tab"
   mapping = {
+    --['<Tab>'] = cmp_action.luasnip_supertab(),
+    --['<S-Tab>'] = cmp_action.luasnip_shift_supertab(),
     ['<Tab>'] = cmp_action.tab_complete(),
     ['<S-Tab>'] = cmp_action.select_prev_or_fallback(),
+    --['<C-Enter>'] = cmp.mapping.confirm({select = true}),
+    --['<C-q>'] = cmp.mapping.complete(),
+    --['<C-f>'] = cmp_action.luasnip_jump_forward(),
+    --['<C-b>'] = cmp_action.luasnip_jump_backward(),
   },
 
   -- add borders to completion window
@@ -22,6 +50,17 @@ cmp.setup({
   -- https://github.com/onsails/lspkind.nvim
   formatting = {
     fields = {'abbr', 'kind', 'menu'},
+    --format = function(entry, item)
+    --  local menu_icon = {
+    --    nvim_lsp = 'λ',
+    --    luasnip = '⋗',
+    --    buffer = 'Ω',
+    --    path = '🖫',
+    --    nvim_lua = 'Π',
+    --  }
+    --  item.menu = menu_icon[entry.source.name]
+    --  return item
+    --end,
     format = require('lspkind').cmp_format({
       mode = 'symbol', -- show only symbol annotations
       maxwidth = 50, -- prevent the popup from showing more than provided characters
@@ -29,7 +68,27 @@ cmp.setup({
     })
   },
 
+  snippet = {
+    expand = function(args)
+      require('luasnip').lsp_expand(args.body)
+    end
+  },
+
   sources = {
+
+    -- https://github.com/hrsh7th/cmp-path
+    {
+      name = 'path',
+      option = {
+        -- Options go into this table
+        trailing_slash = false,
+        label_trailing_slash = true,
+      },
+    },
+
+    -- https://github.com/hrsh7th/cmp-nvim-lsp
+    { name = 'nvim_lsp' },
+
     -- https://github.com/hrsh7th/cmp-buffer
     {
       name = 'buffer',
@@ -52,43 +111,44 @@ cmp.setup({
       },
     },
 
-    -- https://github.com/hrsh7th/cmp-path
     {
-      name = 'path',
-      option = {
-        -- Options go into this table
-        trailing_slash = false,
-        label_trailing_slash = true,
-      },
+      name = 'luasnip',
+      keyword_length = 2,
     },
-
-    -- https://github.com/hrsh7th/cmp-nvim-lsp
-    { name = 'nvim_lsp' },
   },
 })
 
 -- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-local lsp = require('lsp-zero').preset({
-  -- disables all the features that depends on mason.nvim
-  setup_servers_on_start = false,
-  call_servers = 'global',
-
-  float_border = 'rounded',
-  configure_diagnostics = true,
-  set_lsp_keymaps = false,
-  manage_nvim_cmp = {
-    set_sources = 'recommended',
-    set_basic_mappings = true,
-    set_extra_mappings = true,
-    use_luasnip = true,
-    set_format = true,
-    documentation_window = false,
-  },
-})
-
 --[[
+K: Displays hover information about the symbol under the cursor in a floating window. See :help vim.lsp.buf.hover().
+
+gd: Jumps to the definition of the symbol under the cursor. See :help vim.lsp.buf.definition().
+
+gD: Jumps to the declaration of the symbol under the cursor. Some servers don't implement this feature. See :help vim.lsp.buf.declaration().
+
+gi: Lists all the implementations for the symbol under the cursor in the quickfix window. See :help vim.lsp.buf.implementation().
+
+go: Jumps to the definition of the type of the symbol under the cursor. See :help vim.lsp.buf.type_definition().
+
+gr: Lists all the references to the symbol under the cursor in the quickfix window. See :help vim.lsp.buf.references().
+
+gs: Displays signature information about the symbol under the cursor in a floating window. See :help vim.lsp.buf.signature_help(). If a mapping already exists for this key this function is not bound.
+
+<F2>: Renames all references to the symbol under the cursor. See :help vim.lsp.buf.rename().
+
+<F3>: Format code in current buffer. See :help vim.lsp.buf.format().
+
+<F4>: Selects a code action available at the current cursor position. See :help vim.lsp.buf.code_action().
+
+gl: Show diagnostics in a floating window. See :help vim.diagnostic.open_float().
+
+[d: Move to the previous diagnostic in the current buffer. See :help vim.diagnostic.goto_prev().
+
+]d: Move to the next diagnostic. See :help vim.diagnostic.goto_next().
+
+
 Basic mappings
 
 These are the keybindings you get when you enable manage_nvim_cmp.set_basic_mappings.
@@ -127,8 +187,18 @@ These enable tab completion and navigation between snippet placeholders.
 --]]
 
 lsp.on_attach(function(client, bufnr)
-  lsp.default_keymaps({buffer = bufnr})
+  lsp.default_keymaps({
+    buffer = bufnr,
+    preserve_mappings = false,
+  })
 end)
+
+lsp.set_sign_icons({
+  error = '✘',
+  warn = '▲',
+  hint = '⚑',
+  info = '»'
+})
 
 -- When you don't have mason.nvim installed
 -- You'll need to list the servers installed in your system
