@@ -4,13 +4,12 @@
 
 { config, pkgs, ... }:
 
-let unstable = (import <nixos-unstable> { config = { allowUnfree = true; }; }).pkgs;
-in rec
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./sway.nix
+      ./system-packages.nix
     ];
 
   boot.initrd.luks.devices = {
@@ -66,79 +65,6 @@ in rec
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    ack
-    bash
-    bash-completion
-    cargo
-    cmake
-    curl
-    file
-    findutils
-    gcc
-    git
-    git-lfs
-    gnugrep
-    gnumake
-    gnupg
-    gnused
-    hack-font
-    htop
-    iotop
-    killall
-    llvmPackages_15.libclang
-    llvmPackages_15.llvm
-    lsof
-    moreutils
-    nodejs
-    nodePackages.yaml-language-server
-    nerdfonts
-    perl
-    powerline-symbols
-    #pure-prompt
-    (python310Full.withPackages(ps: with ps; [
-      jedi-language-server
-      pip
-      pynvim
-    ]))
-    rnix-lsp
-    ruby
-    rustc
-    tmux
-    tree
-    tree-sitter
-    vim
-    wget
-    unstable.bat
-    unstable.exa
-    unstable.fd
-    unstable.fzf
-    unstable.neovim-unwrapped
-    unstable.ripgrep
-    zsh
-    zsh-autosuggestions
-    #zsh-async
-    zsh-completions
-    zsh-git-prompt
-    zsh-powerlevel10k
-    zsh-syntax-highlighting
-
-    # https://github.com/Decodetalkers/neocmakelsp
-    # (rustPlatform.buildRustPackage {
-    #   name = "neocmakelsp";
-    #   version = "v0.5.11";
-    #   src = pkgs.fetchFromGitHub {
-    #     owner = "Decodetalkers";
-    #     repo = "neocmakelsp";
-    #     rev = "v0.5.11";
-    #     sha256 = "sha256-LdTS0jG1HHOUhQZg4A4wfBD0tdx3dgtBF5VXIE+Fj6U=";
-    #   }; 
-    #   cargoSha256 = "sha256-hqyWMRjBKlyfHEr2soIBb+BJc6EnpLJwl/oGs1hqgf4=";
-    # })
-  ];
-
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -179,15 +105,20 @@ in rec
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
-
+  services.openssh = {
+    enable = true;
+    permitRootLogin = "no";
+    passwordAuthentication = false;
+    kbdInteractiveAuthentication = false;
+    forwardX11 = true;
+  };
   programs.ssh.startAgent = true;
 
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
+  networking.firewall.allowedTCPPorts = [ 22 ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
-  networking.firewall.enable = false;
+  # networking.firewall.enable = false;
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
