@@ -106,6 +106,11 @@ setopt hist_verify            # show command with history expansion to user befo
 #export SSH_AUTH_SOCK="${HOME}/.ssh/ssh_auth_sock"
 emulate ksh -c "source ${HOME}/.local/bin/ssh-find-agent/ssh-find-agent.sh"
 ssh_find_agent -a
+if [ -z "$SSH_AUTH_SOCK" ]
+then
+  eval $(ssh-agent) > /dev/null
+  ssh-add -l >/dev/null || alias ssh='ssh-add -l >/dev/null || ssh-add && unalias ssh; ssh'
+fi
 # Predictable SSH authentication socket location so tmux can find it
 SOCK="/tmp/ssh-agent-$USER-screen"
 if test $SSH_AUTH_SOCK && [ $SSH_AUTH_SOCK != $SOCK ]
