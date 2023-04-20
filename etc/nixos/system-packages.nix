@@ -48,6 +48,7 @@ in rec
     tree-sitter
     vim
     wget
+    wl-clipboard
     unstable.bat
     unstable.exa
     unstable.fd

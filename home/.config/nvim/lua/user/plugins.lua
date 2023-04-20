@@ -167,6 +167,9 @@ return require('packer').startup(function()
 
   use 'LnL7/vim-nix'
 
+  -- https://github.com/ojroques/nvim-osc52
+  use 'ojroques/nvim-osc52'
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then
