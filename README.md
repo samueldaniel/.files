@@ -16,7 +16,7 @@ $ ./bin/bootstrap.sh
 $ sudo nixos-rebuild switch
 ```
 
-macOS compatibility is essentially broken. the `brew` script needs to be updated with all the dependencies added to `/etc/nixos/configuration.nix`.
+macOS compatibility is ~~essentially broken~~ ~~straight up dead~~ **deprecated**. the `brew` script has not been brought to parity with `/etc/nixos/configuration.nix`. Don't bother using this for macOS. I left the scripts in for "legacy" reasons, i.e. "inspiration".
 
 _*Probably don't use `/etc/nixos/hardware-configuration.nix` anywhere that isn't `neurofuzzy`?!?!?!*_
 
