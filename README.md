@@ -21,7 +21,7 @@ macOS compatibility is essentially broken. the `brew` script needs to be updated
 _*Probably don't use `/etc/nixos/hardware-configuration.nix` anywhere that isn't `neurofuzzy`?!?!?!*_
 
 ## [updating `nixos` packages](https://superuser.com/questions/1604694/how-to-update-every-package-on-nixos)
-```
+
 Check [Nix Channel Status page](https://status.nixos.org/) for latest channel info. Compare that to the output of:
 ```
 sudo nix-channel --list
