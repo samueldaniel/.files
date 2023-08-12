@@ -10,6 +10,7 @@ in rec
     ack
     bash
     bash-completion
+    can-utils
     cargo
     cmake
     curl
@@ -18,6 +19,7 @@ in rec
     gcc
     git
     git-lfs
+    glow
     gnugrep
     gnumake
     gnupg
@@ -29,6 +31,7 @@ in rec
     llvmPackages_15.libclang
     llvmPackages_15.llvm
     lsof
+    minicom
     moreutils
     nodejs
     nodePackages.yaml-language-server
@@ -48,6 +51,7 @@ in rec
     tree-sitter
     vim
     wget
+    wl-clipboard
     unstable.bat
     unstable.exa
     unstable.fd

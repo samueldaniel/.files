@@ -93,4 +93,5 @@ require('user.telescope')
 require('user.tree')
 require('user.lspzero') -- lspzero must be loaded before treesitter
 require('user.treesitter')
+require('user.osc52')
 require('user.keymaps') -- always load keymaps last
