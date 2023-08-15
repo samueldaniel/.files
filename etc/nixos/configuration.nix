@@ -3,7 +3,6 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, ... }:
-
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -11,6 +10,12 @@
       ./sway.nix
       ./system-packages.nix
     ];
+
+  nix = {
+   package = pkgs.nixFlakes;
+   extraOptions = lib.optionalString (config.nix.package == pkgs.nixFlakes)
+     "experimental-features = nix-command flakes";
+  };
 
   boot.initrd.luks.devices = {
     root = {
@@ -22,7 +27,21 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.kernelParams = [ "i915.force_probe=4680" ];
+  boot.kernelPatches = [
+    {
+      name = "can compat";
+      patch = null;
+      extraConfig = ''
+        CAN m
+        CAN_RAW m
+        CAN_BCM m
+        CAN_DEV m
+        CAN_CALC_BITTIMING y
+      '';
+    }
+  ];
 
   # networking.hostName = "nixos"; # Define your hostname.
   # Pick only one of the below networking options.
