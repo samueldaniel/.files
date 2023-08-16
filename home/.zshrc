@@ -25,11 +25,15 @@ alias ll="ls -alh --color"
 ### BEGIN source scripts/tools
 source ~/.iterm2_shell_integration.zsh
 #source "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-source "$(nix-build --no-out-link '<nixpkgs>' -A zsh-syntax-highlighting)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+#source "$(nix-build --no-out-link '<nixpkgs>' -A zsh-syntax-highlighting)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 if [ -n "${commands[fzf-share]}" ]; then
   source "$(fzf-share)/key-bindings.zsh"
   source "$(fzf-share)/completion.zsh"
 fi
+
+source $HOME/zsh-git-prompt/zshrc.sh
+source $HOME/powerlevel10k/powerlevel10k.zsh-theme
 
 #[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 ### END source scripts/tools
@@ -40,8 +44,6 @@ fi
 #eval "$(pyenv init -)"
 #eval "$(pyenv virtualenv-init -)"
 ### END pyenv
-
-source /etc/zsh-powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
