@@ -1,16 +1,11 @@
 #!/usr/bin/env bash
 
-for in_repo in $(find $HOME/.files/home -type f); do
-  in_home=$(echo $in_repo | sed 's/\.files\/home\///g')
-  diff_out=$(diff -rub $in_home $in_repo)
-  if [[ -n "${diff_out}" ]]; then
-    echo "${diff_out}"
-  fi
-done
+in_repo_dir=$1
+on_disk_dir=$2
 
-for in_repo in $(find $HOME/.files/etc -type f); do
-  in_etc=$(echo $in_repo | sed "s|${HOME}/.files||g")
-  diff_out=$(diff -rub $in_etc $in_repo)
+for in_repo_fpath in $(find $in_repo_dir -type f); do
+  on_disk_fpath=$(echo $in_repo_fpath | sed "s,$in_repo_dir,$on_disk_dir,")
+  diff_out=$(diff -rub $on_disk_fpath $in_repo_fpath)
   if [[ -n "${diff_out}" ]]; then
     echo "${diff_out}"
   fi
