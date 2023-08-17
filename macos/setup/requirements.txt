@@ -1,0 +1,3 @@
+jedi-language-server
+pip
+pynvim
