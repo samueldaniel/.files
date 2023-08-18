@@ -13,6 +13,7 @@ export EDITOR="nvim"
 #
 ### BEGIN PATH manipulation
 export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/nvim-squashfs-root/usr/bin:$PATH
 # add ARM toolchain to path for STM32 builds
 #export PATH="/Users/sam/.local/gcc-arm-none-eabi-9-2019-q4-major/bin:$PATH"
 ### END PATH manipulation
@@ -23,26 +24,17 @@ alias ll="ls -alh --color"
 ### END aliases
 
 ### BEGIN source scripts/tools
-source ~/.iterm2_shell_integration.zsh
-#source "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-#source "$(nix-build --no-out-link '<nixpkgs>' -A zsh-syntax-highlighting)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+source $HOME/.iterm2_shell_integration.zsh
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-if [ -n "${commands[fzf-share]}" ]; then
-  source "$(fzf-share)/key-bindings.zsh"
-  source "$(fzf-share)/completion.zsh"
-fi
-
 source $HOME/zsh-git-prompt/zshrc.sh
 source $HOME/powerlevel10k/powerlevel10k.zsh-theme
-
-#[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 ### END source scripts/tools
 
 ### BEGIN pyenv
-#export PYENV_ROOT="$HOME/.pyenv"
-#command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-#eval "$(pyenv init -)"
-#eval "$(pyenv virtualenv-init -)"
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 ### END pyenv
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
@@ -105,3 +97,5 @@ setopt hist_ignore_dups       # ignore duplicated commands history list
 setopt hist_ignore_space      # ignore commands that start with space
 setopt hist_verify            # show command with history expansion to user before running it
 #setopt share_history         # share command history data
+source /usr/share/doc/fzf/examples/key-bindings.zsh
+source /usr/share/doc/fzf/examples/completion.zsh

@@ -1,0 +1,8 @@
+#! /usr/bin/env zsh
+
+can_if=$1
+bitrate=$2
+
+sudo ip link set $can_if type can bitrate $bitrate
+sudo ip link set $can_if up
+can-show $can_if
