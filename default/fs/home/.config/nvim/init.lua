@@ -83,6 +83,10 @@ vim.opt.encoding = "utf-8"
 -- don't show the current mode (`-- INSERT --`) - it is useless with lightline installed
 vim.opt.showmode = false
 
+-- set neovim's python provider
+vim.g.python3_host_prog = "/home/sam/.pyenv/versions/neovim/bin/python"
+vim.g.ruby_host_prog = "/home/sam/.rbenv/versions/3.2.2/bin/ruby"
+
 require('user.plugins') -- always load plugins first
 --require('colorbuddy').colorscheme('snazzybuddy')
 --vim.g.snazzybuddy_icons = true

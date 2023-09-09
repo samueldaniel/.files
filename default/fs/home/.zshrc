@@ -14,6 +14,7 @@ export EDITOR="nvim"
 ### BEGIN PATH manipulation
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/nvim-squashfs-root/usr/bin:$PATH
+export PATH=$HOME/.cargo/bin:$PATH
 # add ARM toolchain to path for STM32 builds
 #export PATH="/Users/sam/.local/gcc-arm-none-eabi-9-2019-q4-major/bin:$PATH"
 ### END PATH manipulation
@@ -21,6 +22,7 @@ export PATH=$HOME/nvim-squashfs-root/usr/bin:$PATH
 ### BEGIN aliases
 #alias ll="ls -alhG"
 alias ll="ls -alh --color"
+alias git-submodule-update="git submodule update --init --recursive"
 ### END aliases
 
 ### BEGIN source scripts/tools
@@ -36,6 +38,7 @@ command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 ### END pyenv
+eval "$(rbenv init -)"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

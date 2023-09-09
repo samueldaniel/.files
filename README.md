@@ -46,3 +46,10 @@ Updating your current channel as well as rebuilding and switching can be combine
 ```
 sudo nixos-rebuild switch --upgrade
 ```
+
+# TODO
+- [ ] 🚩 figure out a better way of installing neovim on ubuntu that doesn't involve squashfs
+- [ ] figure out a better way to control ubuntu config/installation
+- [ ] figure out a way to script the installation of petalinux
+- [ ] figure out a way to script the installation of awscli
+- [ ] get nixOS/nix playing nicely with kernel modules
