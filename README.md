@@ -11,6 +11,11 @@ dotfiles and config for zsh, ssh, tmux, neovim, nixos
 
 ```
 $ cd .files
+$ ./bin/bootstrap.sh default/fs/home $HOME
+```
+
+```
+$ cd .files
 $ ./bin/bootstrap.sh
 <input sudo password>
 $ sudo nixos-rebuild switch
