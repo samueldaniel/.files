@@ -22,7 +22,8 @@ require('onedark').setup {
 
     -- Custom Highlights --
     colors = {
-      bg0 = '#191919',
+      bg0 = '#000000',
+      --bg0 = '#191919',
       --bright_orange = "#ff8800",    -- define a new color
       --green = '#00ffaa',            -- redefine an existing color
     },

@@ -91,7 +91,8 @@ require('user.plugins') -- always load plugins first
 --require('colorbuddy').colorscheme('snazzybuddy')
 --vim.g.snazzybuddy_icons = true
 require('user.gitsigns')
-require('user.onedark') -- onedark must be loaded before lualine so lualine picks up the theme
+require('user.onedarkpro')
+--require('user.onedark') -- onedark must be loaded before lualine so lualine picks up the theme
 require('user.lualine')
 require('user.telescope')
 require('user.tree')
