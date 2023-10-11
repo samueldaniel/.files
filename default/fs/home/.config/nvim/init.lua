@@ -83,11 +83,16 @@ vim.opt.encoding = "utf-8"
 -- don't show the current mode (`-- INSERT --`) - it is useless with lightline installed
 vim.opt.showmode = false
 
+-- set neovim's python provider
+vim.g.python3_host_prog = "/home/sam/.pyenv/versions/neovim/bin/python"
+vim.g.ruby_host_prog = "/home/sam/.rbenv/versions/3.2.2/bin/ruby"
+
 require('user.plugins') -- always load plugins first
 --require('colorbuddy').colorscheme('snazzybuddy')
 --vim.g.snazzybuddy_icons = true
 require('user.gitsigns')
-require('user.onedark') -- onedark must be loaded before lualine so lualine picks up the theme
+require('user.onedarkpro')
+--require('user.onedark') -- onedark must be loaded before lualine so lualine picks up the theme
 require('user.lualine')
 require('user.telescope')
 require('user.tree')

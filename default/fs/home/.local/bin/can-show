@@ -1,0 +1,4 @@
+#! /usr/bin/env zsh
+
+can_if=$1
+sudo ip -det link show $can_if

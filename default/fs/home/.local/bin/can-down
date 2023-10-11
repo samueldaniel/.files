@@ -1,0 +1,6 @@
+#! /usr/bin/env zsh
+
+can_if=$1
+
+sudo ip link set $can_if down
+can-show $can_if

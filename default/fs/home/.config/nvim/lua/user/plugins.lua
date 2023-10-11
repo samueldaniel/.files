@@ -171,6 +171,8 @@ return require('packer').startup(function()
   -- https://github.com/ojroques/nvim-osc52
   use 'ojroques/nvim-osc52'
 
+  use "olimorris/onedarkpro.nvim"
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then
