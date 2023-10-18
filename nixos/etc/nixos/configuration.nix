@@ -1,11 +1,7 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, lib, pkgs, ... }:
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
       ./hardware-configuration.nix
       ./sway.nix
       ./system-packages.nix
@@ -15,33 +11,47 @@
    package = pkgs.nixFlakes;
    extraOptions = lib.optionalString (config.nix.package == pkgs.nixFlakes)
      "experimental-features = nix-command flakes";
+   optimise = {
+     automatic = true;
+   };
   };
+  nixpkgs.config.allowUnfree = true;
+  hardware.parallels.enable = true;
 
-  boot.initrd.luks.devices = {
-    root = {
-      device = "/dev/nvme0n1p2";
-      preLVM = true;
-    };
+  programs.sway.enable = true;
+  security.rtkit.enable = true;
+  services.dbus.enable = true;
+  security.polkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
   };
+  xdg.portal = {
+    enable = true;
+    wlr.enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-wlr
+    ];
+  };
+  environment.loginShellInit = ''
+    [[ "$(tty)" == /dev/tty1 ]] && sway
+  '';
+  fonts.fonts = with pkgs; [
+    (nerdfonts.override { fonts = [ "Hack" ]; })
+  ];
+
+  programs.firefox.enable = true;
 
   # Use the systemd-boot EFI boot loader.
+  boot.initrd.systemd.enable = true;
   boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelParams = [ "i915.force_probe=4680" ];
-  boot.kernelPatches = [
-    {
-      name = "can compat";
-      patch = null;
-      extraConfig = ''
-        CAN m
-        CAN_RAW m
-        CAN_BCM m
-        CAN_DEV m
-        CAN_CALC_BITTIMING y
-      '';
-    }
-  ];
+  #boot.loader.efi.canTouchEfiVariables = true;
+  #boot.loader.grub = {
+  #  font = "${pkgs.nerdfonts}/share/fonts/truetype/NerdFonts/HackNerdFontMono-Regular.ttf";
+  #  fontSize = 10;
+  #};
 
   # networking.hostName = "nixos"; # Define your hostname.
   # Pick only one of the below networking options.
@@ -56,13 +66,14 @@
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-  # Select internationalisation properties.
-  # i18n.defaultLocale = "en_US.UTF-8";
-  # console = {
-  #   font = "Lat2-Terminus16";
-  #   keyMap = "us";
-  #   useXkbConfig = true; # use xkbOptions in tty.
-  # };
+  i18n.defaultLocale = "en_US.UTF-8";
+  #console = {
+  #  earlySetup = true;
+  #  packages = [
+  #    pkgs.nerdfonts
+  #  ];
+  #  font = "${pkgs.nerdfonts}/share/fonts/truetype/NerdFonts/HackNerdFontMono-Regular.ttf";
+  #};
 
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
@@ -89,7 +100,7 @@
     enableCompletion = true;
   };
 
-  virtualisation.docker.enable = true;
+  #virtualisation.docker.enable = true;
   #virtualisation.docker.rootless = {
   #  enable = true;
   #  setSocketVariable = true;
@@ -99,7 +110,7 @@
   users.users.sam = {
     isNormalUser = true;
     extraGroups = [
-      "docker"
+      #"docker"
       "wheel" # Enable ‘sudo’ for the user.
     ];
     shell = pkgs.zsh;
@@ -126,10 +137,10 @@
   # Enable the OpenSSH daemon.
   services.openssh = {
     enable = true;
-    permitRootLogin = "no";
-    passwordAuthentication = false;
-    kbdInteractiveAuthentication = false;
-    forwardX11 = true;
+    #PermitRootLogin = "no";
+    #PasswordAuthentication = false;
+    #KbdInteractiveAuthentication = false;
+    #X11Forwarding = true;
   };
   programs.ssh.startAgent = true;
 
@@ -150,6 +161,6 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "22.11"; # Did you read the comment?
+  system.stateVersion = "23.05"; # Did you read the comment?
 
 }

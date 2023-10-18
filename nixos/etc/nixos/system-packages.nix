@@ -7,57 +7,55 @@ in rec
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    ack
-    bash
-    bash-completion
-    can-utils
-    cargo
-    cmake
-    curl
-    file
-    findutils
-    gcc
+    #ack
+    #bash
+    #bash-completion
+    #can-utils
+    #cargo
+    #cmake
+    #curl
+    #file
+    #findutils
+    #gcc
     git
-    git-lfs
-    glow
-    gnugrep
-    gnumake
-    gnupg
-    gnused
-    hack-font
-    htop
-    iotop
-    killall
-    llvmPackages_15.libclang
-    llvmPackages_15.llvm
-    lsof
-    minicom
-    moreutils
-    nodejs
-    nodePackages.yaml-language-server
-    nerdfonts
-    perl
-    powerline-symbols
-    (python310Full.withPackages(ps: with ps; [
-      jedi-language-server
-      pip
-      pynvim
-    ]))
-    rnix-lsp
-    ruby
-    rustc
+    #git-lfs
+    #glow
+    #gnugrep
+    #gnumake
+    #gnupg
+    #gnused
+    #hack-font
+    #htop
+    #iotop
+    #killall
+    #llvmPackages_15.libclang
+    #llvmPackages_15.llvm
+    #lsof
+    #minicom
+    #moreutils
+    #nodejs
+    #nodePackages.yaml-language-server
+    #perl
+    #(python310Full.withPackages(ps: with ps; [
+    #  jedi-language-server
+    #  pip
+    #  pynvim
+    #]))
+    #rnix-lsp
+    #ruby
+    #rustc
     tmux
-    tree
-    tree-sitter
-    vim
-    wget
-    wl-clipboard
-    unstable.bat
-    unstable.exa
-    unstable.fd
-    unstable.fzf
+    #tree
+    #tree-sitter
+    #vim
+    #wget
+    #wl-clipboard
+    #unstable.bat
+    #unstable.eza
+    #unstable.fd
+    #unstable.fzf
     unstable.neovim-unwrapped
-    unstable.ripgrep
+    #unstable.ripgrep
     zsh
     zsh-autosuggestions
     #zsh-async
