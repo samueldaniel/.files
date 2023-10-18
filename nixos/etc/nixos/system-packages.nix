@@ -14,6 +14,7 @@ in rec
     #cargo
     #cmake
     #curl
+    delta 
     #file
     #findutils
     #gcc
@@ -45,17 +46,17 @@ in rec
     #ruby
     #rustc
     tmux
-    #tree
-    #tree-sitter
+    tree
+    tree-sitter
     #vim
     #wget
     #wl-clipboard
-    #unstable.bat
-    #unstable.eza
-    #unstable.fd
-    #unstable.fzf
+    unstable.bat
+    unstable.eza
+    unstable.fd
+    unstable.fzf
     unstable.neovim-unwrapped
-    #unstable.ripgrep
+    unstable.ripgrep
     zsh
     zsh-autosuggestions
     #zsh-async
