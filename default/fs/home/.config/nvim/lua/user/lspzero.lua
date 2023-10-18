@@ -39,6 +39,7 @@ require("mason-lspconfig").setup({
   ensure_installed = {
     "clangd",
     "jedi_language_server",
+    "ltex",
     "rnix",
     "lua_ls",
     "yamlls",

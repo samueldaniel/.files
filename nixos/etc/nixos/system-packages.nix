@@ -11,45 +11,45 @@ in rec
     #bash
     #bash-completion
     #can-utils
-    #cargo
-    #cmake
-    #curl
+    cargo
+    cmake
+    curl
     delta 
-    #file
-    #findutils
-    #gcc
+    file
+    findutils
+    gcc
     git
-    #git-lfs
-    #glow
-    #gnugrep
-    #gnumake
+    git-lfs
+    glow
+    gnugrep
+    gnumake
     #gnupg
-    #gnused
+    gnused
     #hack-font
-    #htop
-    #iotop
-    #killall
-    #llvmPackages_15.libclang
-    #llvmPackages_15.llvm
-    #lsof
+    htop
+    iotop
+    killall
+    llvmPackages_15.libclang
+    llvmPackages_15.llvm
+    lsof
     #minicom
-    #moreutils
-    #nodejs
-    #nodePackages.yaml-language-server
-    #perl
-    #(python310Full.withPackages(ps: with ps; [
-    #  jedi-language-server
-    #  pip
-    #  pynvim
-    #]))
-    #rnix-lsp
-    #ruby
-    #rustc
+    moreutils
+    nodejs
+    nodePackages.yaml-language-server
+    perl
+    (python310Full.withPackages(ps: with ps; [
+      jedi-language-server
+      pip
+      pynvim
+    ]))
+    rnix-lsp
+    ruby
+    rustc
     tmux
     tree
     tree-sitter
     #vim
-    #wget
+    wget
     #wl-clipboard
     unstable.bat
     unstable.eza
@@ -57,6 +57,7 @@ in rec
     unstable.fzf
     unstable.neovim-unwrapped
     unstable.ripgrep
+    unzip
     zsh
     zsh-autosuggestions
     #zsh-async

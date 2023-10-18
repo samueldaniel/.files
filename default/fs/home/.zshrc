@@ -14,7 +14,8 @@ export TERM="tmux-256color"
 ### END PATH manipulation
 #
 ### BEGIN aliases
-alias ll="ls -alhG"
+alias ll="ls -alh --color"
+alias nix-pkg-path=
 alias git-submodule-update="git submodule update --init --recursive"
 ### END aliases
 

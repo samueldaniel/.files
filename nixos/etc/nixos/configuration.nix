@@ -15,8 +15,6 @@
      automatic = true;
    };
   };
-  nixpkgs.config.allowUnfree = true;
-  hardware.parallels.enable = true;
 
   programs.sway.enable = true;
   security.rtkit.enable = true;
