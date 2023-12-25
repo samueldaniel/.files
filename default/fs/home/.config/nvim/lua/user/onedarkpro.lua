@@ -1,6 +1,11 @@
 require("onedarkpro").setup({
   colors = {}, -- Override default colors or create your own
-  highlights = {}, -- Override default highlight groups or create your own
+  highlights = { -- Override default highlight groups or create your own
+    Search = {  -- Last search pattern highlighting (see 'hlsearch').  Also used for similar items that need to stand out.
+      bg = "${yellow}",
+      fg = "${red}",
+    },
+  },
   styles = { -- For example, to apply bold and italic, use "bold,italic"
     types = "NONE", -- Style that is applied to types
     methods = "NONE", -- Style that is applied to methods
