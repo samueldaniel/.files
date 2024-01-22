@@ -12,6 +12,7 @@ in rec
     #bash-completion
     #cargo
     #cmake
+    bemenu
     curl
     file
     findutils
@@ -36,6 +37,8 @@ in rec
     nerdfonts
     perl
     powerline-symbols
+    pyenv
+    rbenv
     #(python310Full.withPackages(ps: with ps; [
     #  jedi-language-server
     #  pip

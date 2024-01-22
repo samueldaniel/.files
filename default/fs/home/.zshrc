@@ -13,7 +13,7 @@ export EDITOR="nvim"
 #
 ### BEGIN PATH manipulation
 export PATH=$HOME/.local/bin:$PATH
-export PATH=$HOME/nvim-squashfs-root/usr/bin:$PATH
+#export PATH=$HOME/nvim-squashfs-root/usr/bin:$PATH
 export PATH=$HOME/.cargo/bin:$PATH
 # add ARM toolchain to path for STM32 builds
 #export PATH="/Users/sam/.local/gcc-arm-none-eabi-9-2019-q4-major/bin:$PATH"
@@ -26,7 +26,7 @@ alias git-submodule-update="git submodule update --init --recursive"
 ### END aliases
 
 ### BEGIN source scripts/tools
-source $HOME/.iterm2_shell_integration.zsh
+#source $HOME/.iterm2_shell_integration.zsh
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $HOME/zsh-git-prompt/zshrc.sh
 source $HOME/powerlevel10k/powerlevel10k.zsh-theme
