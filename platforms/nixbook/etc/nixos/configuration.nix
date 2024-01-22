@@ -15,10 +15,39 @@
   nixpkgs.config.allowUnfree = true;
 
   nix = {
-   package = pkgs.nixFlakes;
-   extraOptions = lib.optionalString (config.nix.package == pkgs.nixFlakes)
-     "experimental-features = nix-command flakes";
+    package = pkgs.nixFlakes;
+    extraOptions = lib.optionalString (config.nix.package == pkgs.nixFlakes)
+      "experimental-features = nix-command flakes";
+    optimise = {
+      automatic = true;
+    };
   };
+
+  programs.sway.enable = true;
+  security.rtkit.enable = true;
+  services.dbus.enable = true;
+  security.polkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+  };
+  xdg.portal = {
+    enable = true;
+    wlr.enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-wlr
+    ];
+  };
+  environment.loginShellInit = ''
+    [[ "$(tty)" == /dev/tty1 ]] && sway
+  '';
+  fonts.fonts = with pkgs; [
+    (nerdfonts.override { fonts = [ "Hack" ]; })
+  ];
+
+  programs.firefox.enable = true;
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -41,7 +70,7 @@
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Select internationalisation properties.
-  # i18n.defaultLocale = "en_US.UTF-8";
+  i18n.defaultLocale = "en_US.UTF-8";
   # console = {
   #   font = "Lat2-Terminus16";
   #   keyMap = "us";
@@ -49,9 +78,9 @@
   # };
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
-  services.xserver.desktopManager.cinnamon.enable = true;
-  services.xserver.displayManager.lightdm.enable = true;
+  #services.xserver.enable = true;
+  #services.xserver.desktopManager.cinnamon.enable = true;
+  #services.xserver.displayManager.lightdm.enable = true;
 
   # Configure keymap in X11
   # services.xserver.layout = "us";

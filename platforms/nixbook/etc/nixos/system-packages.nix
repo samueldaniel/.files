@@ -56,6 +56,7 @@ in rec
     unstable.fzf
     unstable.neovim-unwrapped
     unstable.ripgrep
+    unzip
     zsh
     zsh-autosuggestions
     #zsh-async
