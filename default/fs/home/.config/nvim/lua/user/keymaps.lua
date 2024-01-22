@@ -25,15 +25,39 @@ map("n", "<C-b>", function(opts)
     map('i', '<c-u>', delete_buf)
     return true
   end
-  opts.previewer = false
-  -- define more opts here
-  -- opts.show_all_buffers = true
-  -- opts.sort_lastused = true
-  -- opts.shorten_path = false
+  opts.previewer = true
+  opts.layout_config = {
+    width = 0.8,
+    height = 0.8,
+  }
+  opts.show_all_buffers = true
+  opts.sort_lastused = true
+  opts.shorten_path = true
   require('telescope.builtin').buffers(require('telescope.themes').get_dropdown(opts))
-end, { desc = "foo"})
+end, { desc = "show buffers"})
 
 map("n", "<C-e>", ":NvimTreeToggle<cr>", {desc = "NvimTreeToggle"})
+
+-- :bd          - deletes the current buffer, error if there are unwritten changes
+-- :bd!         - deletes the current buffer, no error if unwritten changes
+-- :bufdo bd    - deletes all buffers, stops at first error (unwritten changes)
+-- :bufdo! bd   - deletes all buffers except those with unwritten changes
+-- :bufdo! bd!  - deletes all buffers, no error on any unwritten changes
+-- 
+-- :bw          - completely deletes the current buffer, error if there are unwritten changes
+-- :bw!         - completely deletes the current buffer, no error if unwritten changes
+-- :bufdo bw    - completely deletes all buffers, stops at first error (unwritten changes)
+-- :bufdo! bw   - completely deletes all buffers except those with unwritten changes
+-- :bufdo! bw!  - completely deletes all buffers, no error on any unwritten changes
+-- 
+-- :set confirm - confirm changes (Yes, No, Cancel) instead of error
+-- 
+-- :ls          - list open buffers
+-- :b N         - open buffer number N (as shown in ls)
+-- :tabe +Nbuf  - open buffer number N in new tab
+-- :bnext       - go to the next buffer (:bn also)
+-- :bprevious   - go to the previous buffer (:bp also)
+map("n", "<C-w>", ":bd<cr>")
 -- vim.api.nvim_set_keymap(
 --   'n',
 --   '<C-e>',

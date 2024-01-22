@@ -44,7 +44,10 @@ return require('packer').startup(function()
   -- use fzf in telescope
   use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}
   -- https://github.com/nvim-telescope/telescope-file-browser.nvim
-  -- use { 'nvim-telescope/telescope-file-browser.nvim' }
+  use {
+    "nvim-telescope/telescope-file-browser.nvim",
+    requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
+  }
 
   -- https://github.com/kyazdani42/nvim-tree.lua
   use 'kyazdani42/nvim-tree.lua'
