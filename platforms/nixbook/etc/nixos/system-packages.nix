@@ -56,6 +56,8 @@ in rec
     ruby
     rustc
     slack
+    slurp
+    sway-launcher-desktop
     tmux
     tree
     tree-sitter
@@ -69,6 +71,7 @@ in rec
     unstable.neovim-unwrapped
     unstable.ripgrep
     unzip
+    waybar
     zsh
     zsh-autosuggestions
     zsh-completions

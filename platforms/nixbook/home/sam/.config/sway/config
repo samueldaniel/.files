@@ -8,13 +8,16 @@
 #
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
+
 # Home row direction keys, like vim
 set $left h
 set $down j
 set $up k
 set $right l
+
 # Your preferred terminal emulator
 set $term alacritty
+
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
@@ -23,7 +26,6 @@ set $menu dmenu_path | dmenu | xargs swaymsg exec --
 set $menu bemenu-run --counter --accept-single --center --list 69 --fixed-height
 exec dbus-sway-environment
 exec configure-gtk
-
 
 ### Output configuration
 #
@@ -40,15 +42,21 @@ output Virtual-1 {
   scale 1
 }
 
+gaps inner 10
+
+# Remove window borders
+default_border none
+default_floating_border none
+
 ### Idle configuration
 #
 # Example configuration:
 #
-# exec swayidle -w \
-#          timeout 300 'swaylock -f -c 000000' \
-#          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-#          before-sleep 'swaylock -f -c 000000'
-#
+exec swayidle -w \
+         timeout 300 'swaylock -f -c 000000' \
+         timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+         before-sleep 'swaylock -f -c 000000'
+
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
@@ -74,6 +82,12 @@ output Virtual-1 {
     # Start a terminal
     bindsym $mod+Return exec $term
 
+    # screen lock
+    bindsym Ctrl+Alt+q exec swaylock --color 000000
+
+    # notifications
+    #bindsym $mod+n exec swaync-client -t -sw
+
     # Kill focused window
     bindsym $mod+Shift+w kill
 
@@ -92,6 +106,18 @@ output Virtual-1 {
 
     # Exit sway (logs you out of your Wayland session)
     bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+#
+# Media keys:
+#
+    #bindsym XF86AudioRaiseVolume exec volumectl -u up
+    #bindsym XF86AudioLowerVolume exec volumectl -u down
+    #bindsym XF86AudioMute exec volumectl toggle-mute
+    #bindsym XF86AudioNext exec playerctl next
+    #bindsym XF86AudioPrev exec playerctl previous
+    #bindsym XF86AudioPlay exec playerctl play-pause
+
+# screen grab
+    bindsym $mod+Shift+s exec grim -g "$(slurp)" - | wl-copy
 #
 # Moving around:
 #
@@ -163,6 +189,10 @@ output Virtual-1 {
     # Toggle the current focus between tiling and floating mode
     bindsym $mod+Shift+space floating toggle
 
+    # Move workspace between outputs
+    #bindsym $mod+Shift+Control+Left move workspace to output left
+    #bindsym $mod+Shift+Control+Right move workspace to output right
+
     # Swap focus between the tiling area and the floating area
     # bindsym $mod+space focus mode_toggle
 
@@ -212,15 +242,17 @@ bindsym $mod+r mode "resize"
 bar {
     position top
 
+    swaybar_command waybar
+
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
-    status_command while date +'%Y-%m-%d %I:%M:%S %p'; do sleep 1; done
+    #status_command while date +'%Y-%m-%d %I:%M:%S %p'; do sleep 1; done
 
-    colors {
-        statusline #ffffff
-        background #323232
-        inactive_workspace #32323200 #32323200 #5c5c5c
-    }
+    #colors {
+    #    statusline #ffffff
+    #    background #323232
+    #    inactive_workspace #32323200 #32323200 #5c5c5c
+    #}
 }
 
 include /etc/sway/config.d/*
