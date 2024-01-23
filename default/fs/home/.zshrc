@@ -1,3 +1,5 @@
+# nix eval -f '<nixpkgs>' --raw PACKAGE
+# nix eval -f '<nixos-unstable>' --raw PACKAGE
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -25,20 +27,13 @@ alias ll="ls -alh --color"
 alias git-submodule-update="git submodule update --init --recursive"
 ### END aliases
 
-### BEGIN source scripts/tools
-#source $HOME/.iterm2_shell_integration.zsh
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source $HOME/zsh-git-prompt/zshrc.sh
-source $HOME/powerlevel10k/powerlevel10k.zsh-theme
-### END source scripts/tools
-
 ### BEGIN pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+#export PYENV_ROOT="$HOME/.pyenv"
+#command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+#eval "$(pyenv init -)"
+#eval "$(pyenv virtualenv-init -)"
 ### END pyenv
-eval "$(rbenv init -)"
+#eval "$(rbenv init -)"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -100,5 +95,8 @@ setopt hist_ignore_dups       # ignore duplicated commands history list
 setopt hist_ignore_space      # ignore commands that start with space
 setopt hist_verify            # show command with history expansion to user before running it
 #setopt share_history         # share command history data
-source /usr/share/doc/fzf/examples/key-bindings.zsh
-source /usr/share/doc/fzf/examples/completion.zsh
+source /etc/share/zsh-git-prompt/zshrc.sh
+source /etc/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
+source /etc/share/fzf/key-bindings.zsh
+source /etc/share/fzf/completion.zsh
+source /etc/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

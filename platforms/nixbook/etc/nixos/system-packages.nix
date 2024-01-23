@@ -37,8 +37,8 @@ in rec
     nerdfonts
     perl
     powerline-symbols
-    pyenv
-    rbenv
+    #pyenv
+    #rbenv
     #(python310Full.withPackages(ps: with ps; [
     #  jedi-language-server
     #  pip

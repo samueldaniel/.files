@@ -9,6 +9,7 @@
       ./hardware-configuration.nix
       ./1password.nix
       ./system-packages.nix
+      ./user-environment.nix
     ];
 
   # Allow unfree packages
