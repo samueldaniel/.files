@@ -57,6 +57,20 @@
   # upgradable kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
+  # https://wiki.archlinux.org/title/ASUS_C302
+  # microcode updates enabled in hardware-configuration.nix
+  boot.kernelParams = [
+    "acpi_osi=Linux"
+    "intel_iommu=on,igfx_off"
+  ];
+  boot.blacklistedKernelModules = [
+    "snd_hda_intel"
+  ];
+  boot.extraModprobeConfig = ''
+    options tpm_tis interrupts=0
+  '';
+
+
   # networking.hostName = "nixos"; # Define your hostname.
   # Pick only one of the below networking options.
   #networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
