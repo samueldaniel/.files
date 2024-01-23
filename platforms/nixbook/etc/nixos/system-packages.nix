@@ -1,5 +1,11 @@
-{ config, pkgs, ... }:
-
+{ config,
+  fetchFromGitHub,
+  installShellFiles,
+  lib,
+  pkgs,
+  stdenv,
+  ...
+}:
 let 
   unstable = (import <nixos-unstable> { config = { allowUnfree = true; }; }).pkgs;
 in rec
@@ -7,19 +13,21 @@ in rec
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    #ack
+    ack
+    alacritty
+    alacritty-theme
     #bash
     #bash-completion
-    #cargo
-    #cmake
+    cargo
+    cmake
     bemenu
     curl
     file
     findutils
-    #gcc
+    gcc
     git
     git-lfs
-    #glow
+    glow
     gnugrep
     gnumake
     gnupg
@@ -33,20 +41,21 @@ in rec
     lsof
     moreutils
     nodejs
-    #nodePackages.yaml-language-server
+    nodePackages.yaml-language-server
     nerdfonts
     perl
     powerline-symbols
     #pyenv
-    #rbenv
+    rbenv
     #(python310Full.withPackages(ps: with ps; [
     #  jedi-language-server
     #  pip
     #  pynvim
     #]))
-    #rnix-lsp
-    #ruby
-    #rustc
+    rnix-lsp
+    ruby
+    rustc
+    slack
     tmux
     tree
     tree-sitter
@@ -62,7 +71,6 @@ in rec
     unzip
     zsh
     zsh-autosuggestions
-    #zsh-async
     zsh-completions
     zsh-git-prompt
     zsh-powerlevel10k

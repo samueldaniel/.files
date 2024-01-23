@@ -12,4 +12,6 @@ in rec
 
   environment.etc."share/zsh-powerlevel10k/powerlevel10k.zsh-theme".source = "${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
 
+  environment.etc."share/alacritty-theme".source = "${pkgs.alacritty-theme}";
+
 }

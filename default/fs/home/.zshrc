@@ -33,7 +33,7 @@ alias git-submodule-update="git submodule update --init --recursive"
 #eval "$(pyenv init -)"
 #eval "$(pyenv virtualenv-init -)"
 ### END pyenv
-#eval "$(rbenv init -)"
+eval "$(rbenv init -)"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

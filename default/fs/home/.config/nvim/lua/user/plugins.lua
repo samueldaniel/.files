@@ -35,7 +35,7 @@ require("lazy").setup({
   "nvim-telescope/telescope.nvim",
   -- https://github.com/nvim-telescope/telescope-fzf-native.nvim
   -- use fzf in telescope
-  {"nvim-telescope/telescope-fzf-native.nvim", run = "make"},
+  {"nvim-telescope/telescope-fzf-native.nvim", build = "make"},
   -- https://github.com/nvim-telescope/telescope-file-browser.nvim
   -- use { 'nvim-telescope/telescope-file-browser.nvim' }
 
@@ -141,6 +141,7 @@ require("lazy").setup({
   {"hrsh7th/cmp-nvim-lsp"},
   {"hrsh7th/nvim-cmp"},
   {"L3MON4D3/LuaSnip"},
+  {"onsails/lspkind.nvim"},
 
   -- old packer installation
   --{
