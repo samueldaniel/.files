@@ -16,8 +16,10 @@ in rec
     ack
     alacritty
     alacritty-theme
+    avizo
     #bash
     #bash-completion
+    brightnessctl
     cargo
     cmake
     bemenu
