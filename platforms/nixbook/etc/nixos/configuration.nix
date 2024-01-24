@@ -126,10 +126,12 @@
   #};
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
+  users.groups.keyd = {};
   users.users.sam = {
     isNormalUser = true;
     extraGroups = [
       "docker"
+      "keyd"
       "wheel" # Enable ‘sudo’ for the user.
     ];
     shell = pkgs.zsh;

@@ -14,4 +14,6 @@ in rec
 
   environment.etc."share/alacritty-theme".source = "${pkgs.alacritty-theme}";
 
+  environment.etc."keyd/default.conf".source = "/home/sam/.config/keyd/default.conf";
+
 }

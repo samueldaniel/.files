@@ -48,13 +48,13 @@ output Virtual-1 {
 #default_border none
 #default_floating_border none
 
-bindsym XF86AudioRaiseVolume exec volumectl -u up
-bindsym XF86AudioLowerVolume exec volumectl -u down
-bindsym XF86AudioMute exec volumectl toggle-mute
-bindsym XF86AudioMicMute exec volumectl -m toggle-mute
+bindsym F10 exec volumectl -u up
+bindsym F9 exec volumectl -u down
+bindsym F8 exec volumectl toggle-mute
+#bindsym XF86AudioMicMute exec volumectl -m toggle-mute
 
-bindsym XF86MonBrightnessUp exec lightctl up
-bindsym XF86MonBrightnessDown exec lightctl down
+bindsym F6 exec lightctl down
+bindsym F7 exec lightctl up
 
 exec "avizo-service"
 
@@ -94,6 +94,7 @@ exec swayidle -w \
 
     # screen lock
     bindsym Ctrl+Alt+q exec swaylock --color 000000
+    #bindsym F13 exec swaylock --color 000000
 
     # notifications
     #bindsym $mod+n exec swaync-client -t -sw
@@ -216,10 +217,12 @@ exec swayidle -w \
 
     # Move the currently focused window to the scratchpad
     bindsym $mod+Shift+minus move scratchpad
+    bindsym F4 move scratchpad
 
     # Show the next scratchpad window or hide the focused scratchpad window.
     # If there are multiple scratchpad windows, this command cycles through them.
     bindsym $mod+minus scratchpad show
+    bindsym F5 scratchpad show
 #
 # Resizing containers:
 #

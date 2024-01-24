@@ -37,6 +37,7 @@ in rec
     hack-font
     htop
     iotop
+    keyd
     killall
     #llvmPackages_15.libclang
     #llvmPackages_15.llvm
