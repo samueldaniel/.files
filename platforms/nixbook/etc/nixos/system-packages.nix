@@ -24,6 +24,7 @@ in rec
     cmake
     bemenu
     curl
+    discord
     file
     findutils
     gcc
