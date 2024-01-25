@@ -6,33 +6,39 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 ### BEGIN set env vars
+#export TERM="tmux-256color"
 export EDITOR="nvim"
-export TERM="tmux-256color"
+#export LDFLAGS="-I$(brew --prefix openssl@1.1)/include -L$(brew --prefix openssl@1.1)/lib"
 ### END set env vars
 #
 ### BEGIN PATH manipulation
+export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/nvim-squashfs-root/usr/bin:$PATH
+export PATH=$HOME/.cargo/bin:$PATH
+# add ARM toolchain to path for STM32 builds
+#export PATH="/Users/sam/.local/gcc-arm-none-eabi-9-2019-q4-major/bin:$PATH"
 ### END PATH manipulation
 #
 ### BEGIN aliases
+#alias ll="ls -alhG"
 alias ll="ls -alh --color"
-alias nix-pkg-path=
 alias git-submodule-update="git submodule update --init --recursive"
 ### END aliases
 
 ### BEGIN source scripts/tools
-#source $HOME/.iterm2_shell_integration.zsh
-#source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-#source $HOME/zsh-git-prompt/zshrc.sh
-source /etc/zsh-powerlevel10k.zsh-theme
+source $HOME/.iterm2_shell_integration.zsh
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $HOME/zsh-git-prompt/zshrc.sh
+source $HOME/powerlevel10k/powerlevel10k.zsh-theme
 ### END source scripts/tools
 
 ### BEGIN pyenv
-#export PYENV_ROOT="$HOME/.pyenv"
-#command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-#eval "$(pyenv init -)"
-#eval "$(pyenv virtualenv-init -)"
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 ### END pyenv
-#eval "$(rbenv init -)"
+eval "$(rbenv init -)"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -93,6 +99,6 @@ setopt hist_expire_dups_first # delete duplicates first when HISTFILE size excee
 setopt hist_ignore_dups       # ignore duplicated commands history list
 setopt hist_ignore_space      # ignore commands that start with space
 setopt hist_verify            # show command with history expansion to user before running it
-setopt share_history         # share command history data
-#source /usr/share/doc/fzf/examples/key-bindings.zsh
-#source /usr/share/doc/fzf/examples/completion.zsh
+#setopt share_history         # share command history data
+source /usr/share/doc/fzf/examples/key-bindings.zsh
+source /usr/share/doc/fzf/examples/completion.zsh

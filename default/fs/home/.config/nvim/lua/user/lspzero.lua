@@ -27,6 +27,7 @@ lsp.on_attach(function(client, bufnr)
   --})
   lsp.default_keymaps({buffer = bufnr})
 end)
+
 lsp.set_sign_icons({
   error = '✘',
   warn = '▲',
@@ -34,30 +35,15 @@ lsp.set_sign_icons({
   info = '»'
 })
 
-require("mason").setup({})
-require("mason-lspconfig").setup({
-  ensure_installed = {
-    "clangd",
-    "jedi_language_server",
-    "ltex",
-    "rnix",
-    "lua_ls",
-    "yamlls",
-  },
-  handlers = {
-    lsp.default_setup,
-  }
-})
-
 -- When you don't have mason.nvim installed
 -- You'll need to list the servers installed in your system
---lsp.setup_servers({
---  'clangd',
---  'jedi_language_server',
---  'rnix',
---  --'lua_ls',
---  'yamlls',
---})
+lsp.setup_servers({
+  'clangd',
+  'jedi_language_server',
+  'rnix',
+  --'lua_ls',
+  'yamlls',
+})
 
 -- TBD
 -- https://github.com/artempyanykh/marksman
@@ -78,36 +64,29 @@ require('lspconfig').jedi_language_server.setup({ capabilities = capabilities })
 require('lspconfig').rnix.setup({ capabilities = capabilities })
 
 -- https://github.com/luals/lua-language-server
-require('lspconfig').lua_ls.setup({
-  on_init = function(client)
-    local path = client.workspace_folders[1].name
-    if not vim.loop.fs_stat(path..'/.luarc.json') and not vim.loop.fs_stat(path..'/.luarc.jsonc') then
-      client.config.settings = vim.tbl_deep_extend('force', client.config.settings, {
-        Lua = {
-          runtime = {
-            -- Tell the language server which version of Lua you're using
-            -- (most likely LuaJIT in the case of Neovim)
-            version = 'LuaJIT'
-          },
-          -- Make the server aware of Neovim runtime files
-          workspace = {
-            checkThirdParty = false,
-            library = {
-              vim.env.VIMRUNTIME
-              -- "${3rd}/luv/library"
-              -- "${3rd}/busted/library",
-            }
-            -- or pull in all of 'runtimepath'. NOTE: this is a lot slower
-            -- library = vim.api.nvim_get_runtime_file("", true)
-          }
-        }
-      })
-
-      client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
-    end
-    return true
-  end
-})
+--require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
+--require('lspconfig').lua_ls.setup {
+--  settings = {
+--    Lua = {
+--      runtime = {
+--        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+--        version = 'LuaJIT',
+--      },
+--      diagnostics = {
+--        -- Get the language server to recognize the `vim` global
+--        globals = {'vim'},
+--      },
+--      workspace = {
+--        -- Make the server aware of Neovim runtime files
+--        library = vim.api.nvim_get_runtime_file("", true),
+--      },
+--      -- Do not send telemetry data containing a randomized but unique identifier
+--      telemetry = {
+--        enable = false,
+--      },
+--    },
+--  },
+--}
 
 -- YAML LSP
 -- Assumes: brew install yarn 

@@ -1,41 +1,48 @@
 -- This file can be loaded by calling `lua require('plugins')` from your init.vim
 -- an arbitrary change
 
--- bootstrap lazy
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
+-- bootstrap packer
+local ensure_packer = function()
+  local fn = vim.fn
+  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+  if fn.empty(fn.glob(install_path)) > 0 then
+    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+    vim.cmd [[packadd packer.nvim]]
+    return true
+  end
+  return false
 end
-vim.opt.rtp:prepend(lazypath)
+local packer_bootstrap = ensure_packer()
 
-require("lazy").setup({
+-- Only required if you have packer configured as `opt`
+
+return require('packer').startup(function()
+  -- Packer can manage itself
+  use 'wbthomason/packer.nvim'
+
   -- https://github.com/nvim-lua/plenary.nvim
   -- useful lua functions for nvim, a lot of plugins expect this i guess
-  "nvim-lua/plenary.nvim",
+  use 'nvim-lua/plenary.nvim'
 
   -- https://github.com/nvim-treesitter/nvim-treesitter
-  {
-    "nvim-treesitter/nvim-treesitter",
-    build = ":TSUpdate",
-  },
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = function()
+      local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+      ts_update()
+    end,
+  }
 
   -- https://github.com/kyazdani42/nvim-web-devicons
   -- icons and colors for a pretty nvim, requires a patched font
-  "kyazdani42/nvim-web-devicons",
+  use 'kyazdani42/nvim-web-devicons'
 
   -- https://github.com/nvim-telescope/telescope.nvim
   -- fuzzy finder
-  "nvim-telescope/telescope.nvim",
+  use 'nvim-telescope/telescope.nvim'
   -- https://github.com/nvim-telescope/telescope-fzf-native.nvim
   -- use fzf in telescope
-  {"nvim-telescope/telescope-fzf-native.nvim", run = "make"},
+  use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}
   -- https://github.com/nvim-telescope/telescope-file-browser.nvim
   use {
     "nvim-telescope/telescope-file-browser.nvim",
@@ -43,7 +50,7 @@ require("lazy").setup({
   }
 
   -- https://github.com/kyazdani42/nvim-tree.lua
-  "kyazdani42/nvim-tree.lua",
+  use 'kyazdani42/nvim-tree.lua'
 
   -- https://github.com/romgrk/nvim-treesitter-context
   -- use 'romgrk/nvim-treesitter-context'
@@ -52,10 +59,10 @@ require("lazy").setup({
   -- use 'neovim/nvim-lspconfig'
   
   -- https://github.com/nvim-lualine/lualine.nvim
-  "nvim-lualine/lualine.nvim",
+  use 'nvim-lualine/lualine.nvim'
 
   -- https://github.com/navarasu/onedark.nvim
-  "navarasu/onedark.nvim",
+  use 'navarasu/onedark.nvim'
 
   -- https://github.com/tjdevries/colorbuddy.nvim
   -- use 'tjdevries/colorbuddy.nvim'
@@ -63,7 +70,7 @@ require("lazy").setup({
   -- use 'bbenzikry/snazzybuddy.nvim'
 
   -- https://github.com/bkad/CamelCaseMotion
-  "bkad/CamelCaseMotion",
+  use 'bkad/CamelCaseMotion'
 
   -- Simple plugins can be specified as strings
   -- use '9mm/vim-closer'
@@ -120,10 +127,14 @@ require("lazy").setup({
   -- }
 
   -- https://github.com/tpope/vim-fugitive
-  "tpope/vim-fugitive",
+  use 'tpope/vim-fugitive'
 
   -- https://github.com/lewis6991/gitsigns.nvim
-  "lewis6991/gitsigns.nvim",
+  use {
+    'lewis6991/gitsigns.nvim',
+    -- tag = 'release' -- To use the latest release (do not use this if you run Neovim nightly or dev builds!)
+  }
+
   -- Use dependency and run lua function after load
   -- use {
   --   'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' },
@@ -137,41 +148,45 @@ require("lazy").setup({
   -- use {'dracula/vim', as = 'dracula'}
 
   -- LSP
-  {"williamboman/mason.nvim"},
-  {"williamboman/mason-lspconfig.nvim"},
-  {"VonHeikemen/lsp-zero.nvim", branch = "v3.x"},
-  {"neovim/nvim-lspconfig"},
-  {"hrsh7th/cmp-nvim-lsp"},
-  {"hrsh7th/nvim-cmp"},
-  {"L3MON4D3/LuaSnip"},
-  {"onsails/lspkind.nvim"},
+  use {
+    'VonHeikemen/lsp-zero.nvim',
+    branch = 'v2.x',
+    requires = {
+      -- LSP Support
+      {'neovim/nvim-lspconfig'},             -- Required
+      --Note: if you use NixOS don't install mason.nvim
+      --{'williamboman/mason.nvim'},           -- Optional
+      --{'williamboman/mason-lspconfig.nvim'}, -- Optional
 
-  -- old packer installation
-  --{
-  --  "VonHeikemen/lsp-zero.nvim",
-  --  branch = "v2.x",
-  --  requires = {
-  --    -- LSP Support
-  --    {"neovim/nvim-lspconfig"},             -- Required
-  --    --Note: if you use NixOS don"t install mason.nvim
-  --    --{"williamboman/mason.nvim"},           -- Optional
-  --    --{"williamboman/mason-lspconfig.nvim"}, -- Optional
+      -- Autocompletion
+      {'hrsh7th/cmp-buffer'},
+      {'hrsh7th/cmp-path'},
+      {'L3MON4D3/LuaSnip'},     -- Required
+      {'saadparwaiz1/cmp_luasnip'},
+      {'hrsh7th/nvim-cmp'}, -- required
+      {'hrsh7th/cmp-nvim-lsp'}, -- Required
+      {'onsails/lspkind.nvim'},
+    }
+  }
 
-  --    -- Autocompletion
-  --    {"hrsh7th/cmp-buffer"},
-  --    {"hrsh7th/cmp-path"},
-  --    {"L3MON4D3/LuaSnip"},     -- Required
-  --    {"saadparwaiz1/cmp_luasnip"},
-  --    {"hrsh7th/nvim-cmp"}, -- required
-  --    {"hrsh7th/cmp-nvim-lsp"}, -- Required
-  --    {"onsails/lspkind.nvim"},
-  --  }
-  --},
-
-  "LnL7/vim-nix",
+  use 'LnL7/vim-nix'
 
   -- https://github.com/ojroques/nvim-osc52
-  "ojroques/nvim-osc52",
+  use 'ojroques/nvim-osc52'
 
-  "olimorris/onedarkpro.nvim",
-})
+  use "olimorris/onedarkpro.nvim"
+
+  -- Automatically set up your configuration after cloning packer.nvim
+  -- Put this at the end after all plugins
+  if packer_bootstrap then
+    require('packer').sync()
+  end
+end)
+
+-- automatically run :PackerCompile whenever plugins.lua is updated
+-- vim.cmd([[
+--   augroup packer_user_config
+--     autocmd!
+--     autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+--   augroup end
+-- ]])
