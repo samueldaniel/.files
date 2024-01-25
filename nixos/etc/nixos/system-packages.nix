@@ -7,13 +7,14 @@ in rec
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    ack
-    bash
-    bash-completion
-    can-utils
+    #ack
+    #bash
+    #bash-completion
+    #can-utils
     cargo
     cmake
     curl
+    delta 
     file
     findutils
     gcc
@@ -22,22 +23,20 @@ in rec
     glow
     gnugrep
     gnumake
-    gnupg
+    #gnupg
     gnused
-    hack-font
+    #hack-font
     htop
     iotop
     killall
     llvmPackages_15.libclang
     llvmPackages_15.llvm
     lsof
-    minicom
+    #minicom
     moreutils
     nodejs
     nodePackages.yaml-language-server
-    nerdfonts
     perl
-    powerline-symbols
     (python310Full.withPackages(ps: with ps; [
       jedi-language-server
       pip
@@ -49,15 +48,16 @@ in rec
     tmux
     tree
     tree-sitter
-    vim
+    #vim
     wget
-    wl-clipboard
+    #wl-clipboard
     unstable.bat
-    unstable.exa
+    unstable.eza
     unstable.fd
     unstable.fzf
     unstable.neovim-unwrapped
     unstable.ripgrep
+    unzip
     zsh
     zsh-autosuggestions
     #zsh-async
