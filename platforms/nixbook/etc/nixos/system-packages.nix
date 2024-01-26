@@ -24,7 +24,9 @@ in rec
     cmake
     bemenu
     curl
-    discord
+    (discord.override {
+      nss = nss_latest;
+    })
     file
     findutils
     gcc
