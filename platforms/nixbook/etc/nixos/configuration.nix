@@ -155,6 +155,17 @@
    # ];
   };
 
+  systemd.services.keyd = {
+    description = "key remapping daemon";
+    requires = [ "multi-user.target" ];
+    after = [ "multi-user.target" ];
+    wantedBy = [ "sysinit.target" ];
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = ''${pkgs.keyd}/bin/keyd'';
+    };
+  };
+
   # Many programs look at /etc/shells to determine if a user is a "normal" user and not a "system" user. Therefore it is recommended to add the user shells to this list. 
   environment.shells = [ pkgs.zsh ];
   environment.etc."zsh-powerlevel10k.zsh-theme".source = "${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
