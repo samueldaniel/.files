@@ -113,6 +113,21 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
+  services.logind.extraConfig = ''
+    KillUserProcesses=no
+    HandlePowerKey=ignore
+    HandlePowerKeyLongPress=poweroff
+    HandleRebootKey=ignore
+    HandleRebootKeyLongPress=poweroff
+    HandleSuspendKey=ignore
+    HandleSuspendKeyLongPress=ignore
+    HandleHibernateKey=ignore
+    HandleHibernateKeyLongPress=ignore
+    HandleLidSwitch=suspend
+    HandleLidSwitchExternalPower=suspend
+    HandleLidSwitchDocked=ignore
+  '';
+
   programs.zsh = {
     enable = true;
     enableCompletion = true;

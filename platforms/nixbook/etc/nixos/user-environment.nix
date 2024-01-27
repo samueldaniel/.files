@@ -16,6 +16,4 @@ in rec
 
   environment.etc."keyd/default.conf".source = "/home/sam/.config/keyd/default.conf";
 
-  #environment.etc."wpa_supplicant/wpa_supplicant-wlp1s0.conf".source = "/home/sam/.config/wpa_supplicant/wpa_supplicant-wlp1s0.conf";
-
 }

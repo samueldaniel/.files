@@ -58,6 +58,8 @@ bindsym F7 exec lightctl up
 
 exec "avizo-service"
 
+bindsym XF86PowerOff exec wlogout
+
 ### Idle configuration
 #
 # Example configuration:

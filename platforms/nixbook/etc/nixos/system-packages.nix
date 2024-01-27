@@ -78,6 +78,7 @@ in rec
     unstable.ripgrep
     unzip
     waybar
+    wlogout
     zsh
     zsh-autosuggestions
     zsh-completions
