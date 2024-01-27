@@ -191,7 +191,7 @@
   #  kbdInteractiveAuthentication = false;
   #  forwardX11 = true;
   #};
-  #programs.ssh.startAgent = true;
+  programs.ssh.startAgent = true;
 
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [ 22 ];
