@@ -88,4 +88,9 @@ in
     enable = true;
     wrapperFeatures.gtk = true;
   };
+
+  security.pam.loginLimits = [
+    { domain = "@users"; item = "rtprio"; type = "-"; value = 1; }
+  ];
+
 }
