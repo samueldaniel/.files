@@ -2,7 +2,7 @@ local lsp = require('lsp-zero').preset({
   name = 'system-lsp',
 
   -- disables all the features that depends on mason.nvim
-  setup_servers_on_start = false,
+  setup_servers_on_start = true,
   call_servers = 'global',
 
   float_border = 'rounded',
@@ -67,7 +67,9 @@ require("mason-lspconfig").setup({
 -- https://github.com/ansible/ansible-language-server
 -- https://github.com/bash-lsp/bash-language-server
 
-require('lspconfig').clangd.setup({ capabilities = capabilities })
+require('lspconfig').clangd.setup({
+  capabilities = capabilities,
+})
 
 -- installed in configuration.nix
 require('lspconfig').jedi_language_server.setup({ capabilities = capabilities })
