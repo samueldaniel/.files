@@ -14,15 +14,10 @@ in rec
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     ack
-    alacritty
-    alacritty-theme
-    avizo
     #bash
     #bash-completion
-    brightnessctl
     cargo
     cmake
-    bemenu
     curl
     (discord.override {
       nss = nss_latest;
@@ -40,7 +35,6 @@ in rec
     hack-font
     htop
     iotop
-    keyd
     killall
     #llvmPackages_15.libclang
     #llvmPackages_15.llvm
@@ -62,14 +56,11 @@ in rec
     ruby
     rustc
     slack
-    slurp
-    sway-launcher-desktop
     tmux
     tree
     tree-sitter
     vim
     wget
-    wl-clipboard
     unstable.bat
     unstable.eza
     unstable.fd
@@ -77,8 +68,6 @@ in rec
     unstable.neovim-unwrapped
     unstable.ripgrep
     unzip
-    waybar
-    wlogout
     zsh
     zsh-autosuggestions
     zsh-completions

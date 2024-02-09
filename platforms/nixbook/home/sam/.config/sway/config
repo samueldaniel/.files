@@ -34,6 +34,8 @@ exec dbus-sway-environment
 exec configure-gtk
 # end nixos stuff for sway
 
+exec mako
+
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /run/current-system/sw/share/backgrounds/sway/)
@@ -93,6 +95,11 @@ exec swayidle -w \
 #
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
+
+input "0:0:Elan_Touchscreen" {
+  map_to_output eDP-1
+}
+exec rot8 --threshold 1.0 --normalization-factor 1e10 --invert-x --invert-y --invert-z
 
 ### Key bindings
 #

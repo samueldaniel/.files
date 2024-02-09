@@ -43,31 +43,39 @@ let
 in
 {
   environment.systemPackages = with pkgs; [
+    acpid
     alacritty # gpu accelerated terminal
-    sway
-    dbus-sway-environment
-    configure-gtk
-    wayland
-    xdg-utils # for opening default programs when clicking links
-    glib # gsettings
-    dracula-theme # gtk theme
-    gnome3.adwaita-icon-theme  # default gnome cursors
-    swaylock
-    swayidle
-    grim # screenshot functionality
-    slurp # screenshot functionality
-    wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
+    alacritty-theme
+    avizo
     bemenu # wayland clone of dmenu
+    brightnessctl
+    configure-gtk
+    dbus-sway-environment
+    dracula-theme # gtk theme
+    glib # gsettings
+    gnome3.adwaita-icon-theme  # default gnome cursors
+    grim # screenshot functionality
+    #kanshi
+    keyd
     mako # notification system developed by swaywm maintainer
+    rot8
+    slurp # screenshot functionality
+    sway
+    sway-launcher-desktop
+    swayidle
+    swaylock
+    waybar
+    wayland
+    wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
+    wlogout
+    xdg-utils # for opening default programs when clicking links
   ];
-
 
   services.pipewire = {
     enable = true;
     alsa.enable = true;
     pulse.enable = true;
   };
-
 
   # xdg-desktop-portal works by exposing a series of D-Bus interfaces
   # known as portals under a well-known name
@@ -92,5 +100,26 @@ in
   security.pam.loginLimits = [
     { domain = "@users"; item = "rtprio"; type = "-"; value = 1; }
   ];
+
+  services.acpid.enable = true;
+  services.acpid.logEvents = true;
+  services.acpid.handlers = {
+    tabletmode_enabled = {
+      event = "video/tabletmode TBLT 0000008A 00000001";
+      action = ''
+        export PATH=/run/wrappers/bin:/run/current-system/sw/bin:$PATH
+        su sam -c 'SWAYSOCK=$(ls /run/user/1000/sway-ipc.* | head -n 1) swaymsg "input 1:1:AT_Translated_Set_2_keyboard events disabled"'
+        su sam -c 'SWAYSOCK=$(ls /run/user/1000/sway-ipc.* | head -n 1) swaymsg "input 4012:2782:keyd_virtual_device events disabled"'
+      '';
+    };
+    tabletmode_disabled = {
+      event = "video/tabletmode TBLT 0000008A 00000000";
+      action = ''
+        export PATH=/run/wrappers/bin:/run/current-system/sw/bin:$PATH
+        su sam -c 'SWAYSOCK=$(ls /run/user/1000/sway-ipc.* | head -n 1) swaymsg "input 1:1:AT_Translated_Set_2_keyboard events enabled"'
+        su sam -c 'SWAYSOCK=$(ls /run/user/1000/sway-ipc.* | head -n 1) swaymsg "input 4012:2782:keyd_virtual_device events enabled"'
+      '';
+    };
+  };
 
 }

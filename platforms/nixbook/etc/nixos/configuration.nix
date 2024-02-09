@@ -6,8 +6,9 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
       ./1password.nix
+      ./hardware-configuration.nix
+      ./sway.nix
       ./system-packages.nix
       ./user-environment.nix
     ];
