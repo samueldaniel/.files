@@ -37,10 +37,10 @@ require("lazy").setup({
   -- use fzf in telescope
   {"nvim-telescope/telescope-fzf-native.nvim", run = "make"},
   -- https://github.com/nvim-telescope/telescope-file-browser.nvim
-  use {
+  {
     "nvim-telescope/telescope-file-browser.nvim",
     requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
-  }
+  },
 
   -- https://github.com/kyazdani42/nvim-tree.lua
   "kyazdani42/nvim-tree.lua",
@@ -144,6 +144,7 @@ require("lazy").setup({
   {"hrsh7th/cmp-nvim-lsp"},
   {"hrsh7th/nvim-cmp"},
   {"L3MON4D3/LuaSnip"},
+  {"onsails/lspkind.nvim"},
 
   -- old packer installation
   --{
@@ -173,4 +174,6 @@ require("lazy").setup({
   "ojroques/nvim-osc52",
 
   "olimorris/onedarkpro.nvim",
+
+  "https://codeberg.org/esensar/nvim-dev-container",
 })
