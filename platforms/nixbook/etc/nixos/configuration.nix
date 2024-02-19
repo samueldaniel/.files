@@ -8,7 +8,8 @@
     [ # Include the results of the hardware scan.
       ./1password.nix
       ./hardware-configuration.nix
-      ./sway.nix
+      #./sway.nix
+      ./hyprland.nix
       ./system-packages.nix
       ./user-environment.nix
     ];
@@ -25,10 +26,25 @@
     };
   };
 
-  programs.sway.enable = true;
+  #programs.sway.enable = true;
   security.rtkit.enable = true;
   services.dbus.enable = true;
   security.polkit.enable = true;
+  systemd = {
+    user.services.polkit-kde-authentication-agent-1 = {
+      description = "polkit-kde-authentication-agent-1";
+      wantedBy = [ "graphical-session.target" ];
+      wants = [ "graphical-session.target" ];
+      after = [ "graphical-session.target" ];
+      serviceConfig = {
+        Type = "simple";
+        ExecStart = "${pkgs.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1";
+        Restart = "on-failure";
+        RestartSec = 1;
+        TimeoutStopSec = 10;
+      };
+    };
+  };
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -42,8 +58,11 @@
       xdg-desktop-portal-wlr
     ];
   };
+  #environment.loginShellInit = ''
+  #  [[ "$(tty)" == /dev/tty1 ]] && sway
+  #'';
   environment.loginShellInit = ''
-    [[ "$(tty)" == /dev/tty1 ]] && sway
+    [[ "$(tty)" == /dev/tty1 ]] && Hyprland
   '';
   fonts.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "Hack" ]; })
