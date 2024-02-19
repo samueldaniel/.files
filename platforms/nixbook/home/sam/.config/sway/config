@@ -99,6 +99,16 @@ exec swayidle -w \
 input "0:0:Elan_Touchscreen" {
   map_to_output eDP-1
 }
+
+input "1267:143:Elan_Touchpad" {
+  dwt enabled
+  tap enabled
+  tap_button_map lrm
+  natural_scroll enabled
+  middle_emulation enabled
+  scroll_method two_finger
+}
+
 exec rot8 --threshold 1 --normalization-factor 1e10 --invert-x
 
 ### Key bindings
