@@ -16,4 +16,6 @@ in rec
 
   environment.etc."keyd/default.conf".source = "/home/sam/.config/keyd/default.conf";
 
+  environment.etc."share/fonts/truetype/NerdFonts".source = "${pkgs.nerdfonts}/share/fonts/truetype/NerdFonts";
+
 }
