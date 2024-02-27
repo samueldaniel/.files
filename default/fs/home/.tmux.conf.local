@@ -84,6 +84,7 @@ tmux_conf_theme_colour_14="#080808"   # dark gray
 tmux_conf_theme_colour_15="#080808"   # dark gray
 tmux_conf_theme_colour_16="#d70000"   # red
 tmux_conf_theme_colour_17="#e4e4e4"   # white
+tmux_conf_theme_colour_18="#fffc79"   # pale yellow
 
 # default theme (ansi)
 #tmux_conf_theme_colour_1="colour0"
@@ -247,13 +248,13 @@ tmux_conf_theme_right_separator_sub='\uE0B3'  #   PowerlineSymbols.otf font, see
 #     - #{uptime_s}
 #     - #{username}
 #     - #{username_ssh}
-tmux_conf_theme_status_left=" ❐ #S | ↑#{?uptime_y, #{uptime_y}y,}#{?uptime_d, #{uptime_d}d,}#{?uptime_h, #{uptime_h}h,}#{?uptime_m, #{uptime_m}m,} "
-tmux_conf_theme_status_right=" #{prefix}#{mouse}#{pairing}#{synchronized}#{?battery_status,#{battery_status},}#{?battery_bar, #{battery_bar},}#{?battery_percentage, #{battery_percentage},} #(curl -m 1 'wttr.in/Seattle?u&format=3' 2>/dev/null; sleep 900) , %R , %d %b | #{username}#{root} | #{hostname} "
+tmux_conf_theme_status_left=" ❐ #S | #{hostname} | #{cpu_icon} #{cpu_usage} , 󰮳 #{ram_usage} , 󰋊 #{disk_usage} , ↑#{?uptime_y, #{uptime_y}y,}#{?uptime_d, #{uptime_d}d,}#{?uptime_h, #{uptime_h}h,}#{?uptime_m, #{uptime_m}m,} | #{username}#{root} "
+tmux_conf_theme_status_right=" #{prefix}#{mouse}#{pairing}#{synchronized}#{?battery_status,#{battery_status},}#{?battery_bar, #{battery_bar},}#{?battery_percentage, #{battery_percentage},} #{weather} | %R %d %b "
 
 # status left style
-tmux_conf_theme_status_left_fg="$tmux_conf_theme_colour_6,$tmux_conf_theme_colour_7,$tmux_conf_theme_colour_8"
-tmux_conf_theme_status_left_bg="$tmux_conf_theme_colour_9,$tmux_conf_theme_colour_10,$tmux_conf_theme_colour_11"
-tmux_conf_theme_status_left_attr="bold,none,none"
+tmux_conf_theme_status_left_fg="$tmux_conf_theme_colour_7,$tmux_conf_theme_colour_7,$tmux_conf_theme_colour_1,$tmux_conf_theme_colour_7"
+tmux_conf_theme_status_left_bg="$tmux_conf_theme_colour_6,$tmux_conf_theme_colour_16,$tmux_conf_theme_colour_5,$tmux_conf_theme_colour_4"
+tmux_conf_theme_status_left_attr="bold,none,none,none"
 
 # status right style
 tmux_conf_theme_status_right_fg="$tmux_conf_theme_colour_12,$tmux_conf_theme_colour_13,$tmux_conf_theme_colour_14"
@@ -431,9 +432,33 @@ tmux_conf_uninstall_plugins_on_reload=true
 #
 # # /!\ do not "uncomment" the functions: the leading "# " characters are needed
 #
-# weather() {                                         # see https://github.com/chubin/wttr.in#one-line-output
-#   curl -f -s -m 2 'wttr.in?format=3' || printf '\n' # /!\ make sure curl is installed
-#   sleep 900                                         # sleep for 15 minutes, throttle network requests whatever the value of status-interval
+# disk_usage() {
+#   df -h / | tail -1 | awk '{ print $5 }'
+#   sleep 5
+# }
+#
+# cpu_icon() {
+#   MACHINE_TYPE=`uname -m`
+#   if [ ${MACHINE_TYPE} == 'x86_64' ]; then
+#     echo "󰻟"
+#   else
+#     echo "󰻠"
+#   fi
+# }
+# 
+# cpu_usage() {
+#   LC_ALL=C top -bn1 -p0 | awk '/^%Cpu/{print 100-$8"%"}'
+#   sleep 5
+# }
+#
+# ram_usage() {
+#   free | grep "Mem:" | awk -F " " '{print int(((($2 - $7) / $2) * 100) + 0.5)"%"}'
+#   sleep 5
+# }
+#
+# weather() {
+#   curl -f -s -m 2 'wttr.in/Seattle?u&format=3' || printf
+#   sleep 300
 # }
 #
 # online() {
