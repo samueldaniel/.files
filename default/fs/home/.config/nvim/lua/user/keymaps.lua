@@ -85,3 +85,5 @@ vim.cmd('sunmap w')
 vim.cmd('sunmap b')
 vim.cmd('sunmap e')
 vim.cmd('sunmap ge')
+
+vim.api.nvim_set_keymap("n", "<Leader>nf", ":lua require('neogen').generate()<CR>", { noremap = true, silent = true })
