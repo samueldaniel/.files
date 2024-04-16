@@ -1,3 +1,6 @@
+if [[ $(uname) == "Darwin" ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -8,26 +11,36 @@ fi
 ### BEGIN set env vars
 #export TERM="tmux-256color"
 export EDITOR="nvim"
-#export LDFLAGS="-I$(brew --prefix openssl@1.1)/include -L$(brew --prefix openssl@1.1)/lib"
+if [[ $(uname) == "Darwin" ]]; then
+  export LDFLAGS="-I$(brew --prefix openssl@1.1)/include -L$(brew --prefix openssl@1.1)/lib"
+fi
 ### END set env vars
 #
 ### BEGIN PATH manipulation
 export PATH=$HOME/.local/bin:$PATH
-export PATH=$HOME/nvim-squashfs-root/usr/bin:$PATH
-export PATH=$HOME/.cargo/bin:$PATH
+if [[ $(uname) == "Darwin" ]]; then
+else
+  export PATH=$HOME/nvim-squashfs-root/usr/bin:$PATH
+  export PATH=$HOME/.cargo/bin:$PATH
+fi
 # add ARM toolchain to path for STM32 builds
 #export PATH="/Users/sam/.local/gcc-arm-none-eabi-9-2019-q4-major/bin:$PATH"
 ### END PATH manipulation
-#
+
 ### BEGIN aliases
 #alias ll="ls -alhG"
-alias ll="ls -alh --color"
+if [[ $(uname) == "Darwin" ]]; then
+  alias ll="ls -alhG"
+  # To avoid accidentally linking against a Pyenv-provided Python:
+  alias brew='env PATH="${PATH//$(pyenv root)\/shims:/}" brew'
+else
+  alias ll="ls -alh --color"
+fi
 alias git-submodule-update="git submodule update --init --recursive"
 ### END aliases
 
 ### BEGIN source scripts/tools
 source $HOME/.iterm2_shell_integration.zsh
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $HOME/zsh-git-prompt/zshrc.sh
 source $HOME/powerlevel10k/powerlevel10k.zsh-theme
 ### END source scripts/tools
@@ -102,5 +115,8 @@ setopt hist_ignore_dups       # ignore duplicated commands history list
 setopt hist_ignore_space      # ignore commands that start with space
 setopt hist_verify            # show command with history expansion to user before running it
 #setopt share_history         # share command history data
+
+# MUST BE SOURCED AT END OF FILE
 source /usr/share/doc/fzf/examples/key-bindings.zsh
 source /usr/share/doc/fzf/examples/completion.zsh
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
