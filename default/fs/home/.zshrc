@@ -19,6 +19,7 @@ fi
 ### BEGIN PATH manipulation
 export PATH=$HOME/.local/bin:$PATH
 if [[ $(uname) == "Darwin" ]]; then
+  export PATH=$HOME/nvim-macos-arm64/bin:$PATH
 else
   export PATH=$HOME/nvim-squashfs-root/usr/bin:$PATH
   export PATH=$HOME/.cargo/bin:$PATH
@@ -41,7 +42,12 @@ alias git-submodule-update="git submodule update --init --recursive"
 
 ### BEGIN source scripts/tools
 source $HOME/.iterm2_shell_integration.zsh
-source $HOME/zsh-git-prompt/zshrc.sh
+
+if [[ $(uname) == "Darwin" ]]; then
+  source $(brew --prefix zsh-git-prompt)/zshrc.sh
+else
+  source $HOME/zsh-git-prompt/zshrc.sh
+fi
 source $HOME/powerlevel10k/powerlevel10k.zsh-theme
 ### END source scripts/tools
 
@@ -51,7 +57,7 @@ command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 ### END pyenv
-eval "$(rbenv init -)"
+#eval "$(rbenv init -)"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -114,9 +120,19 @@ setopt hist_expire_dups_first # delete duplicates first when HISTFILE size excee
 setopt hist_ignore_dups       # ignore duplicated commands history list
 setopt hist_ignore_space      # ignore commands that start with space
 setopt hist_verify            # show command with history expansion to user before running it
-#setopt share_history         # share command history data
+setopt share_history          # share command history data
 
 # MUST BE SOURCED AT END OF FILE
-source /usr/share/doc/fzf/examples/key-bindings.zsh
-source /usr/share/doc/fzf/examples/completion.zsh
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+if [ -n "${commands[fzf-share]}" ]; then
+  source "$(fzf-share)/key-bindings.zsh"
+  source "$(fzf-share)/completion.zsh"
+fi
+if [[ $(uname) == "Darwin" ]]; then
+  source $(brew --prefix fzf)/shell/key-bindings.zsh
+  source $(brew --prefix fzf)/shell/completion.zsh
+  source $(brew --prefix zsh-syntax-highlighting)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+else
+  source /usr/share/doc/fzf/examples/key-bindings.zsh
+  source /usr/share/doc/fzf/examples/completion.zsh
+  source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
