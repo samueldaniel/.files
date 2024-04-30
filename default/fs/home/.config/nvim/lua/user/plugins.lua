@@ -162,6 +162,13 @@ require("lazy").setup({
 
   "https://codeberg.org/esensar/nvim-dev-container",
 
+  { 
+    "danymat/neogen", 
+    config = true,
+    -- Uncomment next line if you want to follow only stable versions
+    version = "*",
+  },
+    
   {
     'stevearc/conform.nvim',
     opts = {},

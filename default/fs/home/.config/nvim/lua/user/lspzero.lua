@@ -69,6 +69,16 @@ require("mason-lspconfig").setup({
 
 require('lspconfig').clangd.setup({
   capabilities = capabilities,
+  cmd = {
+    "docker",
+    "run",
+    "-i",
+    "-v",
+    "/home/sam/repos/eldritch-horror:/home/sam/repos/eldritch-horror",
+    "appsw-container",
+    "clangd",
+    "2>/dev/null"
+  },
 })
 
 -- installed in configuration.nix
