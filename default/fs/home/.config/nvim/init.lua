@@ -87,6 +87,21 @@ vim.opt.showmode = false
 vim.g.python3_host_prog = "/home/sam/.pyenv/versions/neovim/bin/python"
 vim.g.ruby_host_prog = "/home/sam/.rbenv/versions/3.2.2/bin/ruby"
 
+-- bootstrap lazy
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+  print("FUCK")
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
+
 require('user.plugins') -- always load plugins first
 --require('colorbuddy').colorscheme('snazzybuddy')
 --vim.g.snazzybuddy_icons = true
@@ -101,4 +116,5 @@ require('user.treesitter')
 require('user.osc52')
 require('user.devcontainer')
 require('user.neogen')
+require('user.conform')
 require('user.keymaps') -- always load keymaps last

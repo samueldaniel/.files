@@ -58,3 +58,7 @@ sudo nixos-rebuild switch --upgrade
 - [ ] figure out a way to script the installation of petalinux
 - [ ] figure out a way to script the installation of awscli
 - [ ] get nixOS/nix playing nicely with kernel modules
+
+# Tips
+* if `lazy` does not bootstrap, your ssh key probably isn't loaded and git is silently failing asking for a prompt
+* if neovim can't find the `fzf` telescope extension, you need to find it and `make` it
