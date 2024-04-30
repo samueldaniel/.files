@@ -161,4 +161,9 @@ require("lazy").setup({
   "olimorris/onedarkpro.nvim",
 
   "https://codeberg.org/esensar/nvim-dev-container",
+
+  {
+    'stevearc/conform.nvim',
+    opts = {},
+  },
 })
