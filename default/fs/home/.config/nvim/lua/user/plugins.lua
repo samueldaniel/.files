@@ -158,7 +158,10 @@ require("lazy").setup({
   -- https://github.com/ojroques/nvim-osc52
   "ojroques/nvim-osc52",
 
-  "olimorris/onedarkpro.nvim",
+  {
+    "olimorris/onedarkpro.nvim",
+    priority = 1000, -- ensure it loads first
+  },
 
   "https://codeberg.org/esensar/nvim-dev-container",
 

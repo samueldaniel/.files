@@ -1,27 +1,34 @@
 require("onedarkpro").setup({
-  colors = {}, -- Override default colors or create your own
+  colors = {},   -- Override default colors or create your own
   highlights = { -- Override default highlight groups or create your own
-    Search = {  -- Last search pattern highlighting (see 'hlsearch').  Also used for similar items that need to stand out.
+    Search = {   -- Last search pattern highlighting (see 'hlsearch').  Also used for similar items that need to stand out.
       bg = "${yellow}",
       fg = "${red}",
     },
+    Cursor = {
+      bg = "${purple}",
+      fg = "${white}", -- character under cursor
+    },
+    CursorColumn = {   -- Screen-column at the cursor, when 'cursorcolumn' is set.
+      bg = "${gray}",
+    },
   },
-  styles = { -- For example, to apply bold and italic, use "bold,italic"
-    types = "NONE", -- Style that is applied to types
-    methods = "NONE", -- Style that is applied to methods
-    numbers = "NONE", -- Style that is applied to numbers
-    strings = "NONE", -- Style that is applied to strings
-    comments = "NONE", -- Style that is applied to comments
-    keywords = "NONE", -- Style that is applied to keywords
-    constants = "NONE", -- Style that is applied to constants
-    functions = "NONE", -- Style that is applied to functions
-    operators = "NONE", -- Style that is applied to operators
-    variables = "NONE", -- Style that is applied to variables
-    parameters = "NONE", -- Style that is applied to parameters
+  styles = {               -- For example, to apply bold and italic, use "bold,italic"
+    types = "NONE",        -- Style that is applied to types
+    methods = "NONE",      -- Style that is applied to methods
+    numbers = "NONE",      -- Style that is applied to numbers
+    strings = "NONE",      -- Style that is applied to strings
+    comments = "NONE",     -- Style that is applied to comments
+    keywords = "NONE",     -- Style that is applied to keywords
+    constants = "NONE",    -- Style that is applied to constants
+    functions = "NONE",    -- Style that is applied to functions
+    operators = "NONE",    -- Style that is applied to operators
+    variables = "NONE",    -- Style that is applied to variables
+    parameters = "NONE",   -- Style that is applied to parameters
     conditionals = "NONE", -- Style that is applied to conditionals
     virtual_text = "NONE", -- Style that is applied to virtual text
   },
-  filetypes = { -- Override which filetype highlight groups are loaded
+  filetypes = {            -- Override which filetype highlight groups are loaded
     comment = true,
     go = true,
     html = true,
@@ -80,9 +87,9 @@ require("onedarkpro").setup({
   },
 
   options = {
-    cursorline = true, -- Use cursorline highlighting?
-    transparency = false, -- Use a transparent background?
-    terminal_colors = true, -- Use the theme's colors for Neovim's :terminal?
+    cursorline = true,                  -- Use cursorline highlighting?
+    transparency = false,               -- Use a transparent background?
+    terminal_colors = true,             -- Use the theme's colors for Neovim's :terminal?
     highlight_inactive_windows = false, -- When the window is out of focus, change the normal background?
   }
 })
