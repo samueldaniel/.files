@@ -114,8 +114,8 @@ zstyle ':completion:*:*:docker-*:*' option-stacking yes
 
 # History configurations
 HISTFILE=~/.zsh_history
-HISTSIZE=100000
-SAVEHIST=200000
+HISTSIZE=1000000
+SAVEHIST=2000000
 setopt hist_expire_dups_first # delete duplicates first when HISTFILE size exceeds HISTSIZE
 setopt hist_ignore_dups       # ignore duplicated commands history list
 setopt hist_ignore_space      # ignore commands that start with space
@@ -136,3 +136,14 @@ else
   source /usr/share/doc/fzf/examples/completion.zsh
   source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
+
+export PATH="/opt/homebrew/lib/ruby/gems/3.3.0/bin:$PATH"
+export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+
+#For compilers to find ruby you may need to set:
+#export LDFLAGS="-L/opt/homebrew/opt/ruby/lib"
+#export CPPFLAGS="-I/opt/homebrew/opt/ruby/include"
+#
+#For pkg-config to find ruby you may need to set:
+#export PKG_CONFIG_PATH="/opt/homebrew/opt/ruby/lib/pkgconfig"
+#
